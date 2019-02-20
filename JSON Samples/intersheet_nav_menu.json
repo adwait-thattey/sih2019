@@ -1,0 +1,57 @@
+{
+	"Economic Overview":{
+			
+		"Macro-economic aggregates including sectoral analysis":"/* Not given as this is very big. See next section */"
+				
+	},
+	
+	"Accounts By Institutional Corporations":{
+		"Non-financial corporations":{
+			"2.0 Non-Financial Corporations":{
+				"Production Account":{
+					"Resources":{
+						"Output In Basic Prices":[
+							"Non Departmental Enterprises",
+							"Departmental Enterprices",
+							"These above 2 things as same as 'current and constant' prices"
+						]	
+					},
+					"Uses":{
+						"GVA":[
+                                                        "Non Departmental Enterprises",
+                                                        "Departmental Enterprices"
+                                                ]
+						,
+						"Net Value Added":[
+                                                        "Non Departmental Enterprises",
+                                                        "Departmental Enterprices"
+                                                ]
+					}
+				},
+				"Generation of income account":{
+					"Resources":{
+						"Net Value Added":{}
+					},
+					"Uses":{}
+				},
+				"Allocation of primary income account":{}
+			},
+			"2.1 Public Non Financial Corporationa":{},
+			"2.2 Private Non Financial Corporations":{}
+		},
+		
+		"Financial Corporations":{
+			"3.0 Financial Corporations":{},
+			"3.1 Public FInancial Corporations":{},
+			"3.2 Private FInancial COrporations":{}
+		}
+			
+	},
+	
+	"Industry-Wise Analysis":{
+		"Aggregates By Economic Activity":{
+		}
+	}
+
+
+}

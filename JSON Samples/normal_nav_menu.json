@@ -1,0 +1,28 @@
+{
+        "Economic Overview":{
+
+                "Macro-economic aggregates including sectoral analysis":"/* Not given as this is very big. See next section */"
+
+        },
+
+        "Accounts By Institutional Corporations":{
+                "Non-financial corporations":[
+                        "2.0 Non-Financial Corporations",               
+                        "2.1 Public Non Financial Corporationa",
+                        "2.2 Private Non Financial Corporations"
+		],
+
+                "[
+                        "2.0 Financial Corporations",              
+                        "2.1 Public Financial Corporationa",
+                        "2.2 Private Financial Corporations"
+                ]
+        },
+
+        "Industry-Wise Analysis":{
+                "Aggregates By Economic Activity":{
+                }
+        }
+
+
+}
