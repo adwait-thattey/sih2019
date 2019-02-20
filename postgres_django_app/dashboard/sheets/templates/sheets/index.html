@@ -1,0 +1,54 @@
+{% load static %}
+<!DOCTYPE html>
+<html >
+<head>
+  <meta charset="UTF-8">
+  <title>CSS Stairs Loader</title>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+
+  <link rel="stylesheet" href="{% static 'sheets/css/loader.css' %}">
+
+</head>
+
+<body>
+    <div class="loader">
+        <div class="loader__bar"></div>
+        <div class="loader__bar"></div>
+        <div class="loader__bar"></div>
+        <div class="loader__bar"></div>
+        <div class="loader__bar"></div>
+        <div class="loader__ball"></div>
+    </div>
+
+
+
+
+
+
+<script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous">
+</script>
+
+
+<script>
+    window.onload = function () {
+
+        setTimeout(function() {
+            document.querySelector('.loader').classList.remove('loader');
+            var loader_bars = document.querySelectorAll('.loader__bar');
+            for (var i = 0; i < loader_bars.length; i++) {
+                loader_bars[i].classList.remove('loader__bar');
+            }
+            document.querySelector('.loader__ball').classList.remove('loader__ball');
+
+        }, 2000)
+
+    }
+</script>
+
+
+</body>
+</html>
