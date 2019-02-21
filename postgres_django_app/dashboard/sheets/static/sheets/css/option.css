@@ -1,3 +1,7 @@
+.custom-graph {
+    min-height: 120vh;
+}
+
 .option {
     min-height: 50vh;
     background: lightgray;
@@ -9,6 +13,7 @@
 
 .header-option {
     padding-top: 1rem;
+    margin-bottom: 20px;
 }
 
 .md-form {
@@ -39,7 +44,7 @@ li:hover {
 }
 
 .graph {
-    margin-top: 1rem;
+    margin-top: 4rem;
 }
 
 

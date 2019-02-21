@@ -4,11 +4,20 @@
     <link rel="stylesheet" href="{% static 'sheets/css/chart.css' %}">
 {% endblock %}
 
-<div class="row">
-    <div class="col-md-6">
-        <div id="chart-1" style="width:100%;height: 100%;"></div>
+<section class="charts">
+    <div class="display-4">Graphs</div>
+
+    <div class="row">
+        <div class="col-md-6">
+            <div id="chart-1"></div>
+        </div>
+        <div class="col-md-6">
+            <div id="chart-2"></div>
+        </div>
     </div>
-</div>
+
+</section>
+
 
 
 {% block scripts %}
