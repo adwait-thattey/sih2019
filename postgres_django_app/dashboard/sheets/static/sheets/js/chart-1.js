@@ -42,7 +42,7 @@ Highcharts.chart('chart-2', {
     },
 
     subtitle: {
-        text: 'Source: thesolarfoundation.com'
+        text: 'Source: sih.gov.in'
     },
 
     yAxis: {

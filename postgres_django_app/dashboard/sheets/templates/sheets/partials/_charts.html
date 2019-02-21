@@ -1,25 +1,28 @@
 {% load static %}
 
 {% block styles %}
-    <link rel="stylesheet" href="{% static 'sheets/css/chart.css' %}">
+<link rel="stylesheet" href="{% static 'sheets/css/chart.css' %}">
 {% endblock %}
 
 <section class="charts">
-    <div class="display-4">Graphs</div>
+    <div class="container">
+        <div class="display-4">Graphs</div>
+        <div class="underline">&nbsp;</div>
 
-    <div class="row">
-        <div class="col-md-6">
-            <div id="chart-1"></div>
+        <div class="row">
+            <div class="col-md-6">
+                <div id="chart-1"></div>
+            </div>
+            <div class="col-md-6">
+                <div id="chart-2"></div>
+            </div>
         </div>
-        <div class="col-md-6">
-            <div id="chart-2"></div>
-        </div>
+
     </div>
 
 </section>
 
 
-
 {% block scripts %}
-    <script src="{% static 'sheets/js/chart-1.js' %}"></script>
+<script src="{% static 'sheets/js/chart-1.js' %}"></script>
 {% endblock %}
