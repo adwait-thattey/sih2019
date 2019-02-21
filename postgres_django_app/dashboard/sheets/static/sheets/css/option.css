@@ -1,0 +1,29 @@
+.option {
+    min-height: 50vh;
+    background: linear-gradient(to right, rgba(0, 0, 255, 0.9), rgba(255, 255, 255, 0.9));
+}
+
+.feature-header {
+    height: 46vh;
+}
+
+.sidenav {
+    height: 100%;
+    margin: 1rem 0 1rem 1rem;
+    position: relative;
+    overflow: auto;
+}
+
+.feature-list {
+    height: 100%;
+    position: absolute;
+}
+
+.feature-list li {
+    margin-top: 0.2rem;
+    text-align: center;
+    list-style:none;
+    cursor: pointer;
+}
+
+
