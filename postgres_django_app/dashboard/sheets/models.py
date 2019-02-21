@@ -23,7 +23,7 @@ class Sheet(models.Model):
 
 
 class SheetName(models.Model):
-    sheet = models.ForeignKey(to=Sheet, on_delete=models.CASCADE)
+    sheet = models.ForeignKey(to=Sheet, on_delete=models.CASCADE,null=True,blank=True)
     language = models.ForeignKey(to=Language, on_delete=models.PROTECT)
     name = models.CharField(max_length=200)
 
@@ -56,7 +56,7 @@ class TableColumn(models.Model):
 
 
 class ColumnName(models.Model):
-    column = models.ForeignKey(to=TableColumn, on_delete=models.CASCADE)
+    column = models.ForeignKey(to=TableColumn, on_delete=models.CASCADE,null=True,blank=True)
     language = models.ForeignKey(to=Language, on_delete=models.PROTECT)
     name = models.CharField(max_length=200)
 
