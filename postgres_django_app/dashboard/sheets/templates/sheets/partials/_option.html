@@ -3,91 +3,130 @@
 <link rel="stylesheet" href="{% static 'sheets/css/option.css' %}">
 {% endblock %}
 
-<section class="option">
-    <div class="header-option row">
-        <div class="col-md-8"></div>
-        
+<section class="custom-graph" style="margin-top:50px;">
+    <div class="container">
+        <div class="accordion md-accordion" id="accordionEx" role="tablist"
+             aria-multiselectable="true">
+
+            <div class="card">
+
+                <!-- Card header -->
+                <div class="card-header" role="tab" id="headingOne1">
+                    <a data-toggle="collapse" data-parent="#accordionEx" href="#collapseOne1" aria-expanded="true"
+                       aria-controls="collapseOne1">
+                        <h5 class="mb-0">
+                            Filter Menu <i class="fas fa-angle-down rotate-icon" style="float:right;"></i>
+                        </h5>
+                    </a>
+                </div>
+
+                <!-- Card body -->
+                <div id="collapseOne1" class="collapse show" role="tabpanel" aria-labelledby="headingOne1"
+                     data-parent="#accordionEx">
+                    <div class="card-body">
+                        <div class="header-option row">
+                            <div class="col-md-8">
+                                <div class="md-form mt-0">
+                                    <input class="form-control" type="text" placeholder="Search" aria-label="Search">
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+
+                            </div>
+                        </div>
+                        <div class="row feature-header">
+                            <div class="col-md-3">
+                                <div class="sidenav scroll sidenav-1">
+                                    <ul class="feature-list">
+                                        <li>Option 1</li>
+                                        <li>Option 1</li>
+                                        <li>Option 1</li>
+                                        <li>Option 1</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="sidenav scroll sidenav-2">
+                                    <ul class="feature-list">
+                                        <li>Option 1</li>
+                                        <li>Option 1</li>
+                                        <li>Option 1</li>
+                                        <li>Option 1</li>
+                                        <li>Option 1</li>
+                                        <li>Option 1</li>
+                                        <li>Option 1</li>
+                                        <li>Option 1</li>
+                                        <li>Option 1</li>
+                                        <li>Option 1</li>
+                                        <li>Option 1</li>
+                                        <li>Option 1</li>
+                                        <li>Option 1</li>
+                                        <li>Option 1</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="sidenav scroll sidenav-3">
+                                    <ul class="feature-list">
+                                        <li>Option 1</li>
+                                        <li>Option 1</li>
+                                        <li>Option 1</li>
+                                        <li>Option 1</li>
+                                        <li>Option 1</li>
+                                        <li>Option 1</li>
+                                        <li>Option 1</li>
+                                        <li>Option 1</li>
+                                        <li>Option 1</li>
+                                        <li>Option 1</li>
+                                        <li>Option 1</li>
+                                        <li>Option 1</li>
+                                        <li>Option 1</li>
+                                        <li>Option 1</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="sidenav scroll sidenav-4">
+                                    <ul class="feature-list">
+                                        <li>Option 1</li>
+                                        <li>Option 1</li>
+                                        <li>Option 1</li>
+                                        <li>Option 1</li>
+                                        <li>Option 1</li>
+                                        <li>Option 1</li>
+                                        <li>Option 1</li>
+                                        <li>Option 1</li>
+                                        <li>Option 1</li>
+                                        <li>Option 1</li>
+                                        <li>Option 1</li>
+                                        <li>Option 1</li>
+                                        <li>Option 1</li>
+                                        <li>Option 1</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!--Graph Section-->
+        <div class="row graph">
+            <div class="col-md-6" id="container">
+
+            </div>
+        </div>
+
     </div>
-    <div class="row feature-header">
-        <div class="col-md-3">
-            <div class="sidenav sidenav-1">
-                <ul class="feature-list">
-                    <li>Option 1</li>
-                    <li>Option 1</li>
-                    <li>Option 1</li>
-                    <li>Option 1</li>
-                    <li>Option 1</li>
-                    <li>Option 1</li>
-                    <li>Option 1</li>
-                    <li>Option 1</li>
-                    <li>Option 1</li>
-                    <li>Option 1</li>
-                    <li>Option 1</li>
-                    <li>Option 1</li>
-                    <li>Option 1</li>
-                    <li>Option 1</li>
-                </ul>
-            </div>
-        </div>
-        <div class="col-md-3">
-            <div class="sidenav sidenav-2">
-                <ul class="feature-list">
-                    <li>Option 1</li>
-                    <li>Option 1</li>
-                    <li>Option 1</li>
-                    <li>Option 1</li>
-                    <li>Option 1</li>
-                    <li>Option 1</li>
-                    <li>Option 1</li>
-                    <li>Option 1</li>
-                    <li>Option 1</li>
-                    <li>Option 1</li>
-                    <li>Option 1</li>
-                    <li>Option 1</li>
-                    <li>Option 1</li>
-                    <li>Option 1</li>
-                </ul>
-            </div>
-        </div>
-        <div class="col-md-3">
-            <div class="sidenav sidenav-3">
-                <ul class="feature-list">
-                    <li>Option 1</li>
-                    <li>Option 1</li>
-                    <li>Option 1</li>
-                    <li>Option 1</li>
-                    <li>Option 1</li>
-                    <li>Option 1</li>
-                    <li>Option 1</li>
-                    <li>Option 1</li>
-                    <li>Option 1</li>
-                    <li>Option 1</li>
-                    <li>Option 1</li>
-                    <li>Option 1</li>
-                    <li>Option 1</li>
-                    <li>Option 1</li>
-                </ul>
-            </div>
-        </div>
-        <div class="col-md-3">
-            <div class="sidenav sidenav-4">
-                <ul class="feature-list">
-                    <li>Option 1</li>
-                    <li>Option 1</li>
-                    <li>Option 1</li>
-                    <li>Option 1</li>
-                    <li>Option 1</li>
-                    <li>Option 1</li>
-                    <li>Option 1</li>
-                    <li>Option 1</li>
-                    <li>Option 1</li>
-                    <li>Option 1</li>
-                    <li>Option 1</li>
-                    <li>Option 1</li>
-                    <li>Option 1</li>
-                    <li>Option 1</li>
-                </ul>
-            </div>
-        </div>
-    </div>
+
+
 </section>
+
+
+{% block scripts %}
+<script src="{% static 'sheets/js/custom-chart.js' %}"></script>
+{% endblock %}

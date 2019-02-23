@@ -1,3 +1,4 @@
+{% load static %}
 <!doctype html>
 <html lang="en">
 <head>
@@ -15,6 +16,14 @@
     <!-- Material Design Bootstrap -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.7.3/css/mdb.min.css" rel="stylesheet">
 
+    <link rel="stylesheet" href="{% static 'sheets/css/style.css' %}">
+
+    <!--HighCharts CDN-->
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+
+    <!--HighCharts 3d-->
+    <script src="https://code.highcharts.com/highcharts-3d.js"></script>
+
     {% block styles %}
     {% endblock %}
 
@@ -26,8 +35,11 @@
     <!--Including the option filters-->
     {% include 'sheets/partials/_option.html' %}
 
+    <!--Including the main charts-->
+    {% include 'sheets/partials/_charts.html' %}
 
-
+    <!--Footer-->
+    {% include 'sheets/partials/_footer.html' %}
 
 
     <!-- JQuery -->
@@ -39,6 +51,12 @@
             src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.2.1/js/bootstrap.min.js"></script>
     <!-- MDB core JavaScript -->
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.7.3/js/mdb.min.js"></script>
+
+
+
+    {% block scripts %}
+
+    {% endblock %}
 
 </body>
 </html>
