@@ -104,3 +104,19 @@ li:hover {
     display: block;
 }
 
+
+.attr_chips {
+    margin-top: 1rem;
+}
+
+.chip {
+    display: inline-block;
+    margin: 0.8rem;
+    background: linear-gradient(to right, #9face6, #74ebd5);
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+}
+
+.chip-text {
+    margin-right: 8px;
+}

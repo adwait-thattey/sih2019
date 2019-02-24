@@ -1,10 +1,3 @@
-var isClickedButtons = {
-    level1: false,
-    level2: false,
-    level3: false
-};
-
-
 function removeCurrentlySelectedLI (level) {
     $(".level-" + level).children("li").each(function () {
         if($(this).hasClass('selected')) {
@@ -80,6 +73,8 @@ $(".level-4").children("li").each(function () {
     $(this).click(function () {
         var selectedOption = $(this)[0].textContent;
 
+        // Create a chip of selected attribute
+
         // Using selectedOption get the data
 
 
@@ -87,5 +82,17 @@ $(".level-4").children("li").each(function () {
 
         $(this).toggleClass('selected');
         $(".level-4").toggleClass("level-4-none");
+
+
+
+
     });
+});
+
+
+// Chip deleting script
+$(".fa-times").each(function () {
+   $(this).click(function () {
+      $(this).parent().remove();
+   });
 });
