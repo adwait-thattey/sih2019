@@ -30,7 +30,7 @@
 }
 
 ul {
-    width: 100%;
+    width: 90%;
     display:block;
 }
 
@@ -39,6 +39,7 @@ ul {
     text-align: center;
     list-style:none;
     cursor: pointer;
+
 }
 
 li:hover {
@@ -67,10 +68,16 @@ li:hover {
 }
 
 
-
+/* For selecting as graph value */
 .selected {
     background: blue;
 }
+
+/* For going deep into roots */
+.picked {
+    background: orange;
+}
+
 
 .level-1-none {
     display: none;
@@ -119,4 +126,15 @@ li:hover {
 
 .chip-text {
     margin-right: 8px;
+}
+
+.text {
+    display: inline-block;
+    width: 70%;
+}
+
+.next-arrow {
+    display: inline-block;
+    width: 25%;
+    text-align: center;
 }
