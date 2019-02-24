@@ -28,9 +28,6 @@ $(".level-1").children("li").each(function () {
         $(this).toggleClass('selected');
         $(".level-2").toggleClass("level-2-none");
     });
-
-
-
 });
 
 
