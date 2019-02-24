@@ -1,4 +1,5 @@
 {% load static %}
+
 {% block styles %}
 <link rel="stylesheet" href="{% static 'sheets/css/option.css' %}">
 {% endblock %}
@@ -35,9 +36,9 @@
                             </div>
                         </div>
                         <div class="row feature-header">
-                            <div class="col-md-3">
+                            <div class="col-md-3 col-sm-12">
                                 <div class="sidenav scroll sidenav-1">
-                                    <ul class="feature-list">
+                                    <ul class="feature-list level-1">
                                         <li>Option 1</li>
                                         <li>Option 1</li>
                                         <li>Option 1</li>
@@ -45,13 +46,13 @@
                                     </ul>
                                 </div>
                             </div>
-                            <div class="col-md-3">
+                            <div class="col-md-3 col-sm-12">
                                 <div class="sidenav scroll sidenav-2">
-                                    <ul class="feature-list">
-                                        <li>Option 1</li>
-                                        <li>Option 1</li>
-                                        <li>Option 1</li>
-                                        <li>Option 1</li>
+                                    <ul class="feature-list level-2 level-2-none">
+                                        <li>Option 2</li>
+                                        <li>Option 2</li>
+                                        <li>Option 2</li>
+                                        <li>Option 2</li>
                                         <li>Option 1</li>
                                         <li>Option 1</li>
                                         <li>Option 1</li>
@@ -65,14 +66,14 @@
                                     </ul>
                                 </div>
                             </div>
-                            <div class="col-md-3">
+                            <div class="col-md-3 col-sm-12">
                                 <div class="sidenav scroll sidenav-3">
-                                    <ul class="feature-list">
+                                    <ul class="feature-list level-3 level-3-none">
+                                        <li>Option 3</li>
+                                        <li>Option 3</li>
+                                        <li>Option 3</li>
                                         <li>Option 1</li>
-                                        <li>Option 1</li>
-                                        <li>Option 1</li>
-                                        <li>Option 1</li>
-                                        <li>Option 1</li>
+                                        <li>Option 3</li>
                                         <li>Option 1</li>
                                         <li>Option 1</li>
                                         <li>Option 1</li>
@@ -85,13 +86,13 @@
                                     </ul>
                                 </div>
                             </div>
-                            <div class="col-md-3">
+                            <div class="col-md-3 col-sm-12">
                                 <div class="sidenav scroll sidenav-4">
-                                    <ul class="feature-list">
-                                        <li>Option 1</li>
-                                        <li>Option 1</li>
-                                        <li>Option 1</li>
-                                        <li>Option 1</li>
+                                    <ul class="feature-list level-4 level-4-none">
+                                        <li>Option 4</li>
+                                        <li>Option 4</li>
+                                        <li>Option 4</li>
+                                        <li>Option 4</li>
                                         <li>Option 1</li>
                                         <li>Option 1</li>
                                         <li>Option 1</li>
@@ -128,5 +129,6 @@
 
 
 {% block scripts %}
-<script src="{% static 'sheets/js/custom-chart.js' %}"></script>
+    <script src="{% static 'sheets/js/option.js' %}"></script>
+    <script src="{% static 'sheets/js/custom-chart.js' %}"></script>
 {% endblock %}
