@@ -1,4 +1,5 @@
-function removeCurrentlySelectedLI (level) {
+function removeCurrentlySelectedSpan (level) {
+    var number = 1;
     $(".level-" + level).children("li").each(function () {
         if($(this).children(":nth-child(1)").hasClass('selected')) {
             $(this).children(":nth-child(1)").removeClass('selected');
@@ -6,6 +7,17 @@ function removeCurrentlySelectedLI (level) {
     });
 };
 
+function removeCurrentlySelectedI (level) {
+    $(".level-" + level).children("li").each(function () {
+        if($(this).children(":nth-child(2)").hasClass('picked')) {
+            $(this).children(":nth-child(2)").removeClass('picked');
+        };
+    });
+};
+
+/////////////////////////
+//////// Level I ////////
+/////////////////////////
 
 $(".level-1").children("li").each(function () {
 
@@ -16,9 +28,9 @@ $(".level-1").children("li").each(function () {
 
         // Fresh start after going deep into the level
 
-        removeCurrentlySelectedLI(1);
-        removeCurrentlySelectedLI(2);
-        removeCurrentlySelectedLI(3);
+        removeCurrentlySelectedI(1);
+        removeCurrentlySelectedI(2);
+        removeCurrentlySelectedI(3);
 
 
         // Using selectedOption get the data
@@ -29,8 +41,7 @@ $(".level-1").children("li").each(function () {
         $(".level-4").removeClass("level-4-add").addClass("level-4-none");
 
 
-        $(this).toggleClass('selected');
-        $(".level-2").toggleClass("level-2-none");
+        $(this).addClass('picked');
     });
 
 
@@ -40,12 +51,11 @@ $(".level-1").children("li").each(function () {
         var selectedOption = $(this)[0].textContent;
 
 
-        console.log('selected that shit');
 
         // Fresh start after going deep into the level
-        removeCurrentlySelectedLI(1);
-        removeCurrentlySelectedLI(2);
-        removeCurrentlySelectedLI(3);
+        removeCurrentlySelectedSpan(1);
+        removeCurrentlySelectedSpan(2);
+        removeCurrentlySelectedSpan(3);
 
 
         // Using selectedOption get the data
@@ -59,62 +69,111 @@ $(".level-1").children("li").each(function () {
     });
 });
 
-//
-// $(".level-2").children("li").each(function () {
-//     $(this).click(function () {
-//         var selectedOption = $(this)[0].textContent;
-//
-//         removeCurrentlySelectedLI(2);
-//         removeCurrentlySelectedLI(3);
-//
-//         // Using selectedOption get the data
-//         $(".level-3").addClass("level-3-add");
-//         $(".level-4").removeClass("level-4-add").addClass("level-4-none");
-//
-//         $(this).toggleClass('selected');
-//         $(".level-3").toggleClass("level-3-none");
-//     });
-//
-//
-// });
-//
-// $(".level-3").children("li").each(function () {
-//     $(this).click(function () {
-//         var selectedOption = $(this)[0].textContent;
-//
-//         removeCurrentlySelectedLI(3);
-//         removeCurrentlySelectedLI(4);
-//
-//
-//         // Using selectedOption get the data
-//         $(".level-4").addClass("level-4-add");
-//
-//         $(this).toggleClass('selected');
-//         $(".level-4").toggleClass("level-4-none");
-//     });
-// });
-//
-//
-// $(".level-4").children("li").each(function () {
-//     $(this).click(function () {
-//         var selectedOption = $(this)[0].textContent;
-//
-//         // Create a chip of selected attribute
-//         createChip(selectedOption);
-//
-//         // Using selectedOption get the data
-//
-//
-//         $(".level-4").addClass("level-4-add");
-//
-//         $(this).toggleClass('selected');
-//         $(".level-4").toggleClass("level-4-none");
-//
-//
-//
-//
-//     });
-// });
+
+//////////////////////////
+//////// Level II ////////
+//////////////////////////
+
+
+
+$(".level-2").children("li").each(function () {
+
+
+    $(this).children(":nth-child(2)").click(function () {
+        var selectedOption = $(this)[0].textContent;
+
+        removeCurrentlySelectedI(2);
+        removeCurrentlySelectedI(3);
+
+        // Using selectedOption get the data
+
+
+        $(".level-3").addClass("level-3-add");
+        $(".level-4").removeClass("level-4-add").addClass("level-4-none");
+
+        $(this).addClass('picked');
+    });
+
+
+    $(this).children(":nth-child(1)").click(function () {
+        var selectedOption = $(this)[0].textContent;
+
+        removeCurrentlySelectedSpan(2);
+        removeCurrentlySelectedSpan(3);
+
+        // Using selectedOption get the data
+
+
+        $(".level-3").removeClass("level-3-add").addClass("level-3-none");
+        $(".level-4").removeClass("level-4-add").addClass("level-4-none");
+
+        createChip(selectedOption);
+
+        $(this).addClass('selected');
+    });
+});
+
+
+$(".level-3").children("li").each(function () {
+
+    $(this).children(":nth-child(2)").click(function () {
+        var selectedOption = $(this)[0].textContent;
+
+        removeCurrentlySelectedI(3);
+
+        // Using selectedOption get the data
+
+        $(".level-4").addClass("level-4-add");
+
+        $(this).addClass('picked');
+    });
+
+    $(this).children(":nth-child(1)").click(function () {
+        var selectedOption = $(this)[0].textContent;
+
+        removeCurrentlySelectedSpan(3);
+
+
+        // Using selectedOption get the data
+
+        $(".level-4").removeClass("level-4-add").addClass("level-4-none");
+
+        createChip(selectedOption);
+
+        $(this).addClass('selected');
+    });
+});
+
+
+$(".level-4").children("li").each(function () {
+
+
+    $(this).children(":nth-child(2)").click(function () {
+        var selectedOption = $(this)[0].textContent;
+
+        removeCurrentlySelectedI(4);
+
+        // Using selectedOption get the data
+
+
+        $(this).addClass("picked");
+        // $(".level-5").addClass("level-5-add")
+
+    });
+
+    $(this).children(":nth-child(1)").click(function () {
+        var selectedOption = $(this)[0].textContent;
+
+        removeCurrentlySelectedSpan(4);
+
+        // Using selectedOption get the data
+
+
+        createChip(selectedOption);
+
+        $(this).addClass('selected');
+    });
+});
 
 
 // Chip deleting script
