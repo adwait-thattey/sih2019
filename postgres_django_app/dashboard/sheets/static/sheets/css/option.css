@@ -1,0 +1,62 @@
+
+.option {
+    min-height: 50vh;
+    background: lightgray;
+}
+
+.feature-header {
+    height: 30vh;
+}
+
+.header-option {
+    padding-top: 1rem;
+    margin-bottom: 20px;
+}
+
+.md-form {
+    width: 60%;
+    margin: auto;
+}
+
+.sidenav {
+    height: 100%;
+    position: relative;
+    overflow: auto;
+}
+
+.feature-list {
+    height: 100%;
+    position: absolute;
+}
+
+.feature-list li {
+    margin-top: 0.2rem;
+    text-align: center;
+    list-style:none;
+    cursor: pointer;
+}
+
+li:hover {
+    /*background: blue;*/
+}
+
+.graph {
+    margin-top: 4rem;
+}
+
+
+.scroll {
+   width: 100%;
+   height: 100%;
+   overflow: scroll;
+}
+
+.scroll::-webkit-scrollbar {
+    width: 12px;
+}
+
+
+.scroll::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5);
+}

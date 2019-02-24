@@ -2,12 +2,17 @@ from django.contrib import admin
 
 # Register your models here.
 
-from .models import SuperSheet, Sheet, TableColumn, TableRows, SuperColumn
+from .models import Language, Category, CategoryName, Sheet, SheetName, Feature, FeatureName, Type, TypeName, Cell
 
 admin.site.register((
-    SuperSheet,
+    Language,
+    Category,
+    CategoryName,
     Sheet,
-    TableColumn,
-    TableRows,
-    SuperColumn
+    SheetName,
+    FeatureName,
+    Feature,
+    Type,
+    TypeName,
+    Cell
 ))

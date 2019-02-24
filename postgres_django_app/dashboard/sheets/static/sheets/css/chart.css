@@ -1,0 +1,9 @@
+.charts {
+    margin-top: 3rem;
+    margin-bottom: 5rem;
+}
+
+.underline {
+    border-top: 5px solid blue;
+    width: 5%;
+}
