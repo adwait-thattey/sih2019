@@ -74,6 +74,7 @@ $(".level-4").children("li").each(function () {
         var selectedOption = $(this)[0].textContent;
 
         // Create a chip of selected attribute
+        createChip(selectedOption);
 
         // Using selectedOption get the data
 
@@ -92,7 +93,36 @@ $(".level-4").children("li").each(function () {
 
 // Chip deleting script
 $(".fa-times").each(function () {
-   $(this).click(function () {
-      $(this).parent().remove();
-   });
+
+    $('body').on('click', '.fa-times', function () {
+       $(this).parent().remove();
+    });
 });
+
+
+// Chip adding script
+function createChip(data) {
+    var parentDiv = document.querySelector('.attr_chips');
+
+    // Chip
+    var newChip = document.createElement('div');
+    newChip.classList.add("chip");
+    newChip.classList.add("waves-effect");
+    newChip.classList.add("waves-effect");
+
+    // Child Span
+    var newSpan = document.createElement('span');
+    newSpan.classList.add("chip-text");
+    newSpan.textContent = data;
+
+    // Child i
+    var newI = document.createElement('i');
+    newI.classList.add("fas");
+    newI.classList.add("fa-times");
+
+    newChip.appendChild(newSpan);
+    newChip.appendChild(newI);
+
+    parentDiv.appendChild(newChip);
+
+};
