@@ -29,6 +29,11 @@
     position: absolute;
 }
 
+ul {
+    width: 100%;
+    display:block;
+}
+
 .feature-list li {
     margin-top: 0.2rem;
     text-align: center;
@@ -59,4 +64,59 @@ li:hover {
 .scroll::-webkit-scrollbar-thumb {
     border-radius: 10px;
     -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5);
+}
+
+
+
+.selected {
+    background: blue;
+}
+
+.level-1-none {
+    display: none;
+}
+
+.level-1-add {
+    display: block;
+}
+
+.level-2-none {
+    display: none;
+}
+
+.level-2-add {
+    display: block;
+}
+
+.level-3-none {
+    display: none;
+}
+
+.level-3-add {
+    display: block;
+}
+
+.level-4-none {
+    display: none;
+}
+
+.level-4-add {
+    display: block;
+}
+
+
+.attr_chips {
+    margin-top: 1rem;
+}
+
+.chip {
+    display: inline-block;
+    margin: 0.8rem;
+    background: linear-gradient(to right, #9face6, #74ebd5);
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+}
+
+.chip-text {
+    margin-right: 8px;
 }
