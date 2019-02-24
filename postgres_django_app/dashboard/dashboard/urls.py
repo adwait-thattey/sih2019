@@ -21,10 +21,12 @@ from django.views.generic.base import TemplateView
 from django.urls import path, include
 from django.contrib.auth.views import LoginView,LogoutView
 
+from sheets.views import edit
 
 urlpatterns = [
                   path('', TemplateView.as_view(template_name='sheets/index.html'), name="index"),
                   path('admin/', admin.site.urls),
+                  path('edit/', edit),
                   path('login/', LoginView.as_view(), name='login'),
                   path('logout/', LogoutView.as_view(), name='logout'),
                   path('registrations/', include('django.contrib.auth.urls')),
