@@ -12,10 +12,18 @@ def get_sheet_upload_path(instance, filename):
 class Language(models.Model):
     name = models.CharField(max_length=100)
 
+    def save(self, *args, **kwargs):
+        self.name = self.name.lower()
+        super().save(*args, **kwargs)
+
 
 class Category(models.Model):
-    parent_category = models.ForeignKey(to='self', on_delete=models.PROTECT)
+    parent_category = models.ForeignKey(to='self', on_delete=models.PROTECT, null=True, blank=True)
 
+    def __str__(self):
+        eng_name = self.categoryname_set.filter(language__name="english")
+        if eng_name.exists():
+            return eng_name[0].name
 
 class CategoryName(models.Model):
     category = models.ForeignKey(to=Category, on_delete=models.CASCADE)
@@ -29,7 +37,7 @@ class Sheet(models.Model):
 
 
 class SheetName(models.Model):
-    sheet = models.ForeignKey(to=Sheet, on_delete=models.CASCADE,null=True,blank=True)
+    sheet = models.ForeignKey(to=Sheet, on_delete=models.CASCADE, null=True, blank=True)
     language = models.ForeignKey(to=Language, on_delete=models.PROTECT)
     name = models.CharField(max_length=200)
 

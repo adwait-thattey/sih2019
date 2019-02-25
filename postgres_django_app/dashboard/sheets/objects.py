@@ -1,8 +1,26 @@
+import math
+
+
+class Type:
+    def __init__(self):
+        self.names = {}
+
+    def set_language_name(self, language, name):
+        self.names[language.lower()] = name
+
+    def __repr__(self):
+        if "english" in self.names:
+            return f'<Type:{self.names["english"]}>'
+
+        else:
+            return f'<Type:[no english name][{id(self)}]>'
+
+
 class Feature:
     def __init__(self):
         self.names = {}
         self.start_year = 2011
-        self.values = None
+        self.values = dict()
         self.subfeatures = None
         self.parent = None
 
@@ -12,18 +30,20 @@ class Feature:
         else:
             return f'<Feature:[no english name][{id(self)}]>'
 
-    
     def set_language_name(self, language, name):
         self.names[language.lower()] = name
 
-    def set_values(self, start_year, values):
+    def set_start_year(self, start_year):
         if not isinstance(start_year, int):
             raise TypeError("start year must be of type int")
+        self.start_year = start_year
+
+    def set_values(self, ty, values):
+
         if not isinstance(values, list):
             raise TypeError("Expected values to be of type list")
 
-        self.start_year = start_year
-        self.values = values
+        self.values[ty] = values
 
     def _set_parent(self, feature):
         if not isinstance(feature, Feature):
@@ -43,28 +63,36 @@ class Feature:
 
         return self.subfeatures[-1]
 
+    def remove_initial_nans(self):
+        if self.values:
+            no_nan_list = list()
 
+            for tp in self.values:
+                pos = 0
+                while (pos < len(self.values[tp])):
+                    if not math.isnan(self.values[tp][pos]):
+                        no_nan_list.append(pos)
+                        break
+                    else:
+                        pos += 1
 
-class Type:
-    def __init__(self):
-        self.names = {}
+            min_nans = min(no_nan_list)
+            # print(min_nans)
+            if min_nans > 0:
+                for tp in self.values:
+                    self.values[tp] = self.values[tp][min_nans:]
 
-    def set_language_name(self, language, name):
-        self.names[language.lower()] = name
-
-    def __repr__(self):
-        if "english" in self.names:
-            return f'<Type:{self.names["english"]}>'
-
-        else:
-            return f'<Type:[no english name][{id(self)}]>'
+                # print(self.start_year)
+                self.start_year += min_nans
+                # print(self.start_year)
+            # remove min_nans from each tuple
 
 
 class SheetObject:
     def __init__(self):
         self.names = {}
         self.types = []
-        self.data_obj = {}
+        self.data_obj = []
         self.xyz = 10
 
     def __repr__(self):
@@ -82,7 +110,6 @@ class SheetObject:
             raise TypeError("type must be an instance of Type")
 
         self.types.append(type)
-        self.data_obj[type] = list()
 
     def create_type(self, names):
         T = Type()
@@ -93,33 +120,48 @@ class SheetObject:
         self.attach_type(T)
         return T
 
-    def create_feature(self, feature_names, start_year=None, values=None, type=None, parent_feature=None):
-        if not (parent_feature or type):
-            raise TypeError("You must supply either the parent feature or a type name")
+    def find_type_by_english_name(self, name):
+        for t in self.types:
+            if t.names['english'] == name:
+                return t
 
-        if parent_feature and type:
-            raise TypeError("Please supply either type or parent but not both. It may lead to conflicts")
+        else:
+            return None
+
+    def find_parent(self, type):
+        pass
+
+    def create_feature(self, feature_names, start_year=None, parent_feature=None):
+        # if not (parent_feature or type):
+        #     raise TypeError("You must supply either the parent feature or a type name")
+        #
+        # if parent_feature and type:
+        #     raise TypeError("Please supply either type or parent but not both. It may lead to conflicts")
 
         feature = Feature()
         for key in feature_names:
             feature.set_language_name(key, feature_names[key])
 
-        if values:
-            feature.set_values(start_year, values)
-
-        if type:
-            if type not in self.data_obj:
-                self.attach_type(type)
-
-            self.data_obj[type].append(feature)
-
-        else:
+        feature.set_start_year(start_year)
+        if parent_feature:
             if not isinstance(parent_feature, Feature):
                 raise TypeError("The given parent object is not an instance of feature")
 
             parent_feature.add_subfeature(feature)
 
+        else:
+            self.data_obj.append(feature)
+
         return feature
+
+    def set_feature_type_values(self, feature, type_name, values):
+        if not isinstance(feature, Feature):
+            raise TypeError("The given object is not an instance of feature")
+
+        ty = self.find_type_by_english_name(type_name)
+        if not ty:
+            ty = self.create_type({"english": type_name})
+        feature.set_values(ty, values)
 
 
 def create_sheet(names):

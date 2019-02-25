@@ -1,6 +1,3 @@
 from django.shortcuts import render
-from sheets import objects
 
 # Create your views here.
-
-
