@@ -36,7 +36,7 @@ ul {
 
 .feature-list li {
     margin-top: 0.2rem;
-    text-align: center;
+    text-align: left;
     list-style:none;
     cursor: pointer;
 
