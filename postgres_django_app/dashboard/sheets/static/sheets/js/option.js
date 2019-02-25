@@ -81,43 +81,44 @@ $('body').on('click', 'li.level-1 .text', function () {
 //////// Level II ////////
 //////////////////////////
 
+$('body').on('click', 'li.level-2 .text', function () {
 
 
-$(".level-2").children("li").each(function () {
+    // Selecting the attribute
+
+    var selectedOption = $(this)[0].textContent;
+
+    removeCurrentlySelectedSpan(2);
+    removeCurrentlySelectedSpan(3);
+
+    // Using selectedOption get the data
 
 
-    $(this).children(":nth-child(2)").click(function () {
-        var selectedOption = $(this)[0].textContent;
+    $(".level-3").removeClass("level-3-add").addClass("level-3-none");
+    $(".level-4").removeClass("level-4-add").addClass("level-4-none");
 
-        removeCurrentlySelectedI(2);
-        removeCurrentlySelectedI(3);
+    createChip(selectedOption);
 
-        // Using selectedOption get the data
+    $(this).addClass('selected');
+});
 
-
-        $(".level-3").addClass("level-3-add");
-        $(".level-4").removeClass("level-4-add").addClass("level-4-none");
-
-        $(this).addClass('picked');
-    });
+$('body').on('click', 'li.level-2 .next-arrow', function () {
 
 
-    $(this).children(":nth-child(1)").click(function () {
-        var selectedOption = $(this)[0].textContent;
+    // Selecting the attribute
 
-        removeCurrentlySelectedSpan(2);
-        removeCurrentlySelectedSpan(3);
+    var selectedOption = $(this)[0].textContent;
 
-        // Using selectedOption get the data
+    removeCurrentlySelectedI(2);
+    removeCurrentlySelectedI(3);
+
+    // Using selectedOption get the data
 
 
-        $(".level-3").removeClass("level-3-add").addClass("level-3-none");
-        $(".level-4").removeClass("level-4-add").addClass("level-4-none");
+    $(".level-3").addClass("level-3-add");
+    $(".level-4").removeClass("level-4-add").addClass("level-4-none");
 
-        createChip(selectedOption);
-
-        $(this).addClass('selected');
-    });
+    $(this).addClass('picked');
 });
 
 
@@ -125,34 +126,36 @@ $(".level-2").children("li").each(function () {
 //////// Level III ////////
 ///////////////////////////
 
-$(".level-3").children("li").each(function () {
+$('body').on('click', 'li.level-3 .next-arrow', function () {
 
-    $(this).children(":nth-child(2)").click(function () {
-        var selectedOption = $(this)[0].textContent;
+    // Selecting the attribute
 
-        removeCurrentlySelectedI(3);
+    var selectedOption = $(this)[0].textContent;
 
-        // Using selectedOption get the data
+    removeCurrentlySelectedI(3);
 
-        $(".level-4").addClass("level-4-add");
+    // Using selectedOption get the data
 
-        $(this).addClass('picked');
-    });
+    $(".level-4").addClass("level-4-add");
 
-    $(this).children(":nth-child(1)").click(function () {
-        var selectedOption = $(this)[0].textContent;
+    $(this).addClass('picked');
+});
 
-        removeCurrentlySelectedSpan(3);
+$('body').on('click', 'li.level-3 .text', function () {
 
+    // Selecting the attribute
 
-        // Using selectedOption get the data
+    var selectedOption = $(this)[0].textContent;
 
-        $(".level-4").removeClass("level-4-add").addClass("level-4-none");
+    removeCurrentlySelectedSpan(3);
 
-        createChip(selectedOption);
+    // Using selectedOption get the data
 
-        $(this).addClass('selected');
-    });
+    $(".level-4").removeClass("level-4-add").addClass("level-4-none");
+
+    createChip(selectedOption);
+
+    $(this).addClass('selected');
 });
 
 
@@ -160,35 +163,33 @@ $(".level-3").children("li").each(function () {
 //////// Level IV ////////
 //////////////////////////
 
-$(".level-4").children("li").each(function () {
+$('body').on('click', 'li.level-4 .next-arrow', function () {
 
+   var selectedOption = $(this)[0].textContent;
 
-    $(this).children(":nth-child(2)").click(function () {
-        var selectedOption = $(this)[0].textContent;
+    removeCurrentlySelectedI(4);
 
-        removeCurrentlySelectedI(4);
+    // Using selectedOption get the data
 
-        // Using selectedOption get the data
-
-
-        $(this).addClass("picked");
-        // $(".level-5").addClass("level-5-add")
-
-    });
-
-    $(this).children(":nth-child(1)").click(function () {
-        var selectedOption = $(this)[0].textContent;
-
-        removeCurrentlySelectedSpan(4);
-
-        // Using selectedOption get the data
-
-
-        createChip(selectedOption);
-
-        $(this).addClass('selected');
-    });
+    $(this).addClass("picked");
 });
+
+$('body').on('click', 'li.level-4 .text', function () {
+
+   var selectedOption = $(this)[0].textContent;
+
+    removeCurrentlySelectedSpan(4);
+
+    // Using selectedOption get the data
+
+    createChip(selectedOption);
+
+    $(this).addClass('selected');
+});
+
+///////////////////////////
+//////// Level End ////////
+///////////////////////////
 
 
 // Chip deleting script
@@ -243,6 +244,7 @@ function createLi(data, level) {
 
     return newLi
 };
+
 
 
 ///////////////////////////////////
@@ -304,9 +306,16 @@ $.getJSON("https://mdn.github.io/learning-area/javascript/oojs/json/superheroes.
     data = json;
 
     var ulDiv = document.querySelector('.level-1');
+    var ulDiv2 = document.querySelector('.level-2');
+    var ulDiv3 = document.querySelector('.level-3');
+    var ulDiv4 = document.querySelector('.level-4');
 
+    // Same data is added for all the levels for testing purposes
     Object.keys(data).forEach(function (key) {
         ulDiv.appendChild(createLi(key,1 ));
+        ulDiv2.appendChild(createLi(key, 2));
+        ulDiv3.appendChild(createLi(key, 3));
+        ulDiv4.appendChild(createLi(key, 4));
     });
 
 });
