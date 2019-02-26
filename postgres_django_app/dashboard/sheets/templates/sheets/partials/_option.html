@@ -1,5 +1,4 @@
 {% load static %}
-
 {% block styles %}
 <link rel="stylesheet" href="{% static 'sheets/css/option.css' %}">
 {% endblock %}
@@ -86,6 +85,9 @@
             <div class="col-md-6" id="container">
 
             </div>
+            <div class="col-md-6" id="container1">
+
+            </div>
         </div>
 
     </div>
@@ -94,7 +96,14 @@
 </section>
 
 
+
 {% block scripts %}
+
+    <script>
+        var myUrl = "{% url 'sheets:feature_values' %}";
+        var csrfToken = "{{ csrf_token }}";
+    </script>
+
     <script src="{% static 'sheets/js/option.js' %}"></script>
     <script src="{% static 'sheets/js/custom-chart.js' %}"></script>
 {% endblock %}

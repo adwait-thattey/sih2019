@@ -20,5 +20,4 @@ def get_feature(request):
 
     obj = utils.get_feature_python_object(feature, lang, depth)
 
-    print(obj)
     return JsonResponse(obj)

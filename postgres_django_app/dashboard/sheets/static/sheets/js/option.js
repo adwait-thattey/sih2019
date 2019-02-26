@@ -18,12 +18,6 @@ function removeCurrentlySelectedI (level) {
 //////// Level I ////////
 /////////////////////////
 
-// $(".fa-times").each(function () {
-//     $('body').on('click', '.fa-times', function () {
-//        $(this).parent().remove();
-//     });
-// });
-
 
 $('body').on('click', 'li.level-1-li .next-arrow', function () {
 
@@ -307,22 +301,21 @@ var data; // JSON data
 
 
 
-$.getJSON("https://mdn.github.io/learning-area/javascript/oojs/json/superheroes.json", function(json) {
-    data = json;
-
-    var ulDiv = document.querySelector('.level-1');
-    var ulDiv2 = document.querySelector('.level-2');
-    var ulDiv3 = document.querySelector('.level-3');
-    var ulDiv4 = document.querySelector('.level-4');
-
-    // Same data is added for all the levels for testing purposes
-    Object.keys(data).forEach(function (key) {
-        ulDiv.appendChild(createLi(key,1 ));
-        ulDiv2.appendChild(createLi(key, 2));
-        ulDiv3.appendChild(createLi(key, 3));
-        ulDiv4.appendChild(createLi(key, 4));
-    });
-
+$.ajax({
+    type: 'GET',
+    url: myUrl,
+    data: {
+        feature: 86,
+        language: 'english',
+        depth: 0,
+        csrfmiddlewaretoken: csrfToken
+    },
+    dataType: 'json',
+    success: function (data) {
+        console.log(data);
+        data = data;
+    }
 });
+
 
 
