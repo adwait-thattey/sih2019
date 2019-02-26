@@ -128,7 +128,13 @@ def parse_sheet_to_db(sheet_path, category):
         parse_feature(db_sheet, db_type_obj_dict, feat, None)
 
 
-def get_feature_python_object(db_feature, db_language):
+def get_feature_python_object(db_feature, db_language, depth):
+    """
+
+    :param depth: This signifies how much deep you want to go in subfeatures.
+    If 0, give only current feature , skip the subfeatures
+
+    """
     db_name = db_feature.featurename_set.filter(language=db_language)
 
     if db_name.exists():
@@ -169,8 +175,13 @@ def get_feature_python_object(db_feature, db_language):
         "name": name,
         "start_year": db_feature.start_year,
         "values": values_dict,
-        "subfeatures":[get_feature_python_object(db_subfeat,db_language) for db_subfeat in db_feature.feature_set.all()]
+        "subfeatures": [get_feature_python_object(db_subfeat, db_language, depth - 1) for db_subfeat in
+                                      db_feature.feature_set.all()]
     }
 
-    print(return_dict)
+    # if depth > 0:
+    #     return_dict["subfeatures"] = [get_feature_python_object(db_subfeat, db_language, depth - 1) for db_subfeat in
+    #                                   db_feature.feature_set.all()]
+
+    # print(return_dict)
     return return_dict
