@@ -21,7 +21,7 @@ class Feature:
         self.names = {}
         self.start_year = 2011
         self.values = dict()
-        self.subfeatures = None
+        self.subfeatures = list()
         self.parent = None
 
     def __repr__(self):
@@ -187,11 +187,14 @@ sample_obj = {
             "english": "<English Name>",
             "hindi": "<Hindi Name>"
         },
-        "data": {
-            "type1": 
+        "data": [
                 "feature1": {
-                    "values": [10, 20, 30, 40],
-                    "subfeatures": {
+                    "start_year":2011
+                    "values": {
+                    "type1": [10, 20, 30, 40],
+                    "type2": [10,20,30,40]
+                    }
+                    "subfeatures": [
                         "subfeature1": {
                             "values": [10, 20, 30, 40],
                             "subfeature1": {
@@ -201,26 +204,9 @@ sample_obj = {
                         "subfeature2": {
                             "values": [10, 20, 30, 40]
                         }
-                    }
+                    ]
                 }
             ],
 
-            "type2": [
-                "feature1": {
-                    "values": [10, 20, 30, 40],
-                    "subfeatures": {
-                        "subfeature1": {
-                            "values": [10, 20, 30, 40],
-                            "subfeature1": {
-                                "values": [10, 20, 30, 40]
-                            }
-                        },
-                        "subfeature2": {
-                            "values": [10, 20, 30, 40]
-                        }
-                    }
-                }
-            ]
-        },
-    }
+            
 """

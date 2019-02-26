@@ -10,7 +10,7 @@ def get_sheet_upload_path(instance, filename):
 
 
 class Language(models.Model):
-    name = models.CharField(max_length=100)
+    name = models.CharField(max_length=100, unique=True)
 
     def save(self, *args, **kwargs):
         self.name = self.name.lower()
@@ -24,6 +24,9 @@ class Category(models.Model):
         eng_name = self.categoryname_set.filter(language__name="english")
         if eng_name.exists():
             return eng_name[0].name
+        else:
+            return f'Category Unnamed'
+
 
 class CategoryName(models.Model):
     category = models.ForeignKey(to=Category, on_delete=models.CASCADE)
@@ -45,7 +48,7 @@ class SheetName(models.Model):
 class Feature(models.Model):
     sheet = models.ForeignKey(to=Sheet, on_delete=models.CASCADE, null=True, blank=True)
     parent_feature = models.ForeignKey(to='self', on_delete=models.CASCADE, null=True, blank=True)
-
+    start_year = models.IntegerField()
     def clean(self):
         if not (self.sheet or self.parent_feature):
             raise ValidationError("Every super column must have either a sheet or a parent column")
@@ -63,9 +66,11 @@ class FeatureName(models.Model):
     language = models.ForeignKey(to=Language, on_delete=models.PROTECT)
     name = models.CharField(max_length=200)
 
+    # This is redundant, but is kept to speed up all queries
+
 
 class Type(models.Model):
-    parent_type = models.ForeignKey(to='self', on_delete=models.CASCADE)
+    parent_type = models.ForeignKey(to='self', on_delete=models.CASCADE, null=True, blank=True)
 
 
 class TypeName(models.Model):
@@ -79,7 +84,7 @@ class Cell(models.Model):
     type = models.ForeignKey(to=Type, on_delete=models.PROTECT)
     start_year = models.PositiveIntegerField()
     end_year = models.PositiveIntegerField(null=True, blank=True)
-    value = models.DecimalField(max_digits=14, decimal_places=4)
+    value = models.FloatField()
 
     class Meta:
         ordering = ['feature', 'start_year', 'end_year']
