@@ -25,11 +25,16 @@ function removeCurrentlySelectedI (level) {
 // });
 
 
-$('body').on('click', 'li.level-1 .next-arrow', function () {
+$('body').on('click', 'li.level-1-li .next-arrow', function () {
 
-    // Forwarding the attribute
 
-    var selectedOption = $(this)[0].textContent;
+    var selectedOption = $(this).siblings('.text')[0].textContent;
+
+
+    // As this is the first block, empty the currSelected array
+    currentSelected = [];
+    currentSelected.push(data[selectedOption]);
+
 
     // Fresh start after going deep into the level
 
@@ -51,10 +56,12 @@ $('body').on('click', 'li.level-1 .next-arrow', function () {
 });
 
 
-$('body').on('click', 'li.level-1 .text', function () {
+$('body').on('click', 'li.level-1-li .text', function () {
 
 
     // Selecting the attribute
+
+
 
     var selectedOption = $(this)[0].textContent;
 
@@ -81,7 +88,7 @@ $('body').on('click', 'li.level-1 .text', function () {
 //////// Level II ////////
 //////////////////////////
 
-$('body').on('click', 'li.level-2 .text', function () {
+$('body').on('click', 'li.level-2-li .text', function () {
 
 
     // Selecting the attribute
@@ -102,7 +109,7 @@ $('body').on('click', 'li.level-2 .text', function () {
     $(this).addClass('selected');
 });
 
-$('body').on('click', 'li.level-2 .next-arrow', function () {
+$('body').on('click', 'li.level-2-li .next-arrow', function () {
 
 
     // Selecting the attribute
@@ -126,7 +133,7 @@ $('body').on('click', 'li.level-2 .next-arrow', function () {
 //////// Level III ////////
 ///////////////////////////
 
-$('body').on('click', 'li.level-3 .next-arrow', function () {
+$('body').on('click', 'li.level-3-li .next-arrow', function () {
 
     // Selecting the attribute
 
@@ -141,7 +148,7 @@ $('body').on('click', 'li.level-3 .next-arrow', function () {
     $(this).addClass('picked');
 });
 
-$('body').on('click', 'li.level-3 .text', function () {
+$('body').on('click', 'li.level-3-li .text', function () {
 
     // Selecting the attribute
 
@@ -163,7 +170,7 @@ $('body').on('click', 'li.level-3 .text', function () {
 //////// Level IV ////////
 //////////////////////////
 
-$('body').on('click', 'li.level-4 .next-arrow', function () {
+$('body').on('click', 'li.level-4-li .next-arrow', function () {
 
    var selectedOption = $(this)[0].textContent;
 
@@ -174,7 +181,7 @@ $('body').on('click', 'li.level-4 .next-arrow', function () {
     $(this).addClass("picked");
 });
 
-$('body').on('click', 'li.level-4 .text', function () {
+$('body').on('click', 'li.level-4-li .text', function () {
 
    var selectedOption = $(this)[0].textContent;
 
@@ -237,8 +244,7 @@ function createLi(data, level) {
 
     newSpan.classList.add('text');
     newSpan.textContent = data;
-
-    newLi.classList.add('level-' + level);
+    newLi.classList.add('level-' + level + '-li');
     newLi.appendChild(newSpan);
     newLi.appendChild(newI);
 
@@ -251,7 +257,7 @@ function createLi(data, level) {
 //////// Working with JSON ////////
 ///////////////////////////////////
 
-
+var currentSelected = [];
 
 
 var data; // JSON data
@@ -299,7 +305,6 @@ var data; // JSON data
 // }
 
 
-var currentClicked = [];
 
 
 $.getJSON("https://mdn.github.io/learning-area/javascript/oojs/json/superheroes.json", function(json) {
