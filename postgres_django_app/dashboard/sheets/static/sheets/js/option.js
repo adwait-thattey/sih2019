@@ -16,7 +16,7 @@ function removeCurrentlySelectedI (level) {
 
 function findObject(jsonData, idValue) {
     var selectedObject;
-
+    if (jsonData.length === 0 || jsonData == false) return false;
 
     $.each(jsonData, function(index, value) {
         if (value.id == idValue) {
@@ -26,44 +26,66 @@ function findObject(jsonData, idValue) {
     return selectedObject;
 }
 
-function createLi(data, level) {
+function createLi(level, data) {
     var newLi = document.createElement('li');
 
     var newSpan = document.createElement('span');
     var newI = document.createElement('i');
 
-    newI.classList.add('fas');
-    newI.classList.add('fa-arrow-right');
-    newI.classList.add('next-arrow');
+    // For data with no subfeatures
+    // Writing 'No subfeatures'
+    if (data != null) {
+        newI.classList.add('fas');
+        newI.classList.add('fa-arrow-right');
+        newI.classList.add('next-arrow');
+    }
+
 
     newSpan.classList.add('text');
-    newSpan.textContent = data.name;
+    newSpan.textContent = data == null ? 'No Subfeatures' : data.name;
     newLi.classList.add('level-' + level + '-li');
     newLi.appendChild(newSpan);
     newLi.appendChild(newI);
 
-    newLi.setAttribute("value", data.id);
+    newLi.setAttribute("value", data == null ? '' : data.id);
     return newLi
 };
+
 
 function updateUl(level, data) {
     var createdUl = $('.level-' + level);
 
     // empties the current children
     createdUl.empty();
-    
+    if (data.length == 0) {
+        createdUl.append(createLi(level, null));
+        return;
+    }
+
+
     $.each(data, function (index, value) {
-         createdUl.append(createLi(value, level));
+         createdUl.append(createLi(level, value));
     });
 }
 
 // current JSON data
-
 var JSONdata;
 
 // Keeping track of all levels (keep pointers of all nodes)
 var selectedValues = [];
 
+
+// function to change the value of selectedValues
+function adjustselectedValues(level) {
+    if (level === 1) {
+        selectedValues = [];
+        return;
+    }
+
+    while (selectedValues.length >= level) {
+        selectedValues.pop();
+    }
+}
 
 
 /////////////////////////
@@ -74,17 +96,14 @@ var selectedValues = [];
 $('body').on('click', 'li.level-1-li .next-arrow', function () {
 
 
-    var selectedOption = $(this).siblings('.text')[0].textContent;
-
-
     // Getting the data from json
 
-    // console.log(JSONdata[$(this).parent().attr('value')]);
-
     var selectedObject = findObject(JSONdata, $(this).parent().attr('value'));
+
+    // As this is first level, selectedValues must be none;
+    adjustselectedValues(1);
+
     selectedValues.push(selectedObject);
-
-
 
     updateUl(2, selectedObject.subfeatures);
 
@@ -162,17 +181,30 @@ $('body').on('click', 'li.level-2-li .text', function () {
     $(this).addClass('selected');
 });
 
+
 $('body').on('click', 'li.level-2-li .next-arrow', function () {
 
 
     // Selecting the attribute
 
-    var selectedOption = $(this)[0].textContent;
+    var selectedObject = findObject(selectedValues[0].subfeatures, $(this).parent().attr('value'));
+
+
+    // As this is first level, selectedValues must be none;
+    adjustselectedValues(2);
+
+    selectedValues.push(selectedObject);
+
+    updateUl(3, selectedObject.subfeatures);
+
+
 
     removeCurrentlySelectedI(2);
     removeCurrentlySelectedI(3);
 
     // Using selectedOption get the data
+
+
 
 
     $(".level-3").addClass("level-3-add");
@@ -189,9 +221,12 @@ $('body').on('click', 'li.level-2-li .next-arrow', function () {
 $('body').on('click', 'li.level-3-li .next-arrow', function () {
 
     // Selecting the attribute
+    var selectedObject = findObject(selectedValues[1].subfeatures, $(this).parent().attr('value'));
 
-    var selectedOption = $(this)[0].textContent;
+    adjustselectedValues(3);
+    selectedValues.push(selectedObject);
 
+    updateUl(4, selectedObject.subfeatures);
     removeCurrentlySelectedI(3);
 
     // Using selectedOption get the data
@@ -308,11 +343,11 @@ $.ajax({
     success: function (data) {
         // JSONdata = data;
         JSONdata = data;
-        console.log(typeof(JSONdata[0].id));
+        console.log(JSONdata);
         var selectedUl = document.querySelector('.level-1');
 
         $.each(data, function (index, value) {
-            selectedUl.appendChild(createLi(value, 1));
+            selectedUl.appendChild(createLi(1, value));
         })
     }
 });
