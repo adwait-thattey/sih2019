@@ -100,7 +100,8 @@
 {% block scripts %}
 
     <script>
-        var myUrl = "{% url 'sheets:feature_values' %}";
+        var dateUrl = "{% url 'sheets:feature_values' %}";
+        var nameUrl = "{% url 'sheets:feature_name_tree' %}";
         var csrfToken = "{{ csrf_token }}";
     </script>
 

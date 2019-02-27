@@ -35,4 +35,4 @@ def get_feature_name_tree(request):
 
     obj = utils.get_feature_tree_python_object(sheet, lang)
 
-    return JsonResponse(obj)
+    return JsonResponse(obj, safe=False)

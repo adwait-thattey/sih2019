@@ -237,11 +237,12 @@ function createLi(data, level) {
     newI.classList.add('next-arrow');
 
     newSpan.classList.add('text');
-    newSpan.textContent = data;
+    newSpan.textContent = data.name;
     newLi.classList.add('level-' + level + '-li');
     newLi.appendChild(newSpan);
     newLi.appendChild(newI);
 
+    newLi.setAttribute("value", data.id);
     return newLi
 };
 
@@ -256,64 +257,28 @@ var currentSelected = [];
 
 var data; // JSON data
 
-// {
-//   "squadName" : "Super hero squad",
-//   "homeTown" : "Metro City",
-//   "formed" : 2016,
-//   "secretBase" : "Super tower",
-//   "active" : true,
-//   "members" : [
-//     {
-//       "name" : "Molecule Man",
-//       "age" : 29,
-//       "secretIdentity" : "Dan Jukes",
-//       "powers" : [
-//         "Radiation resistance",
-//         "Turning tiny",
-//         "Radiation blast"
-//       ]
-//     },
-//     {
-//       "name" : "Madame Uppercut",
-//       "age" : 39,
-//       "secretIdentity" : "Jane Wilson",
-//       "powers" : [
-//         "Million tonne punch",
-//         "Damage resistance",
-//         "Superhuman reflexes"
-//       ]
-//     },
-//     {
-//       "name" : "Eternal Flame",
-//       "age" : 1000000,
-//       "secretIdentity" : "Unknown",
-//       "powers" : [
-//         "Immortality",
-//         "Heat Immunity",
-//         "Inferno",
-//         "Teleportation",
-//         "Interdimensional travel"
-//       ]
-//     }
-//   ]
-// }
-
-
-
+// Gets the names
 
 $.ajax({
     type: 'GET',
-    url: myUrl,
+    url: nameUrl,
     data: {
-        feature: 86,
+        sheet: 22,
         language: 'english',
-        depth: 0,
-        csrfmiddlewaretoken: csrfToken
+        // csrfmiddlewaretoken: csrfToken
     },
     dataType: 'json',
     success: function (data) {
-        console.log(data);
         data = data;
+        console.log(data);
+
+        var selectedUl = document.querySelector('.level-1');
+
+        $.each(data, function (index, value) {
+            selectedUl.appendChild(createLi(value, 1));
+        })
+
+
     }
 });
 
