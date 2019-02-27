@@ -175,13 +175,42 @@ def get_feature_python_object(db_feature, db_language, depth):
         "name": name,
         "start_year": db_feature.start_year,
         "values": values_dict,
-        "subfeatures": [get_feature_python_object(db_subfeat, db_language, depth - 1) for db_subfeat in
-                                      db_feature.feature_set.all()]
+        # "subfeatures": [get_feature_python_object(db_subfeat, db_language, depth - 1) for db_subfeat in
+        #                               db_feature.feature_set.all()]
     }
 
-    # if depth > 0:
-    #     return_dict["subfeatures"] = [get_feature_python_object(db_subfeat, db_language, depth - 1) for db_subfeat in
-    #                                   db_feature.feature_set.all()]
+    if depth > 0:
+        return_dict["subfeatures"] = [get_feature_python_object(db_subfeat, db_language, depth - 1) for db_subfeat in
+                                      db_feature.feature_set.all()]
 
     # print(return_dict)
     return return_dict
+
+
+def get_feat_object_tree(db_feature, db_language):
+    try:
+        name = db_feature.featurename_set.get(language=db_language).name
+    except models.FeatureName.DoesNotExist:
+        try:
+            name = db_feature.featurename_set.all()[0].name
+        except IndexError:
+            name = "Unknown Name"
+
+    feat_dict = {
+        "id": db_feature.id,
+        "name": name,
+        "subfeatures": [get_feat_object_tree(subfeat, db_language) for subfeat in db_feature.feature_set.all()]
+    }
+
+    # print(name, db_feature.feature_set.all())
+    return feat_dict
+
+
+def get_feature_tree_python_object(db_sheet, db_language):
+    feat_list = list()
+
+    for db_feat in db_sheet.feature_set.all():
+        feat_list.append(get_feat_object_tree(db_feat, db_language))
+
+    print(feat_list)
+    return feat_list

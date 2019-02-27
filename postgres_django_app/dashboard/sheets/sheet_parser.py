@@ -50,7 +50,7 @@ def parse_sheet_to_object(sheet_path):
         col = list(tdf[idx])
 
         # get name of column
-        names = {LANGUAGE1: col[LANGUAGE1_ROW], LANGUAGE2: col[LANGUAGE2_ROW]}
+        names = {LANGUAGE1: col[LANGUAGE1_ROW].strip(), LANGUAGE2: col[LANGUAGE2_ROW].strip()}
 
         cur_depth = len(idx.split('.'))
         if cur_depth > pre_idx_depth:

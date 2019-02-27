@@ -29,5 +29,6 @@ urlpatterns = [
                   path('logout/', LogoutView.as_view(), name='logout'),
                   path('registrations/', include('django.contrib.auth.urls')),
                   path('accounts/', include('registration.passwords.urls')),
+                  path('sheets/', include('sheets.urls'))
 
               ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
