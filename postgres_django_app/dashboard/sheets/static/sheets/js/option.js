@@ -14,6 +14,58 @@ function removeCurrentlySelectedI (level) {
     });
 };
 
+function findObject(jsonData, idValue) {
+    var selectedObject;
+
+
+    $.each(jsonData, function(index, value) {
+        if (value.id == idValue) {
+            selectedObject = value;
+        }
+    });
+    return selectedObject;
+}
+
+function createLi(data, level) {
+    var newLi = document.createElement('li');
+
+    var newSpan = document.createElement('span');
+    var newI = document.createElement('i');
+
+    newI.classList.add('fas');
+    newI.classList.add('fa-arrow-right');
+    newI.classList.add('next-arrow');
+
+    newSpan.classList.add('text');
+    newSpan.textContent = data.name;
+    newLi.classList.add('level-' + level + '-li');
+    newLi.appendChild(newSpan);
+    newLi.appendChild(newI);
+
+    newLi.setAttribute("value", data.id);
+    return newLi
+};
+
+function updateUl(level, data) {
+    var createdUl = $('.level-' + level);
+
+    // empties the current children
+    createdUl.empty();
+    
+    $.each(data, function (index, value) {
+         createdUl.append(createLi(value, level));
+    });
+}
+
+// current JSON data
+
+var JSONdata;
+
+// Keeping track of all levels (keep pointers of all nodes)
+var selectedValues = [];
+
+
+
 /////////////////////////
 //////// Level I ////////
 /////////////////////////
@@ -25,9 +77,16 @@ $('body').on('click', 'li.level-1-li .next-arrow', function () {
     var selectedOption = $(this).siblings('.text')[0].textContent;
 
 
-    // As this is the first block, empty the currSelected array
-    currentSelected = [];
-    currentSelected.push(data[selectedOption]);
+    // Getting the data from json
+
+    // console.log(JSONdata[$(this).parent().attr('value')]);
+
+    var selectedObject = findObject(JSONdata, $(this).parent().attr('value'));
+    selectedValues.push(selectedObject);
+
+
+
+    updateUl(2, selectedObject.subfeatures);
 
 
     // Fresh start after going deep into the level
@@ -226,25 +285,7 @@ function createChip(data) {
 
 };
 
-function createLi(data, level) {
-    var newLi = document.createElement('li');
 
-    var newSpan = document.createElement('span');
-    var newI = document.createElement('i');
-
-    newI.classList.add('fas');
-    newI.classList.add('fa-arrow-right');
-    newI.classList.add('next-arrow');
-
-    newSpan.classList.add('text');
-    newSpan.textContent = data.name;
-    newLi.classList.add('level-' + level + '-li');
-    newLi.appendChild(newSpan);
-    newLi.appendChild(newI);
-
-    newLi.setAttribute("value", data.id);
-    return newLi
-};
 
 
 
@@ -252,10 +293,6 @@ function createLi(data, level) {
 //////// Working with JSON ////////
 ///////////////////////////////////
 
-var currentSelected = [];
-
-
-var data; // JSON data
 
 // Gets the names
 
@@ -269,16 +306,14 @@ $.ajax({
     },
     dataType: 'json',
     success: function (data) {
-        data = data;
-        console.log(data);
-
+        // JSONdata = data;
+        JSONdata = data;
+        console.log(typeof(JSONdata[0].id));
         var selectedUl = document.querySelector('.level-1');
 
         $.each(data, function (index, value) {
             selectedUl.appendChild(createLi(value, 1));
         })
-
-
     }
 });
 
