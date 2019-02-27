@@ -68,6 +68,25 @@ function updateUl(level, data) {
     });
 }
 
+
+
+
+function getData(language, feature_id) {
+    $.ajax({
+        type: 'GET',
+        url: dataUrl,
+        data: {
+            feature: feature_id,
+            depth: 0,
+            language: language,
+        },
+        dataType: 'json',
+        success: function (data) {
+            console.log(data);
+        }
+    });
+}
+
 // current JSON data
 var JSONdata;
 
@@ -143,6 +162,13 @@ $('body').on('click', 'li.level-1-li .text', function () {
     removeCurrentlySelectedSpan(3);
 
 
+    // Get the values via AJAX call
+    // console.log($(this).parent().attr('value'));
+
+    getData('english', $(this).parent().attr('value'));
+
+
+
     // Using selectedOption get the data
     $(".level-2").removeClass("level-2-add").addClass("level-2-none");
     $(".level-3").removeClass("level-3-add").addClass("level-3-none");
@@ -171,6 +197,10 @@ $('body').on('click', 'li.level-2-li .text', function () {
     removeCurrentlySelectedSpan(3);
 
     // Using selectedOption get the data
+
+    getData('english', $(this).parent().attr('value'));
+
+
 
 
     $(".level-3").removeClass("level-3-add").addClass("level-3-none");
@@ -343,8 +373,7 @@ $.ajax({
     success: function (data) {
         // JSONdata = data;
         JSONdata = data;
-        console.log(JSONdata);
-        var selectedUl = document.querySelector('.level-1');
+            var selectedUl = document.querySelector('.level-1');
 
         $.each(data, function (index, value) {
             selectedUl.appendChild(createLi(1, value));

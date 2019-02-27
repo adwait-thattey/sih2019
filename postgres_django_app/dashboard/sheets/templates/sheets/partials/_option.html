@@ -66,10 +66,18 @@
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
 
+        <div class="row mt-4 year-slider">
+            <div class="title">
+                <span class="endYear" style="float:right;">End Year</span>
+             <span class="startYear" style="float:left;">Start Year</span>
             </div>
 
+            <input type="range" class="custom-range" min="0" max="5" id="customRange2">
         </div>
+
 
         <!--Chips Section-->
         <div class="attr_chips">
@@ -100,7 +108,7 @@
 {% block scripts %}
 
     <script>
-        var dateUrl = "{% url 'sheets:feature_values' %}";
+        var dataUrl = "{% url 'sheets:feature_values' %}";
         var nameUrl = "{% url 'sheets:feature_name_tree' %}";
         var csrfToken = "{{ csrf_token }}";
     </script>
