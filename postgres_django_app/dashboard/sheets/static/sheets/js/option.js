@@ -103,6 +103,7 @@ function getData(language, feature_id) {
 
                 // TEMPORARY AREA CHART
                 buildBarChart(graphData, 'container');
+                buildPieChart(graphData, 'container1');
             }
         }
     });

@@ -204,3 +204,83 @@ function buildDualChart(graphDataValues, htmlId) {
         series: seriesData
     });
 }
+
+
+//////////////////////////////////
+////////// Right Chart ///////////
+//////////////////////////////////
+
+
+function buildPieChart(graphDataValues, htmlId) {
+
+    var seriesData = getSeriesData(graphDataValues);
+
+    var renamedObject = [];
+    for (var object of seriesData) {
+        var sumOfData = 0;
+
+        for (var dataValues of object.data) {
+            sumOfData += dataValues
+        }
+
+        var newObject = {
+            name: object.name,
+            y: sumOfData
+        };
+        renamedObject.push(newObject);
+    }
+
+    console.log(renamedObject);
+
+    Highcharts.chart(htmlId, {
+        chart: {
+            plotBackgroundColor: null,
+            plotBorderWidth: null,
+            plotShadow: false,
+            type: 'pie'
+        },
+        title: {
+            text: 'Browser market shares in January, 2018'
+        },
+        tooltip: {
+            pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+        },
+        plotOptions: {
+            pie: {
+                allowPointSelect: true,
+                cursor: 'pointer',
+                dataLabels: {
+                    enabled: true,
+                    format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+                    style: {
+                        color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+                    }
+                }
+            }
+        },
+        series: [{
+            name: 'Brands',
+            colorByPoint: true,
+            data: renamedObject
+        }]
+    });
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
