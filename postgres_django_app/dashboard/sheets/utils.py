@@ -128,6 +128,18 @@ def parse_sheet_to_db(sheet_path, category):
         parse_feature(db_sheet, db_type_obj_dict, feat, None)
 
 
+def get_feature_name(db_feature, db_language):
+    try:
+        name = db_feature.featurename_set.get(language=db_language).name
+    except models.FeatureName.DoesNotExist:
+        try:
+            name = db_feature.featurename_set.all()[0].name
+        except IndexError:
+            name = "Unknown Name"
+
+    return name
+
+
 def get_feature_python_object(db_feature, db_language, depth):
     """
 
@@ -135,15 +147,7 @@ def get_feature_python_object(db_feature, db_language, depth):
     If 0, give only current feature , skip the subfeatures
 
     """
-    db_name = db_feature.featurename_set.filter(language=db_language)
-
-    if db_name.exists():
-        name = db_name[0].name
-    else:
-        try:
-            name = db_feature.featurename_set.all()[0].name
-        except:
-            name = "Unknown Feature"
+    name = get_feature_name(db_feature, db_language)
 
     # print(name)
 
@@ -188,13 +192,7 @@ def get_feature_python_object(db_feature, db_language, depth):
 
 
 def get_feat_object_tree(db_feature, db_language):
-    try:
-        name = db_feature.featurename_set.get(language=db_language).name
-    except models.FeatureName.DoesNotExist:
-        try:
-            name = db_feature.featurename_set.all()[0].name
-        except IndexError:
-            name = "Unknown Name"
+    name = get_feature_name(db_feature, db_language)
 
     feat_dict = {
         "id": db_feature.id,
@@ -214,3 +212,27 @@ def get_feature_tree_python_object(db_sheet, db_language):
 
     print(feat_list)
     return feat_list
+
+
+def get_feature_names_parent(db_feature, db_language):
+    l = [{"id": child_feat.id, "name": get_feature_name(child_feat, db_language), "parent": db_feature.id} for
+         child_feat in
+         db_feature.feature_set.all()]
+
+    for child in db_feature.feature_set.all():
+        l.extend(get_feature_names_parent(child, db_language))
+
+    # print(l)
+    return l
+
+
+def get_sheet_feature_names_list_with_parent(db_sheet, db_language):
+    l = list()
+
+    for feat in db_sheet.feature_set.all():
+        l.append({"id": feat.id, "name": get_feature_name(feat, db_language), "parent": None})
+    for feat in db_sheet.feature_set.all():
+        l.extend(get_feature_names_parent(feat, db_language))
+
+    print(l)
+    return l
