@@ -19,7 +19,7 @@ function findObject(jsonData, idValue) {
     if (jsonData.length === 0 || jsonData == false) return false;
 
     $.each(jsonData, function(index, value) {
-        if (value.id == idValue) {
+        if (value.id === idValue) {
             selectedObject = value;
         }
     });
@@ -68,9 +68,24 @@ function updateUl(level, data) {
     });
 }
 
+// check if values exist for the attribute, if yes send else false
+function getFeatureValues(feature) {
+    if (Object.keys(feature.values).length) {
+        return feature;
+    }
+    return false;
+}
 
+// Checks if the feature already exist in graphData
+function doesFeatureExist(data) {
+    var isFeature = false;
+    $.each(graphData, function (index, value) {
+        if (data.id === value.id) isFeature = true;
+    });
+    return isFeature;
+};
 
-
+// Gets the JSONO data from server
 function getData(language, feature_id) {
     $.ajax({
         type: 'GET',
@@ -82,16 +97,24 @@ function getData(language, feature_id) {
         },
         dataType: 'json',
         success: function (data) {
-            console.log(data);
+
+            if (getFeatureValues(data) && !doesFeatureExist(data)) {
+                graphData.push(getFeatureValues(data));
+                console.log(graphData);
+            }
         }
     });
 }
+
 
 // current JSON data
 var JSONdata;
 
 // Keeping track of all levels (keep pointers of all nodes)
 var selectedValues = [];
+
+// array of array to plot the graph
+var graphData = [];
 
 
 // function to change the value of selectedValues
@@ -156,17 +179,12 @@ $('body').on('click', 'li.level-1-li .text', function () {
 
     var selectedOption = $(this)[0].textContent;
 
-    // Fresh start after going deep into the level
-    removeCurrentlySelectedSpan(1);
-    removeCurrentlySelectedSpan(2);
-    removeCurrentlySelectedSpan(3);
-
 
     // Get the values via AJAX call
     // console.log($(this).parent().attr('value'));
 
-    getData('english', $(this).parent().attr('value'));
 
+    var obtainedData = getData('english', $(this).parent().attr('value'));
 
 
     // Using selectedOption get the data
@@ -193,13 +211,9 @@ $('body').on('click', 'li.level-2-li .text', function () {
 
     var selectedOption = $(this)[0].textContent;
 
-    removeCurrentlySelectedSpan(2);
-    removeCurrentlySelectedSpan(3);
-
     // Using selectedOption get the data
 
-    getData('english', $(this).parent().attr('value'));
-
+    var obtainedData = getData('english', $(this).parent().attr('value'));
 
 
 
@@ -272,9 +286,8 @@ $('body').on('click', 'li.level-3-li .text', function () {
 
     var selectedOption = $(this)[0].textContent;
 
-    removeCurrentlySelectedSpan(3);
-
     // Using selectedOption get the data
+    var obtainedData = getData('english', $(this).parent().attr('value'));
 
     $(".level-4").removeClass("level-4-add").addClass("level-4-none");
 
@@ -365,6 +378,7 @@ $.ajax({
     type: 'GET',
     url: nameUrl,
     data: {
+        // hardcoded
         sheet: 22,
         language: 'english',
         // csrfmiddlewaretoken: csrfToken
