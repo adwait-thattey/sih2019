@@ -36,3 +36,18 @@ def get_feature_name_tree(request):
     obj = utils.get_feature_tree_python_object(sheet, lang)
 
     return JsonResponse(obj, safe=False)
+
+
+def get_feature_search_list(request):
+    sheet_id = request.GET.get('sheet', None)
+    lang_name = request.GET.get('language', None)
+
+    if not (sheet_id and lang_name):
+        raise Http404("Insufficient parameters")
+
+    sheet = get_object_or_404(models.Sheet, id=sheet_id)
+    lang = get_object_or_404(models.Language, name=lang_name.lower())
+
+    obj = utils.get_sheet_feature_names_list_with_parent(sheet, lang)
+
+    return JsonResponse(obj, safe=False)
