@@ -101,8 +101,8 @@ function getData(language, feature_id) {
             if (getFeatureValues(data) && !doesFeatureExist(data)) {
                 graphData.push(getFeatureValues(data));
 
-                // TEMPORARY LINE CHART
-                buildLineChart(graphData, 'container');
+                // TEMPORARY AREA CHART
+                buildBarChart(graphData, 'container');
             }
         }
     });
