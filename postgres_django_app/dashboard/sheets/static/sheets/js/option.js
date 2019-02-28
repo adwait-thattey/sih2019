@@ -19,7 +19,7 @@ function findObject(jsonData, idValue) {
     if (jsonData.length === 0 || jsonData == false) return false;
 
     $.each(jsonData, function(index, value) {
-        if (value.id === idValue) {
+        if (value.id == idValue) {
             selectedObject = value;
         }
     });
@@ -100,7 +100,9 @@ function getData(language, feature_id) {
 
             if (getFeatureValues(data) && !doesFeatureExist(data)) {
                 graphData.push(getFeatureValues(data));
-                console.log(graphData);
+
+                // TEMPORARY LINE CHART
+                buildLineChart(graphData, 'container');
             }
         }
     });
@@ -117,7 +119,7 @@ var selectedValues = [];
 var graphData = [];
 
 
-// function to change the value of selectedValues
+// function to change the level of selectedValues
 function adjustselectedValues(level) {
     if (level === 1) {
         selectedValues = [];
@@ -139,14 +141,12 @@ $('body').on('click', 'li.level-1-li .next-arrow', function () {
 
 
     // Getting the data from json
-
     var selectedObject = findObject(JSONdata, $(this).parent().attr('value'));
 
     // As this is first level, selectedValues must be none;
     adjustselectedValues(1);
 
     selectedValues.push(selectedObject);
-
     updateUl(2, selectedObject.subfeatures);
 
 
@@ -180,11 +180,8 @@ $('body').on('click', 'li.level-1-li .text', function () {
     var selectedOption = $(this)[0].textContent;
 
 
-    // Get the values via AJAX call
-    // console.log($(this).parent().attr('value'));
-
-
-    var obtainedData = getData('english', $(this).parent().attr('value'));
+    // Get and plot the values via AJAX call
+    getData('english', $(this).parent().attr('value'));
 
 
     // Using selectedOption get the data
@@ -364,9 +361,6 @@ function createChip(data) {
 };
 
 
-
-
-
 ///////////////////////////////////
 //////// Working with JSON ////////
 ///////////////////////////////////
@@ -387,7 +381,7 @@ $.ajax({
     success: function (data) {
         // JSONdata = data;
         JSONdata = data;
-            var selectedUl = document.querySelector('.level-1');
+        var selectedUl = document.querySelector('.level-1');
 
         $.each(data, function (index, value) {
             selectedUl.appendChild(createLi(1, value));

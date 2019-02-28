@@ -1,37 +1,75 @@
-Highcharts.chart('container', {
-    chart: {
-        type: 'line'
-    },
-    title: {
-        text: 'Monthly Average Temperature'
-    },
-    subtitle: {
-        text: 'Source: WorldClimate.com'
-    },
-    xAxis: {
-        categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
-    },
-    yAxis: {
+// Function to get the start to End Year
+// Returns an array like ['2012-13','2013-14'..'2017-18']
+function getYears(graphData) {
+    // need graph data to find the oldest year
+    var oldestYear = graphData[0].start_year;
+    var yearCount = 0;
+
+    var yearList = [];
+
+    for (var yearData of graphData) {
+        if (oldestYear > yearData.start_year) oldestYear = yearData.start_year;
+        for (var dateLength in yearData.values) {
+            if (yearData.values[dateLength].length > yearCount) yearCount = yearData.values[dateLength].length;
+        }
+    }
+
+    // Max yearCount received
+    for (var i=0, j=oldestYear; i<yearCount; i++,j++) {
+        yearList.push(j);
+    }
+    return yearList;
+}
+
+
+function buildLineChart(graphDataValues, htmlId) {
+
+    var seriesData = []; // New data everytime
+
+    getYears(graphDataValues);
+
+    for (row of graphDataValues) {
+
+        // Filling the data
+        var seriesElement = {
+            name: row.name,
+            // TEMPORARY SELECTED CURRENT
+            data: row.values.current,
+        };
+        seriesData.push(seriesElement);
+    }
+
+    Highcharts.chart(htmlId, {
+        chart: {
+            type: 'line'
+        },
         title: {
-            text: 'Temperature (°C)'
-        }
-    },
-    plotOptions: {
-        line: {
-            dataLabels: {
-                enabled: true
-            },
-            enableMouseTracking: false
-        }
-    },
-    series: [{
-        name: 'Tokyo',
-        data: [7.0, 6.9, 9.5, 14.5, 18.4, 21.5, 25.2, 26.5, 23.3, 18.3, 13.9, 9.6]
-    }, {
-        name: 'London',
-        data: [3.9, 4.2, 5.7, 8.5, 11.9, 15.2, 17.0, 16.6, 14.2, 10.3, 6.6, 4.8]
-    }]
-});
+            text: 'Monthly Average Temperature'
+        },
+        subtitle: {
+            text: 'Source: WorldClimate.com'
+        },
+        xAxis: {
+            categories: getYears(graphDataValues)
+        },
+        yAxis: {
+            title: {
+                text: 'Temperature (°C)'
+            }
+        },
+        plotOptions: {
+            line: {
+                dataLabels: {
+                    enabled: true
+                },
+                enableMouseTracking: false
+            }
+        },
+        series: seriesData
+    });
+
+};
+
 
 Highcharts.chart('container1', {
     chart: {
