@@ -13,7 +13,6 @@
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
-    <link rel="stylesheet" href="{% static 'category_base/css/font-awesome.css' %}">
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet" href="{% static 'category_base/css/bootstrap.min.css' %}">
     <!-- Material Design Bootstrap -->
@@ -53,10 +52,68 @@
             -webkit-animation: chartjs-render-animation 0.001s;
             animation: chartjs-render-animation 0.001s;
         }
+
+
+        .icon-bar {
+            position: fixed;
+            top: 50%;
+            right: 0%;
+            -webkit-transform: translateY(-50%);
+            -ms-transform: translateY(-50%);
+            transform: translateY(-50%);
+        }
+
+        /* Style the icon bar links */
+        .icon-bar a {
+            display: block;
+            text-align: center;
+            padding: 16px;
+            transition: all 0.3s ease;
+            color: white;
+            font-size: 20px;
+        }
+
+        /* Style the social media icons with color, if you want */
+        .icon-bar a:hover {
+            background-color: #000;
+        }
+
+        .facebook {
+            background: #3B5998;
+            color: white;
+        }
+
+        .twitter {
+            background: #55ACEE;
+            color: white;
+        }
+
+        .google {
+            background: #dd4b39;
+            color: white;
+        }
+
+        .linkedin {
+            background: #007bb5;
+            color: white;
+        }
+
+        .youtube {
+            background: #bb0000;
+            color: white;
+        }
+
     </style>
 </head>
 
 <body class="fixed-sn white-skin" aria-busy="true">
+
+<div class="icon-bar">
+  <a href="http://www.mospi.gov.in/" class="google" target="_blank"><i class="fa fa-google"></i></a>
+  <a href="https://www.facebook.com/mospi.india/" class="facebook" target="_blank"><i class="fa fa-facebook"></i></a>
+  <a href="https://www.linkedin.com/company/ministry-of-statistics-and-programme-implementation/about/" target="_blank" class="linkedin"><i class="fa fa-linkedin"></i></a>
+  <a href="#" class="youtube"><i class="fa fa-youtube"></i></a>
+</div>
 
 <!--Double navigation-->
 <header>
@@ -70,13 +127,13 @@
             <li class="logo-sn d-block waves-effect">
                 <div class="text-center">
                     <a class="pl-0" href="https://mdbootstrap.com/"><img id="MDB-logo" src="{% static 'img/logo.jpg' %}"
-                                                                         alt="" style="width:80%;"></a>
+                                                                         alt="" style="width:80%;margin-top:10px;"></a>
                 </div>
             </li>
             <!--/. Logo -->
             <div class="logo-wrapper waves-light waves-effect waves-light">
                 <h5 class="black-text font-weight-bold" style="padding:35px; font-family:'Comic Sans MS';">MOSPI
-                    GVA
+                    DASHBOARD
                 </h5>
             </div>
             <br>
@@ -87,22 +144,24 @@
                     <!--Trigger-->
                     <a class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown"
                        aria-haspopup="true" aria-expanded="false"
-                       style="padding: 0%; font-size: 10px;margin-left: 14%;margin-right: 14%">Economic
-                        Aggregates</a>
+                       style="padding: 0%; font-size: 12px;margin-left: 14%;margin-right: 14%">Economic
+                        Activities</a>
 
 
                     <!--Menu-->
                     <div class="dropdown-menu dropdown-primary">
                         <a class="dropdown-item" href="#">Agriculture</a>
                         <a class="dropdown-item" href="#">Mining</a>
-                        <a class="dropdown-item" href="#">Something else here</a>
-                        <a class="dropdown-item" href="#">Something else here</a>
+                        <a class="dropdown-item" href="#">Manufacturing</a>
+                        <a class="dropdown-item" href="#">Electricity, Gas</a>
+                        <a class="dropdown-item" href="#">Construction</a>
+                        <a class="dropdown-item" href="#">Trade,Repair,hotels</a>
                     </div>
                 </div>
             </li>
 
-            <a data-v-9ce54d62="" href="#/dashboard" class="" data-v-3434610b="">
-                <li><i data-v-4186c4c0="" data-v-9ce54d62="" class="mr-3 fa fa-pie-chart" data-v-10d9e33b=""></i>Dashboard
+            <a data-v-9ce54d62="" href="#/dashboard" class="" style="margin-top:50px;">
+                <li><i data-v-4186c4c0="" data-v-9ce54d62="" class="mr-3 fa fa-pie-chart" data-v-10d9e33b=""></i>GVA
                 </li>
             </a>
             <a data-v-9ce54d62="" href="#/profile" class="router-link-exact-active router-link-active"
@@ -112,12 +171,9 @@
             <li><i data-v-4186c4c0="" data-v-9ce54d62="" class="mr-3 fa fa-table" data-v-10d9e33b=""></i>Indices</li>
         </a> <a data-v-9ce54d62="" href="#/maps" class="" data-v-3434610b="">
             <li><i data-v-4186c4c0="" data-v-9ce54d62="" class="mr-3 fa fa-map" data-v-10d9e33b=""></i>Consumption</li>
-        </a> <a data-v-9ce54d62="" href="#/404" class="" data-v-3434610b="">
-            <li
-            <i data-v-4186c4c0="" data-v-9ce54d62="" class="mr-3 fa fa-exclamation" data-v-10d9e33b=""></i>404</li>
         </a>
 
-
+        <button class="btn btn-primary" style="margin-left:50px;margin-top:50px;">Compare</button>
             <!--/Dropdown primary-->
     </div>
     </li>
@@ -129,8 +185,8 @@
 
     <!--Navbar-->
 
-    <nav class="navbar fixed-top navbar-toggleable-sm navbar-expand-sm scrolling-navbar double-nav navbar-dark"
-         style="background-color: rgb(54, 109, 219)">
+    <nav class="navbar fixed-top navbar-toggleable-sm navbar-expand-sm scrolling-navbar double-nav"
+         style="background-color: #002750;color: white;">
         <!-- SideNav slide-out button -->
         <div class="float-left">
             <a href="#" data-activates="slide-out" class="button-collapse"><i class="fa fa-bars"></i></a>
@@ -148,56 +204,39 @@
 
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-                    <a class="nav-link black-text " id="nav-text" href=""><i
+                    <a class="nav-link black-text" style="color:white !important;" id="nav-text" href=""><i
                             class="fa fa-fw fa-home"></i>Home
                         <span class="sr-only">(current)</span>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link black-text" href="{{ category_url }}">Categories</a>
+                    <a class="nav-link black-text" style="color:white !important;" href="{{ category_url }}">A-</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link black-text" href="{{ book_list_url }}">All Books</a>
+                    <a class="nav-link black-text" style="color:white !important;" href="{{ book_list_url }}">A+</a>
                 </li>
 
 
                 {% if not request.user.is_authenticated %}
 
                 <li class="nav-item" style="padding-left: 10px;padding-right: 10px;">
-                    <a class="nav-link black-text" aria-hidden="true" href="{{ signup_url }}"><i
-                            class="fa fa-fw fa-user"></i>Sign
-                        Up</a>
+                    <a class="nav-link black-text" style="color:white !important;" aria-hidden="true" href="{{ signup_url }}"><i
+                            class="fa fa-fw fa-user"></i>Screen Reader
+                        </a>
                 </li>
-                <li class="nav-item" style="padding-left: 10px;padding-right: 50px;">
-                    <a class="nav-link black-text" aria-hidden="true" href="{{ login_url }}"><i
-                            class="fa fa-fw fa-user"></i>Log
-                        In</a>
-                </li>
+                <!--<li class="nav-item" style="padding-left: 10px;padding-right: 50px;">-->
+                    <!--<a class="nav-link black-text" aria-hidden="true" href="{{ login_url }}"><i-->
+                            <!--class="fa fa-fw fa-user" style="color:white !important;"></i>Log-->
+                        <!--In</a>-->
+                <!--</li>-->
                 {% else %}
                 <li class="nav-item" style="padding-left: 10px;padding-right: 20px;">
-                    <a class="nav-link black-text" aria-hidden="true">Hello, {{ request.user.first_name }}</a>
+                    <a class="nav-link black-text" style="color:white !important;" aria-hidden="true">Hello, {{ request.user.first_name }}</a>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle black-text" id="navbarDropdownMenuLink" data-toggle="dropdown"
-                       aria-haspopup="true" aria-expanded="false">Accounts</a>
-                    <div class="dropdown-menu dropdown-primary" aria-labelledby="navbarDropdownMenuLink"
-                         style="background:#EEBEB7">
-                        <a class="dropdown-item" href="{{ profile_url }}">My Profile</a>
-                        <a class="dropdown-item" href="{{ notification_url }}">Notifications<span class="badge"
-                                                                                                  style='background-color:darkred;float:right'></span></a>
-                        <a class="dropdown-item" href="{{ edit_url }}">Edit</a>
-                        <a class="dropdown-item" href="{{ ajax_url }}">Ajax search</a>
+                       aria-haspopup="true" aria-expanded="false" style="color:white !important;">Accounts</a>
 
-                        <a class="dropdown-item" href="{{ borrowed_books_url }}">Borrowed Books</a>
-                        {% if request.user.is_admin %}
-                        <a class="dropdown-item" href="{{ borrower_list_url }}">Borrower list</a>
-
-                        <a class="dropdown-item" href="{{ token_url }}">Tokens list</a>
-
-                        {% endif %}
-                        <a class="dropdown-item" href="{{ donate_url }}">Donate your books</a>
-                        <a class="dropdown-item" href="{{ logout_url }}">Logout</a>
-                    </div>
                 </li>
 
 
@@ -390,8 +429,11 @@
      style="left: 0px; touch-action: pan-y; user-select: none; -webkit-user-drag: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></div>
 
 <script src="{% static 'sheets/js/highcharts.js' %}"></script>
+<script src="   https://code.highcharts.com/highcharts-3d.js"></script>
 
 <script src="{% static 'sheets/js/custom-chart.js' %}"></script>
+
+
 </body>
 
 </html>

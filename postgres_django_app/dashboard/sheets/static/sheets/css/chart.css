@@ -8,6 +8,11 @@
     width: 30px;
 }
 
-.chart-heading {
+.card {
+    /*border: 1px solid #0b2e13;*/
+    margin-top: 50px;
+}
 
+.chart-all {
+    margin: 50px;
 }
