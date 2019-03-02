@@ -3,7 +3,7 @@ from django.contrib import admin
 # Register your models here.
 
 from .models import Language, Category, CategoryName, Sheet, SheetName, Feature, FeatureName, Type, TypeName, Cell, \
-    FeatureRow
+    FeatureRow, Entity
 
 admin.site.register((
     Language,
@@ -16,5 +16,6 @@ admin.site.register((
     Type,
     TypeName,
     Cell,
-    FeatureRow
+    FeatureRow,
+    Entity
 ))

@@ -1,5 +1,6 @@
 import math
 
+from sheets.objects import Feature, Entity
 from . import models
 from .sheet_parser import parse_sheet_to_object, parse_meta_sheet
 
@@ -73,6 +74,13 @@ def parse_feature_names(feature, db_feature):
                                                             name=feature.names[lang])
 
 
+def parse_entity_names(entity, db_entity):
+    for lang in entity.names:
+        lang_obj = check_and_create_lang_object(lang)
+        db_entity_name = models.EntityName.objects.create(entity=db_entity, language=lang_obj, name=entity.names[lang])
+
+
+
 def parse_feature_values(feature, db_feature, db_type_obj_dict):
     for tp in feature.values:
         db_type = db_type_obj_dict[tp]
@@ -100,42 +108,92 @@ def parse_feature_values(feature, db_feature, db_type_obj_dict):
                                          values=formatted_values
                                          )
 
-def parse_feature(db_sheet, db_type_obj_dict, feature, db_parent_feature):
+
+def parse_feature(db_sheet, db_type_obj_dict, feat_entity, db_parent_feature):
     if db_parent_feature:
-        db_feature = models.Feature.objects.create(parent_feature=db_parent_feature, start_year=feature.start_year)
+        db_feature = models.Feature.objects.create(parent_feature=db_parent_feature)
     else:
-        db_feature = models.Feature.objects.create(sheet=db_sheet, start_year=feature.start_year)
+        db_feature = models.Feature.objects.create(sheet=db_sheet)
 
-    parse_feature_names(feature, db_feature)
+    parse_feature_names(feat_entity, db_feature)
 
-    parse_feature_values(feature, db_feature, db_type_obj_dict)
-
-    print(feature.names['english'])
-    for child_feat in feature.subfeatures:
+    print("feature", feat_entity.names['english'])
+    for child_feat in feat_entity.subfeatures:
         parse_feature(db_sheet, db_type_obj_dict, child_feat, db_feature)
+
+
+def parse_entity(db_sheet, db_type_obj_dict, feat_entity, db_parent_feature, db_parent_entity):
+    db_entity = models.Entity(sheet=db_sheet)
+    if db_parent_entity:
+        db_entity.parent_entity = db_parent_entity
+    if db_parent_feature:
+        db_entity.parent_feature = db_parent_feature
+
+    db_entity.save()
+
+    print("entity", feat_entity.names['english'])
+    parse_entity_names(feat_entity, db_entity)
+
+
+def parse_feature_or_entity(db_sheet, db_type_object_entity, feat_entity, last_feature, last_entity):
+    feat_flag = False
+    if isinstance(feat_entity, Feature):
+        new_feat_ent = parse_feature(db_sheet, db_type_object_entity, feat_entity, last_feature)
+        feat_flag = True
+    elif isinstance(feat_entity, Entity):
+        new_feat_ent = parse_entity(db_sheet, db_type_object_entity, feat_entity, last_feature, last_entity)
+    else:
+        raise TypeError("Expected either feature or entity")
+
+    for sub_feat_ent in feat_entity.subfeatures:
+        if feat_flag:
+            parse_feature_or_entity(db_sheet, db_type_object_entity, sub_feat_ent, new_feat_ent, last_entity)
+        else:
+            parse_feature_or_entity(db_sheet, db_type_object_entity, sub_feat_ent, last_feature, new_feat_ent)
 
 
 def parse_sheet_to_db(sheet_path, meta_file_path, category):
     sheet = parse_sheet_to_object(sheet_path)
-    parse_meta_sheet(sheet, meta_file_path)
-
-    # raise StopIteration()
-    # create sheet
     db_sheet = models.Sheet(category=category, file_loc=sheet_path)
-
     db_sheet.save()
-    # create sheet names
     for lang in sheet.names:
         lang_obj = check_and_create_lang_object(lang)
         name_obj = models.SheetName(sheet=db_sheet, language=lang_obj, name=sheet.names[lang])
         name_obj.save()
 
-    # create data types
     db_type_obj_dict = parse_types(sheet)
 
-    # parse features
-    for feat in sheet.data_obj:
-        parse_feature(db_sheet, db_type_obj_dict, feat, None)
+    entity_names = parse_meta_sheet(sheet, meta_file_path)
+    if entity_names.split(',')[0] == "none":
+        entity = None
+    else:
+        entity_name = models.EntityName.objects.filter(name=entity_names.split(',')[0])
+        if entity_name.exists():
+            entity = entity_name[0].entity
+        else:
+            entity = models.Entity.objects.create(sheet=db_sheet)
+            nms = entity_names.split(',')
+            lang_objs = ['english', 'hindi']
+            for ix in range(len(nms)):
+                models.EntityName.objects.create(entity=entity, language=check_and_create_lang_object(lang_objs[ix]), name=nms[ix])
+
+    # parse features and entities
+    for feat_entity in sheet.data_obj:
+        parse_feature_or_entity(db_sheet, db_type_obj_dict, feat_entity, last_feature=None, last_entity=entity)
+
+    # parse_meta_sheet(sheet, meta_file_path)
+
+    # raise StopIteration()
+    # create sheet
+    # db_sheet = models.Sheet(category=category, file_loc=sheet_path)
+    #
+    # db_sheet.save()
+    # # create sheet names
+    #
+    #
+    # # create data types
+    #
+    # # parse features
 
 
 def get_feature_name(db_feature, db_language):
@@ -188,7 +246,6 @@ def get_feature_python_object(db_feature, db_language, depth):
     # print(types)
 
     values_dict = {type_names[ix]: row_set.get(type=types[ix]).values for ix in range(len(types))}
-
 
     # row_set = db_feature.feature_row_set
 

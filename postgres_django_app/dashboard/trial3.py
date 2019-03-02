@@ -5,6 +5,8 @@ from sheets.sheet_parser import *
 
 c = Category.objects.all()[0]
 
-s = "/media/riya/Data1/Academics/SIH/Code/sih2019/postgres_django_app/dashboard/sheets/etc/S1.1_ref.xlsx"
+s = "/media/coderdude/Adwait/Projects/sih/sih2019/postgres_django_app/dashboard/sheets/etc/1.4_ref (1).xlsx"
 
-sheet = parse_sheet_to_db(s,c)
+meta = "/media/coderdude/Adwait/Projects/sih/sih2019/postgres_django_app/dashboard/sheets/etc/S1.4_meta.txt"
+
+sheet = parse_sheet_to_db(s,meta,c)

@@ -38,6 +38,13 @@ def get_feature_name_tree(request):
     return JsonResponse(obj, safe=False)
 
 
+def get_complete_tree_by_category(request):
+    category_name = request.GET.get('category', None)
+    lang_name = request.GET.get('language', None)
+
+
+
+
 def get_feature_search_list(request):
     sheet_id = request.GET.get('sheet', None)
     lang_name = request.GET.get('language', None)
