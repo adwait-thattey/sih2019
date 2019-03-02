@@ -100,24 +100,20 @@
                     </div>
                 </div>
             </li>
-
-            <a data-v-9ce54d62="" href="#/dashboard" class="" data-v-3434610b="">
-                <li><i data-v-4186c4c0="" data-v-9ce54d62="" class="mr-3 fa fa-pie-chart" data-v-10d9e33b=""></i>Dashboard
+            <div id="navbar" class="navbar-menu navbar-scroll">
+                    <li><a href="#gva"><i class="mr-3 fa fa-pie-chart"></i>GVA</a>
+                    </li>
+                    <li><a href="#nva"><i class="mr-3 fa fa-user"></i>NVA
+                    </a>
+                    </li>
+                <li><a href="#indices"><i data-v-4186c4c0="" data-v-9ce54d62="" class="mr-3 fa fa-table"
+                                          data-v-10d9e33b=""></i>Indices
+                </a></li>
+                <li><a href="#consumption"><i class="mr-3 fa fa-map"></i>Consumption
+                </a>
                 </li>
-            </a>
-            <a data-v-9ce54d62="" href="#/profile" class="router-link-exact-active router-link-active"
-               data-v-3434610b="">
-                <li><i data-v-4186c4c0="" data-v-9ce54d62="" class="mr-3 fa fa-user" data-v-10d9e33b=""></i>NVA</li>
-            </a> <a data-v-9ce54d62="" href="#/tables" class="" data-v-3434610b="">
-            <li><i data-v-4186c4c0="" data-v-9ce54d62="" class="mr-3 fa fa-table" data-v-10d9e33b=""></i>Indices</li>
-        </a> <a data-v-9ce54d62="" href="#/maps" class="" data-v-3434610b="">
-            <li><i data-v-4186c4c0="" data-v-9ce54d62="" class="mr-3 fa fa-map" data-v-10d9e33b=""></i>Consumption</li>
-        </a> <a data-v-9ce54d62="" href="#/404" class="" data-v-3434610b="">
-            <li
-            <i data-v-4186c4c0="" data-v-9ce54d62="" class="mr-3 fa fa-exclamation" data-v-10d9e33b=""></i>404</li>
-        </a>
 
-
+            </div>
             <!--/Dropdown primary-->
     </div>
     </li>
@@ -163,42 +159,43 @@
 
                 {% if not request.user.is_authenticated %}
 
-                <li class="nav-item" style="padding-left: 10px;padding-right: 10px;">
-                    <a class="nav-link black-text" aria-hidden="true" href="{{ signup_url }}"><i
-                            class="fa fa-fw fa-user"></i>Sign
-                        Up</a>
-                </li>
-                <li class="nav-item" style="padding-left: 10px;padding-right: 50px;">
-                    <a class="nav-link black-text" aria-hidden="true" href="{{ login_url }}"><i
-                            class="fa fa-fw fa-user"></i>Log
-                        In</a>
-                </li>
+                    <li class="nav-item" style="padding-left: 10px;padding-right: 10px;">
+                        <a class="nav-link black-text" aria-hidden="true" href="{{ signup_url }}"><i
+                                class="fa fa-fw fa-user"></i>Sign
+                            Up</a>
+                    </li>
+                    <li class="nav-item" style="padding-left: 10px;padding-right: 50px;">
+                        <a class="nav-link black-text" aria-hidden="true" href="{{ login_url }}"><i
+                                class="fa fa-fw fa-user"></i>Log
+                            In</a>
+                    </li>
                 {% else %}
-                <li class="nav-item" style="padding-left: 10px;padding-right: 20px;">
-                    <a class="nav-link black-text" aria-hidden="true">Hello, {{ request.user.first_name }}</a>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle black-text" id="navbarDropdownMenuLink" data-toggle="dropdown"
-                       aria-haspopup="true" aria-expanded="false">Accounts</a>
-                    <div class="dropdown-menu dropdown-primary" aria-labelledby="navbarDropdownMenuLink"
-                         style="background:#EEBEB7">
-                        <a class="dropdown-item" href="{{ profile_url }}">My Profile</a>
-                        <a class="dropdown-item" href="{{ notification_url }}">Notifications<span class="badge"
-                                                                                                  style='background-color:darkred;float:right'></span></a>
-                        <a class="dropdown-item" href="{{ edit_url }}">Edit</a>
-                        <a class="dropdown-item" href="{{ ajax_url }}">Ajax search</a>
+                    <li class="nav-item" style="padding-left: 10px;padding-right: 20px;">
+                        <a class="nav-link black-text" aria-hidden="true">Hello, {{ request.user.first_name }}</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle black-text" id="navbarDropdownMenuLink"
+                           data-toggle="dropdown"
+                           aria-haspopup="true" aria-expanded="false">Accounts</a>
+                        <div class="dropdown-menu dropdown-primary" aria-labelledby="navbarDropdownMenuLink"
+                             style="background:#EEBEB7">
+                            <a class="dropdown-item" href="{{ profile_url }}">My Profile</a>
+                            <a class="dropdown-item" href="{{ notification_url }}">Notifications<span class="badge"
+                                                                                                      style='background-color:darkred;float:right'></span></a>
+                            <a class="dropdown-item" href="{{ edit_url }}">Edit</a>
+                            <a class="dropdown-item" href="{{ ajax_url }}">Ajax search</a>
 
-                        <a class="dropdown-item" href="{{ borrowed_books_url }}">Borrowed Books</a>
-                        {% if request.user.is_admin %}
-                        <a class="dropdown-item" href="{{ borrower_list_url }}">Borrower list</a>
+                            <a class="dropdown-item" href="{{ borrowed_books_url }}">Borrowed Books</a>
+                            {% if request.user.is_admin %}
+                                <a class="dropdown-item" href="{{ borrower_list_url }}">Borrower list</a>
 
-                        <a class="dropdown-item" href="{{ token_url }}">Tokens list</a>
+                                <a class="dropdown-item" href="{{ token_url }}">Tokens list</a>
 
-                        {% endif %}
-                        <a class="dropdown-item" href="{{ donate_url }}">Donate your books</a>
-                        <a class="dropdown-item" href="{{ logout_url }}">Logout</a>
-                    </div>
-                </li>
+                            {% endif %}
+                            <a class="dropdown-item" href="{{ donate_url }}">Donate your books</a>
+                            <a class="dropdown-item" href="{{ logout_url }}">Logout</a>
+                        </div>
+                    </li>
 
 
                 {% endif %}
@@ -392,6 +389,11 @@
 <script src="{% static 'sheets/js/highcharts.js' %}"></script>
 
 <script src="{% static 'sheets/js/custom-chart.js' %}"></script>
+
+
+<script src="{% static 'sheets/js/scrollspy/vanillajs-scrollspy.min.js' %}"></script>
+<script src="{% static 'sheets/js/scrollspy/sliding.js' %}"></script>
+
 </body>
 
 </html>
