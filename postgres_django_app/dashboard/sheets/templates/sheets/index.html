@@ -65,7 +65,32 @@
 
         <script src="{% static 'sheets/js/suggestions.js' %}"></script>
 
+        <script>
+        function findParentChain(featureId, jsonData) {
 
+            var parentId = featureId
+            var parentChildList = []
+            parentChildList.push(featureId)
+            while (parentId != null){
+                parentId = findParent(parentId,jsonData)
+                parentChildList.unshift(parentId)
+            }
+
+
+  return parentChildList;   // The function returns the list of parent to the feature
+}
+
+function findParent(featureId,jsonData) {
+            for (var i in jsonData){
+                if (featureId == jsonData[i]["id"]){
+                    return jsonData[i]["parent"]
+                }
+            }
+
+    
+}
+       // console.log(findParent(2,4))
+        </script>
 
     {% endblock %}
 
