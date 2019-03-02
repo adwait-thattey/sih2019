@@ -8,6 +8,32 @@
     width: 30px;
 }
 
-.chart-heading {
+.card {
+    /*border: 1px solid #0b2e13;*/
+    margin-top: 50px;
+    background-color: rgba(100,149,237, 0.1);
+}
 
+.chart-all {
+    margin: 50px;
+}
+
+.stat-chip {
+    height: 100px;
+    background: white;
+    width: 25%;
+    margin: 15px 40px;
+}
+
+.stat-value {
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.stat-value h2 {
+    font-weight: 700;
+    letter-spacing: 2px;
 }
