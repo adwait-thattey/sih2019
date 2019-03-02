@@ -1,7 +1,7 @@
 import math
 
 
-class Type:
+class Type: #like curent, constant
     def __init__(self):
         self.names = {}
 
@@ -18,7 +18,7 @@ class Type:
             return f'<Type:[no english name][{id(self)}]>'
 
 
-class Entity:
+class Entity: # like crops, seeds etc.
     def __init__(self):
         self.names = {}
         self.subentities = {}
@@ -36,12 +36,12 @@ class Entity:
         self.names[language.lower()] = name
 
 
-class Feature:
+class Feature: #like gdp gva, consumption etc.
     def __init__(self):
         self.names = {}
-        self.start_year = 2011
+        # self.start_year = 2011
         # self.values = dict()
-        self.subfeatures = list()
+        self.subfeatures = []
         self.parent = None
 
     def __repr__(self):
@@ -104,10 +104,11 @@ class SheetObject:
     def __init__(self):
         self.names = {}
         self.types = []
-        self.data_obj = []
+        # self.data_obj = []
         self.xyz = 10
+        self.top_entities = []
         self.unit = 'crore'
-        self.data = []  # entity, feature, values
+        self.data = []
 
     def __repr__(self):
         if "english" in self.names:
