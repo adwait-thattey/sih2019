@@ -1,99 +1,405 @@
 {% load static %}
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
 
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Required meta tags always come first -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>BookCafe</title>
 
     <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <link rel="stylesheet" href="{% static 'category_base/css/font-awesome.css' %}">
     <!-- Bootstrap core CSS -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.2.1/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'category_base/css/bootstrap.min.css' %}">
     <!-- Material Design Bootstrap -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.7.3/css/mdb.min.css" rel="stylesheet">
 
-    <link rel="stylesheet" href="{% static 'sheets/css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'category_base/css/mdb.min.css' %}">
 
-    <!--HighCharts CDN-->
-    <script src="https://code.highcharts.com/highcharts.js"></script>
 
-    <!--HighCharts CDN for downloading image-->
-    <script src="http://code.highcharts.com/modules/exporting.js"></script>
+    <style>
+        .main {
+            padding-left: 15rem;
+            padding-top: 5.5rem;
+    </style>
 
-    <!--HighCharts 3d-->
-    <script src="https://code.highcharts.com/highcharts-3d.js"></script>
+    <style type="text/css">
+        /* Chart.js */
+        @-webkit-keyframes chartjs-render-animation {
+            from {
+                opacity: 0.99
+            }
 
-    <!-- JQuery -->
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+            to {
+                opacity: 1
+            }
+        }
 
-    {% block styles %}
-    {% endblock %}
+        @keyframes chartjs-render-animation {
+            from {
+                opacity: 0.99
+            }
 
+            to {
+                opacity: 1
+            }
+        }
+
+        .chartjs-render-monitor {
+            -webkit-animation: chartjs-render-animation 0.001s;
+            animation: chartjs-render-animation 0.001s;
+        }
+    </style>
 </head>
-<body>
+
+<body class="fixed-sn white-skin" aria-busy="true">
+
+<!--Double navigation-->
+<header>
+
+    <!-- Sidebar navigation -->
+    <div id="slide-out" class="side-nav sn-bg-4 fixed"
+         style="transform: translateX(0px);width: 17rem !important;background: white;">
+
+        <ul class="custom-scrollbar ">
+            <!-- Logo -->
+            <li class="logo-sn d-block waves-effect">
+                <div class="text-center">
+                    <a class="pl-0" href="https://mdbootstrap.com/"><img id="MDB-logo" src="{% static 'img/logo.jpg' %}"
+                                                                         alt="" style="width:80%;"></a>
+                </div>
+            </li>
+            <!--/. Logo -->
+            <div class="logo-wrapper waves-light waves-effect waves-light">
+                <h5 class="black-text font-weight-bold" style="padding:35px; font-family:'Comic Sans MS';">MOSPI
+                    GVA
+                </h5>
+            </div>
+            <br>
+
+            <li>
+                <div class="dropdown">
+
+                    <!--Trigger-->
+                    <a class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown"
+                       aria-haspopup="true" aria-expanded="false"
+                       style="padding: 0%; font-size: 10px;margin-left: 14%;margin-right: 14%">Economic
+                        Aggregates</a>
 
 
+                    <!--Menu-->
+                    <div class="dropdown-menu dropdown-primary">
+                        <a class="dropdown-item" href="#">Agriculture</a>
+                        <a class="dropdown-item" href="#">Mining</a>
+                        <a class="dropdown-item" href="#">Something else here</a>
+                        <a class="dropdown-item" href="#">Something else here</a>
+                    </div>
+                </div>
+            </li>
+
+            <a data-v-9ce54d62="" href="#/dashboard" class="" data-v-3434610b="">
+                <li><i data-v-4186c4c0="" data-v-9ce54d62="" class="mr-3 fa fa-pie-chart" data-v-10d9e33b=""></i>Dashboard
+                </li>
+            </a>
+            <a data-v-9ce54d62="" href="#/profile" class="router-link-exact-active router-link-active"
+               data-v-3434610b="">
+                <li><i data-v-4186c4c0="" data-v-9ce54d62="" class="mr-3 fa fa-user" data-v-10d9e33b=""></i>NVA</li>
+            </a> <a data-v-9ce54d62="" href="#/tables" class="" data-v-3434610b="">
+            <li><i data-v-4186c4c0="" data-v-9ce54d62="" class="mr-3 fa fa-table" data-v-10d9e33b=""></i>Indices</li>
+        </a> <a data-v-9ce54d62="" href="#/maps" class="" data-v-3434610b="">
+            <li><i data-v-4186c4c0="" data-v-9ce54d62="" class="mr-3 fa fa-map" data-v-10d9e33b=""></i>Consumption</li>
+        </a> <a data-v-9ce54d62="" href="#/404" class="" data-v-3434610b="">
+            <li
+            <i data-v-4186c4c0="" data-v-9ce54d62="" class="mr-3 fa fa-exclamation" data-v-10d9e33b=""></i>404</li>
+        </a>
 
 
+            <!--/Dropdown primary-->
+    </div>
+    </li>
+
+    <div class="sidenav-bg mask-strong"></div>
+    </div>
+    <!--/. Sidebar navigation -->
 
 
+    <!--Navbar-->
+
+    <nav class="navbar fixed-top navbar-toggleable-sm navbar-expand-sm scrolling-navbar double-nav navbar-dark"
+         style="background-color: rgb(54, 109, 219)">
+        <!-- SideNav slide-out button -->
+        <div class="float-left">
+            <a href="#" data-activates="slide-out" class="button-collapse"><i class="fa fa-bars"></i></a>
+        </div>
+        <!-- Breadcrumb-->
 
 
+        <button class="navbar-toggler " type="button" data-toggle="collapse" data-target="#basicExampleNav"
+                aria-controls="basicExampleNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <!-- Collapsible content -->
+
+        <div class="collapse navbar-collapse" id="basicExampleNav" style="margin-left:100px;">
+
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link black-text " id="nav-text" href=""><i
+                            class="fa fa-fw fa-home"></i>Home
+                        <span class="sr-only">(current)</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link black-text" href="{{ category_url }}">Categories</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link black-text" href="{{ book_list_url }}">All Books</a>
+                </li>
 
 
+                {% if not request.user.is_authenticated %}
+
+                <li class="nav-item" style="padding-left: 10px;padding-right: 10px;">
+                    <a class="nav-link black-text" aria-hidden="true" href="{{ signup_url }}"><i
+                            class="fa fa-fw fa-user"></i>Sign
+                        Up</a>
+                </li>
+                <li class="nav-item" style="padding-left: 10px;padding-right: 50px;">
+                    <a class="nav-link black-text" aria-hidden="true" href="{{ login_url }}"><i
+                            class="fa fa-fw fa-user"></i>Log
+                        In</a>
+                </li>
+                {% else %}
+                <li class="nav-item" style="padding-left: 10px;padding-right: 20px;">
+                    <a class="nav-link black-text" aria-hidden="true">Hello, {{ request.user.first_name }}</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle black-text" id="navbarDropdownMenuLink" data-toggle="dropdown"
+                       aria-haspopup="true" aria-expanded="false">Accounts</a>
+                    <div class="dropdown-menu dropdown-primary" aria-labelledby="navbarDropdownMenuLink"
+                         style="background:#EEBEB7">
+                        <a class="dropdown-item" href="{{ profile_url }}">My Profile</a>
+                        <a class="dropdown-item" href="{{ notification_url }}">Notifications<span class="badge"
+                                                                                                  style='background-color:darkred;float:right'></span></a>
+                        <a class="dropdown-item" href="{{ edit_url }}">Edit</a>
+                        <a class="dropdown-item" href="{{ ajax_url }}">Ajax search</a>
+
+                        <a class="dropdown-item" href="{{ borrowed_books_url }}">Borrowed Books</a>
+                        {% if request.user.is_admin %}
+                        <a class="dropdown-item" href="{{ borrower_list_url }}">Borrower list</a>
+
+                        <a class="dropdown-item" href="{{ token_url }}">Tokens list</a>
+
+                        {% endif %}
+                        <a class="dropdown-item" href="{{ donate_url }}">Donate your books</a>
+                        <a class="dropdown-item" href="{{ logout_url }}">Logout</a>
+                    </div>
+                </li>
 
 
-
-    <!-- Bootstrap tooltips -->
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
-    <!-- Bootstrap core JavaScript -->
-    <script type="text/javascript"
-            src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.2.1/js/bootstrap.min.js"></script>
-    <!-- MDB core JavaScript -->
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.7.3/js/mdb.min.js"></script>
+                {% endif %}
+            </ul>
+        </div>
+    </nav>
+    <!--/.Navbar-->
 
 
-    <script src="{% static 'sheets/js/option.js' %}"></script>
-    <script src="{% static 'sheets/js/custom-chart.js' %}"></script>
+</header>
+<!--/.Double navigation-->
 
-    {% block scripts %}
-    <script src="{% static 'sheets/js/search.js' %}"></script>
+<!--Main layout-->
+<main>
+    {% include 'sheets/partials/_charts.html' %}
+</main>
+<!--/Main layout-->
 
-    <script src="{% static 'sheets/js/suggestions.js' %}"></script>
+<!--Footer-->
+<footer class="page-footer font-small blue-grey lighten-5">
 
-    <script>
-        // function findParentChain(featureId, jsonData) {
-        //
-        //     var parentId = featureId;
-        //     var parentChildList = [];
-        //     parentChildList.push(featureId);
-        //     while (parentId != null) {
-        //         parentId = findParent(parentId, jsonData);
-        //         parentChildList.unshift(parentId)
-        //     }
-        //
-        //
-        //     return parentChildList;   // The function returns the list of parent to the feature
-        // }
-        //
-        // function findParent(featureId, jsonData) {
-        //     for (var i in jsonData) {
-        //         if (featureId == jsonData[i]["id"]) {
-        //             return jsonData[i]["parent"]
-        //         }
-        //     }
-        // }
+    <div style="background-color: #21d192;">
+        <div class="container">
 
-    </script>
+            <!-- Grid row-->
+            <div class="row py-4 d-flex align-items-center">
 
-    {% endblock %}
+                <!-- Grid column -->
+                <div class="col-md-6 col-lg-5 text-center text-md-left mb-4 mb-md-0">
+                    <h6 class="mb-0">Get connected with us on social networks!</h6>
+                </div>
+                <!-- Grid column -->
 
-</body>
+                <!-- Grid column -->
+                <div class="col-md-6 col-lg-7 text-center text-md-right">
+
+                    <!-- Facebook -->
+                    <a class="fb-ic">
+                        <i class="fa fa-facebook white-text mr-4"> </i>
+                    </a>
+                    <!-- Twitter -->
+                    <a class="tw-ic">
+                        <i class="fa fa-twitter white-text mr-4"> </i>
+                    </a>
+                    <!-- Google +-->
+                    <a class="gplus-ic">
+                        <i class="fa fa-google-plus white-text mr-4"> </i>
+                    </a>
+                    <!--Linkedin -->
+                    <a class="li-ic">
+                        <i class="fa fa-linkedin white-text mr-4"> </i>
+                    </a>
+                    <!--Instagram-->
+                    <a class="ins-ic">
+                        <i class="fa fa-instagram white-text"> </i>
+                    </a>
+
+                </div>
+                <!-- Grid column -->
+
+            </div>
+            <!-- Grid row-->
+
+        </div>
+    </div>
+
+    <!-- Footer Links -->
+    <div class="container text-center text-md-left mt-5">
+
+        <!-- Grid row -->
+        <div class="row mt-3 dark-grey-text">
+
+            <!-- Grid column -->
+            <div class="col-md-3 col-lg-4 col-xl-3 mb-4">
+
+                <!-- Content -->
+                <h6 class="text-uppercase font-weight-bold">Book Cafe</h6>
+                <hr class="teal accent-3 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
+                <p>A library management website for the students to go through different categories of books and
+                    then choose
+                    the desired book and issue it.</p>
+
+            </div>
+            <!-- Grid column -->
+
+            <!-- Grid column -->
+            <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
+
+                <!-- Links -->
+                <h6 class="text-uppercase font-weight-bold">Features</h6>
+                <hr class="teal accent-3 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
+                <p>
+                    <a class="dark-grey-text" href="#!">Home</a>
+                </p>
+                <p>
+                    <a class="dark-grey-text" href="#!">Issue</a>
+                </p>
+                <p>
+                    <a class="dark-grey-text" href="#!">Categories</a>
+                </p>
+                <p>
+                    <a class="dark-grey-text" href="#!">Feedback</a>
+                </p>
+
+            </div>
+            <!-- Grid column -->
+
+            <!-- Grid column -->
+            <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
+
+                <!-- Links -->
+                <h6 class="text-uppercase font-weight-bold">Useful links</h6>
+                <hr class="teal accent-3 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
+                <p>
+                    <a class="dark-grey-text" href="#!">Your Account</a>
+                </p>
+                <p>
+                    <a class="dark-grey-text" href="#!">Issue a Book</a>
+                </p>
+                <p>
+                    <a class="dark-grey-text" href="#!">Recommended</a>
+                </p>
+                <p>
+                    <a class="dark-grey-text" href="#!">Help</a>
+                </p>
+
+            </div>
+            <!-- Grid column -->
+
+            <!-- Grid column -->
+            <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+
+                <!-- Links -->
+                <h6 class="text-uppercase font-weight-bold">Contact</h6>
+                <hr class="teal accent-3 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
+                <p>
+                    <i class="fa fa-home mr-3"></i> Indian Institute Of Information Technology Sricity, Chittoor -
+                    517646</p>
+                <p>
+                    <i class="fa fa-envelope mr-3"></i> ronytowilson3097@gmail.com</p>
+                <p>
+                    <i class="fa fa-phone mr-3"></i> + 91 720 233 71</p>
+                <p>
+                    <i class="fa fa-print mr-3"></i> + 91 231 462 08</p>
+
+            </div>
+            <!-- Grid column -->
+
+        </div>
+        <!-- Grid row -->
+
+    </div>
+    <!-- Footer Links -->
+
+    <!-- Copyright -->
+    <div class="footer-copyright text-center text-black-50 py-3">© 2018 Copyright:
+        <a class="dark-grey-text" href="https://mdbootstrap.com/education/bootstrap/"> www.bookcafe.com</a>
+    </div>
+    <!-- Copyright -->
+
+</footer>
+
+<!--/.Footer-->
+
+<!-- SCRIPTS -->
+<!-- JQuery -->
+{#
+<script type="text/javascript" src="./category_base/js/jquery-3.3.1.min.js"></script>
+#}
+
+<script type="text/javascript" src="{% static 'category_base/js/jquery-3.3.1.min.js' %}"></script>
+
+<!-- Tooltips -->
+{#
+<script type="text/javascript" src="./category_base/js/popper.min.js"></script>
+#}
+<script type="text/javascript" src="{% static 'category_base/js/popper.min.js' %}"></script>
+
+<!-- Bootstrap core JavaScript -->
+{#
+<script type="text/javascript" src="./category_base/js/bootstrap.min.js"></script>
+#}
+<script type="text/javascript" src="{% static 'category_base/js/bootstrap.min.js' %}"></script>
+
+<!-- MDB core JavaScript -->
+{#
+<script type="text/javascript" src="./category_base/js/mdb.min.js"></script>
+<div class="hiddendiv common"></div>
+#}
+<script type="text/javascript" src="{% static 'category_base/js/mdb.min.js' %}"></script>
 <script>
+    // SideNav Initialization
+    $(".button-collapse").sideNav();
+
+    new WOW().init();
 
 </script>
+<div class="drag-target"
+     style="left: 0px; touch-action: pan-y; user-select: none; -webkit-user-drag: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></div>
+
+
+</body>
+
 </html>
