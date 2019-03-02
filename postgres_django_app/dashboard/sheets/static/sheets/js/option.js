@@ -388,7 +388,10 @@ $.ajax({
             selectedUl.appendChild(createLi(1, value));
         })
     }
+
 });
+
+
 
 
 
