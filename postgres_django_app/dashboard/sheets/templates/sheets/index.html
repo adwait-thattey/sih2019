@@ -365,29 +365,19 @@
 
 <!-- SCRIPTS -->
 <!-- JQuery -->
-{#
-<script type="text/javascript" src="./category_base/js/jquery-3.3.1.min.js"></script>
-#}
 
 <script type="text/javascript" src="{% static 'category_base/js/jquery-3.3.1.min.js' %}"></script>
 
 <!-- Tooltips -->
-{#
-<script type="text/javascript" src="./category_base/js/popper.min.js"></script>
-#}
+
 <script type="text/javascript" src="{% static 'category_base/js/popper.min.js' %}"></script>
 
 <!-- Bootstrap core JavaScript -->
-{#
-<script type="text/javascript" src="./category_base/js/bootstrap.min.js"></script>
-#}
+
 <script type="text/javascript" src="{% static 'category_base/js/bootstrap.min.js' %}"></script>
 
 <!-- MDB core JavaScript -->
-{#
-<script type="text/javascript" src="./category_base/js/mdb.min.js"></script>
-<div class="hiddendiv common"></div>
-#}
+
 <script type="text/javascript" src="{% static 'category_base/js/mdb.min.js' %}"></script>
 <script>
     // SideNav Initialization
@@ -399,7 +389,9 @@
 <div class="drag-target"
      style="left: 0px; touch-action: pan-y; user-select: none; -webkit-user-drag: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></div>
 
+<script src="{% static 'sheets/js/highcharts.js' %}"></script>
 
+<script src="{% static 'sheets/js/custom-chart.js' %}"></script>
 </body>
 
 </html>
