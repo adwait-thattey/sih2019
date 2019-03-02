@@ -13,12 +13,12 @@
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
+    <link rel="stylesheet" href="{% static 'category_base/css/font-awesome.css' %}">
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet" href="{% static 'category_base/css/bootstrap.min.css' %}">
     <!-- Material Design Bootstrap -->
 
     <link rel="stylesheet" href="{% static 'category_base/css/mdb.min.css' %}">
-
 
     <style>
         .main {
@@ -30,28 +30,22 @@
             from {
                 opacity: 0.99
             }
-
             to {
                 opacity: 1
             }
         }
-
         @keyframes chartjs-render-animation {
             from {
                 opacity: 0.99
             }
-
             to {
                 opacity: 1
             }
         }
-
         .chartjs-render-monitor {
             -webkit-animation: chartjs-render-animation 0.001s;
             animation: chartjs-render-animation 0.001s;
         }
-
-
         .icon-bar {
             position: fixed;
             top: 50%;
@@ -60,7 +54,6 @@
             -ms-transform: translateY(-50%);
             transform: translateY(-50%);
         }
-
         /* Style the icon bar links */
         .icon-bar a {
             display: block;
@@ -70,41 +63,33 @@
             color: white;
             font-size: 20px;
         }
-
         /* Style the social media icons with color, if you want */
         .icon-bar a:hover {
             background-color: #000;
         }
-
         .facebook {
             background: #3B5998;
             color: white;
         }
-
         .twitter {
             background: #55ACEE;
             color: white;
         }
-
         .google {
             background: #dd4b39;
             color: white;
         }
-
         .linkedin {
             background: #007bb5;
             color: white;
         }
-
         .youtube {
             background: #bb0000;
             color: white;
         }
-
         .eco-aggre {
-            margin-left: 20px !important;
+            margin-left: 8% !important;
         }
-
         #slide-out {
             background: white;
         }
@@ -112,13 +97,6 @@
 </head>
 
 <body class="fixed-sn white-skin" aria-busy="true">
-
-<div class="icon-bar">
-  <a href="http://www.mospi.gov.in/" class="google" target="_blank"><i class="fa fa-google"></i></a>
-  <a href="https://www.facebook.com/mospi.india/" class="facebook" target="_blank"><i class="fa fa-facebook"></i></a>
-  <a href="https://www.linkedin.com/company/ministry-of-statistics-and-programme-implementation/about/" target="_blank" class="linkedin"><i class="fa fa-linkedin"></i></a>
-  <a href="#" class="youtube"><i class="fa fa-youtube"></i></a>
-</div>
 
 <!--Double navigation-->
 <header>
@@ -132,13 +110,13 @@
             <li class="logo-sn d-block waves-effect">
                 <div class="text-center">
                     <a class="pl-0" href="https://mdbootstrap.com/"><img id="MDB-logo" src="{% static 'img/logo.jpg' %}"
-                                                                         alt="" style="width:80%;margin-top:10px;"></a>
+                                                                         alt="" style="width:80%;"></a>
                 </div>
             </li>
             <!--/. Logo -->
             <div class="logo-wrapper waves-light waves-effect waves-light">
                 <h5 class="black-text font-weight-bold" style="padding:35px; font-family:'Comic Sans MS';">MOSPI
-                    DASHBOARD
+                    GVA
                 </h5>
             </div>
             <br>
@@ -149,37 +127,33 @@
                     <!--Trigger-->
                     <a class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown"
                        aria-haspopup="true" aria-expanded="false"
-                       style="padding: 0%; font-size: 12px;margin-left: 14%;margin-right: 14%">Economic
-                        Activities</a>
+                       style="padding: 0%; font-size: 10px;margin-left: 14%;margin-right: 14%">Economic
+                        Aggregates</a>
 
 
                     <!--Menu-->
                     <div class="dropdown-menu dropdown-primary">
                         <a class="dropdown-item" href="#">Agriculture</a>
                         <a class="dropdown-item" href="#">Mining</a>
-                        <a class="dropdown-item" href="#">Manufacturing</a>
-                        <a class="dropdown-item" href="#">Electricity, Gas</a>
-                        <a class="dropdown-item" href="#">Construction</a>
-                        <a class="dropdown-item" href="#">Trade,Repair,hotels</a>
+                        <a class="dropdown-item" href="#">Something else here</a>
+                        <a class="dropdown-item" href="#">Something else here</a>
                     </div>
                 </div>
             </li>
-
-            <a href="#/dashboard" class="eco-aggre" style="margin-top:50px;">
-                <li><i data-v-4186c4c0="" data-v-9ce54d62="" class="mr-3 fa fa-pie-chart" data-v-10d9e33b=""></i>GVA
+            <div id="navbar" class="navbar-menu navbar-scroll eco-aggre">
+                    <li><a href="#gva"><i class="mr-3 fa fa-pie-chart"></i>GVA</a>
+                    </li>
+                    <li><a href="#nva"><i class="mr-3 fa fa-user"></i>NVA
+                    </a>
+                    </li>
+                <li><a href="#indices"><i data-v-4186c4c0="" data-v-9ce54d62="" class="mr-3 fa fa-table"
+                                          data-v-10d9e33b=""></i>Indices
+                </a></li>
+                <li><a href="#consumption"><i class="mr-3 fa fa-map"></i>Consumption
+                </a>
                 </li>
-            </a>
-            <a href="#/profile" class="eco-aggre">
-                <li><i class="mr-3 fa fa-user" ></i>NVA</li>
-            </a>
-            <a href="#/tables" class="eco-aggre">
-                <li><i class="mr-3 fa fa-table" ></i>Indices</li>
-            </a>
-            <a href="#/maps" class="eco-aggre" >
-                <li><i class="mr-3 fa fa-map"></i>Consumption</li>
-            </a>
 
-        <button class="btn btn-primary" style="margin-left:50px;margin-top:50px;">Compare</button>
+            </div>
             <!--/Dropdown primary-->
     </div>
     </li>
@@ -435,10 +409,12 @@
      style="left: 0px; touch-action: pan-y; user-select: none; -webkit-user-drag: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></div>
 
 <script src="{% static 'sheets/js/highcharts.js' %}"></script>
-<script src="   https://code.highcharts.com/highcharts-3d.js"></script>
 
 <script src="{% static 'sheets/js/custom-chart.js' %}"></script>
 
+
+<script src="{% static 'sheets/js/scrollspy/vanillajs-scrollspy.min.js' %}"></script>
+<script src="{% static 'sheets/js/scrollspy/sliding.js' %}"></script>
 
 </body>
 
