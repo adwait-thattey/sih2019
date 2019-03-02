@@ -46,6 +46,22 @@ class SheetName(models.Model):
     name = models.CharField(max_length=200)
 
 
+class Entity:
+    parent_entity = models.ForeignKey(to='self', on_delete=models.CASCADE, null=True, blank=True)
+
+    def __str__(self):
+        pass
+
+
+class EntityName:
+    entity = models.ForeignKey(to=Entity, on_delete=models.CASCADE)
+    language = models.ForeignKey(to=Language, on_delete=models.PROTECT)
+    name = models.CharField(max_length=200)
+
+    def __str__(self):
+        return self.name
+
+
 class Feature(models.Model):
     sheet = models.ForeignKey(to=Sheet, on_delete=models.CASCADE, null=True, blank=True)
     parent_feature = models.ForeignKey(to='self', on_delete=models.CASCADE, null=True, blank=True)
@@ -82,9 +98,12 @@ class TypeName(models.Model):
 
 
 class FeatureRow(models.Model):
-    type = models.ForeignKey(to=Type, on_delete=models.PROTECT)
-    feature = models.ForeignKey(to=Feature, on_delete=models.CASCADE)
+    entity = models.ForeignKey(to=Entity, on_delete=models.CASCADE, null=True, blank=True)
+    type = models.ForeignKey(to=Type, on_delete=models.PROTECT, null=True, blank=True)
+    feature = models.ForeignKey(to=Feature, on_delete=models.PROTECT)
+    start_year = models.IntegerField()
     values = ArrayField(base_field=models.FloatField())
+
 
 class Cell(models.Model):
     feature = models.ForeignKey(to=Feature, on_delete=models.CASCADE)
