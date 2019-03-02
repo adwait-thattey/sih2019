@@ -5,5 +5,9 @@
 
 .underline {
     border-top: 5px solid blue;
-    width: 5%;
+    width: 30px;
+}
+
+.chart-heading {
+
 }

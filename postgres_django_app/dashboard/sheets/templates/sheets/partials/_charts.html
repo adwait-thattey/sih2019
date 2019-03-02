@@ -4,27 +4,57 @@
 <link rel="stylesheet" href="{% static 'sheets/css/chart.css' %}">
 {% endblock %}
 
-<section class="charts">
-    <div class="container">
-        <!--<div class="display-4">Graphs</div>-->
-        <!--<div class="underline">&nbsp;</div>-->
+<section class="container">
 
-        <div class="row">
-            <div class="col-md-6">
-                <div id="gen-stat-sub-1"></div>
-            </div>
-            <div class="col-md-6">
-                <div id="gen-stat-sub-2"></div>
-            </div>
+    <section class="charts gva-charts">
+
+        <div class="chart-heading">
+            <h2 style="display:block;">GVA</h2>
+            <div class="underline">&nbsp;</div>
         </div>
 
-    </div>
+        <div class="row">
+            <div class="col-md-6" id="gva-container-timeSeries1"></div>
+            <div class="col-md-6" id="gva-container-db1"></div>
+        </div>
+        <div class="row">
+            <div class="col-md-6" id="gva-container-timeSeries2"></div>
+            <div class="col-md-6" id="gva-container-db2"></div>
+        </div>
+        <div class="row">
+            <div class="col-md-6" id="gva-container-pie1"></div>
+            <div class="col-md-6" id="gva-container-pie2"></div>
+        </div>
+        <div class="row">
+            <div class="col-md-6" id="gva-container-pie3"></div>
+            <div class="col-md-6" id="gva-container-pie4"></div>
+        </div>
+    </section>
 
+    <section class="charts nva-charts">
+        <div class="row">
+            <div class="col-md-6" id="nva-container-timeSeries"></div>
+            <div class="col-md-6" id="nva-container-db"></div>
+        </div>
+        <div class="row">
+            <div class="col-md-6" id="nva-container-pie1"></div>
+            <div class="col-md-6" id="nva-container-pie2"></div>
+        </div>
+    </section>
 
-
+    <section class="charts indices-charts">
+        <div class="row">
+            <div class="col-md-6" id="indices-container-timeSeries"></div>
+            <div class="col-md-6" id="indices-container-db"></div>
+        </div>
+        <div class="row">
+            <div class="col-md-6" id="indices-container-pie1"></div>
+            <div class="col-md-6" id="indices-container-pie2"></div>
+        </div>
+    </section>
 </section>
 
 
 {% block scripts %}
-<script src="{% static 'sheets/js/chart-1.js' %}"></script>
+    <script src="{% static 'sheets/js/custom-chart.js' %}"></script>
 {% endblock %}

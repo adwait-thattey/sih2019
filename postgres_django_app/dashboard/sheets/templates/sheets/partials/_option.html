@@ -1,7 +1,8 @@
 {% load static %}
+
 <style>
-header
-{
+
+header {
 	font-family: 'Lobster', cursive;
 	text-align: center;
 	font-size: 25px;
@@ -41,7 +42,8 @@ a{
 	width: 500px;
 	margin: auto;
 }
-   #style-4::-webkit-scrollbar-track
+
+#style-4::-webkit-scrollbar-track
 {
 	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
 	background-color: #F5F5F5;
@@ -59,167 +61,160 @@ a{
 	border: 2px solid #555555;
 }
 
-
 </style>
-{#<script>#}
-{#    $(document).ready(function () {#}
-{#          if (!$.browser.webkit) {#}
-{#              $('.wrapper').html('<p>Sorry! Non webkit users. :(</p>');#}
-{#          }#}
-{#      });#}
-{#</script>#}
-{% block styles %}
+
 <link rel="stylesheet" href="{% static 'sheets/css/option.css' %}">
-{% endblock %}
-
-<section class="custom-graph" style="margin-top:50px;">
-    <div class="container">
-        <div class="accordion md-accordion" id="accordionEx" role="tablist"
-             aria-multiselectable="true">
-
-            <div class="card">
-
-                <!-- Card header -->
-                <div class="card-header" role="tab" id="headingOne1">
-                    <a data-toggle="collapse" data-parent="#accordionEx" href="#collapseOne1" aria-expanded="true"
-                       aria-controls="collapseOne1">
-                        <h5 class="mb-0">
-                            Filter Menu <i class="fas fa-angle-down rotate-icon" style="float:right;"></i>
-                        </h5>
-                    </a>
-                </div>
-
-                <!-- Card body -->
-                <div id="collapseOne1" class="collapse show" role="tabpanel" aria-labelledby="headingOne1"
-                     data-parent="#accordionEx">
-                    <div class="card-body">
-                        <div class="header-option row">
-                            <div class="col-md-8">
-                                <div class="md-form mt-0">
-                                    <form autocomplete="off" action="">
-                                    <div id="style-4" class="autocomplete scrollbar" style="overflow-y: scroll;max-height: 135px;">
-                                    <input id="myInput" class="form-control" type="text" placeholder="Search..." aria-label="Search">
-                                        </div>
-                                        </form>
-
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-
-                            </div>
-                        </div>
-                        <div class="row feature-header">
-                            <div class="col-md-3 col-sm-12">
-                                <div class="sidenav scroll sidenav-1">
-                                    <ul class="feature-list level-1">
-
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="col-md-3 col-sm-12">
-                                <div class="sidenav scroll sidenav-2">
-                                    <ul class="feature-list level-2 level-2-none">
-
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="col-md-3 col-sm-12">
-                                <div class="sidenav scroll sidenav-3">
-                                    <ul class="feature-list level-3 level-3-none">
-
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="col-md-3 col-sm-12">
-                                <div class="sidenav scroll sidenav-4">
-                                    <ul class="feature-list level-4 level-4-none">
-
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!--Year Slider-->
-        <div class="row mt-4 year-slider">
-            <div class="title">
-                <span class="endYear" style="float:right;">End Year</span>
-             <span class="startYear" style="float:left;">Start Year</span>
-            </div>
-
-            <input type="range" class="custom-range" min="0" max="5" id="customRange2">
-        </div>
 
 
-        <!--Chips Section-->
-        <div class="attr_chips">
-            <div style="display:none;" class="chip">
-                <span class="chip-text">Option1</span>
-                <i class="fas fa-times "></i>
-            </div>
-        </div>
+
+<!--<section class="custom-graph" style="margin-top:50px;">-->
+    <!--<div class="container">-->
+        <!--<div class="accordion md-accordion" id="accordionEx" role="tablist"-->
+             <!--aria-multiselectable="true">-->
+
+            <!--<div class="card">-->
+
+                <!--&lt;!&ndash; Card header &ndash;&gt;-->
+                <!--<div class="card-header" role="tab" id="headingOne1">-->
+                    <!--<a data-toggle="collapse" data-parent="#accordionEx" href="#collapseOne1" aria-expanded="true"-->
+                       <!--aria-controls="collapseOne1">-->
+                        <!--<h5 class="mb-0">-->
+                            <!--Filter Menu <i class="fas fa-angle-down rotate-icon" style="float:right;"></i>-->
+                        <!--</h5>-->
+                    <!--</a>-->
+                <!--</div>-->
+
+                <!--&lt;!&ndash; Card body &ndash;&gt;-->
+                <!--<div id="collapseOne1" class="collapse show" role="tabpanel" aria-labelledby="headingOne1"-->
+                     <!--data-parent="#accordionEx">-->
+                    <!--<div class="card-body">-->
+                        <!--<div class="header-option row">-->
+                            <!--<div class="col-md-8">-->
+                                <!--<div class="md-form mt-0">-->
+                                    <!--<form autocomplete="off" action="">-->
+                                    <!--<div id="style-4" class="autocomplete scrollbar" style="overflow-y: scroll;max-height: 135px;">-->
+                                    <!--<input id="myInput" class="form-control" type="text" placeholder="Search..." aria-label="Search">-->
+                                        <!--</div>-->
+                                        <!--</form>-->
+
+                                <!--</div>-->
+                            <!--</div>-->
+                            <!--<div class="col-md-4">-->
+
+                            <!--</div>-->
+                        <!--</div>-->
+                        <!--<div class="row feature-header">-->
+                            <!--<div class="col-md-3 col-sm-12">-->
+                                <!--<div class="sidenav scroll sidenav-1">-->
+                                    <!--<ul class="feature-list level-1">-->
+
+                                    <!--</ul>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                            <!--<div class="col-md-3 col-sm-12">-->
+                                <!--<div class="sidenav scroll sidenav-2">-->
+                                    <!--<ul class="feature-list level-2 level-2-none">-->
+
+                                    <!--</ul>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                            <!--<div class="col-md-3 col-sm-12">-->
+                                <!--<div class="sidenav scroll sidenav-3">-->
+                                    <!--<ul class="feature-list level-3 level-3-none">-->
+
+                                    <!--</ul>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                            <!--<div class="col-md-3 col-sm-12">-->
+                                <!--<div class="sidenav scroll sidenav-4">-->
+                                    <!--<ul class="feature-list level-4 level-4-none">-->
+
+                                    <!--</ul>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
+        <!--</div>-->
+
+        <!--&lt;!&ndash;Year Slider&ndash;&gt;-->
+        <!--<div class="row mt-4 year-slider">-->
+            <!--<div class="title">-->
+                <!--<span class="endYear" style="float:right;">End Year</span>-->
+             <!--<span class="startYear" style="float:left;">Start Year</span>-->
+            <!--</div>-->
+
+            <!--<input type="range" class="custom-range" min="0" max="5" id="customRange2">-->
+        <!--</div>-->
 
 
-        <!--Graph Section-->
-        <div class="card">
-            <div class="row graph">
-                <div class="col-md-6" id="container">
-
-                </div>
-                <div class="col-md-6" id="container1">
-
-                </div>
-            </div>
-            <div class="row answer-graph-main">
-                <div class="col-md-6">
-                    <div class="answer-graph answer-graph-1">
-                        <button type="button" class="btn btn-light">Line</button>
-                        <button type="button" class="btn btn-light">Area</button>
-                        <button type="button" class="btn btn-light">Bar</button>
-                        <button type="button" class="btn btn-light">Dual</button>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="answer-graph answer-graph-2">
-                        <button type="button" class="btn btn-light">Pie</button>
-                        <button type="button" class="btn btn-light">Donut</button>
-                        <button type="button" class="btn btn-light">3D Pie</button>
-                        <button type="button" class="btn btn-light">Half</button>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <!--&lt;!&ndash;Chips Section&ndash;&gt;-->
+        <!--<div class="attr_chips">-->
+            <!--<div style="display:none;" class="chip">-->
+                <!--<span class="chip-text">Option1</span>-->
+                <!--<i class="fas fa-times "></i>-->
+            <!--</div>-->
+        <!--</div>-->
 
 
-        <div class="general-stats row">
-            <h2>
-                General Stats For
-                <strong>
-                    Sheet Name
-                    <div class="underline" style="margin-left: 250px;">&nbsp;</div>
-                </strong>
+        <!--&lt;!&ndash;Graph Section&ndash;&gt;-->
+        <!--<div class="card">-->
+            <!--<div class="row graph">-->
+                <!--<div class="col-md-6" id="container">-->
 
-            </h2>
-            <div id="gen-stat-1" class="col-md-10">
+                <!--</div>-->
+                <!--<div class="col-md-6" id="container1">-->
 
-            </div>
-            <div class="col-md-2" style="display:flex;flex-direction: column;justify-content: center;">
-                <div class="box" style="background:blue;">
+                <!--</div>-->
+            <!--</div>-->
+            <!--<div class="row answer-graph-main">-->
+                <!--<div class="col-md-6">-->
+                    <!--<div class="answer-graph answer-graph-1">-->
+                        <!--<button type="button" class="btn btn-light">Line</button>-->
+                        <!--<button type="button" class="btn btn-light">Area</button>-->
+                        <!--<button type="button" class="btn btn-light">Bar</button>-->
+                        <!--<button type="button" class="btn btn-light">Dual</button>-->
+                    <!--</div>-->
+                <!--</div>-->
+                <!--<div class="col-md-6">-->
+                    <!--<div class="answer-graph answer-graph-2">-->
+                        <!--<button type="button" class="btn btn-light">Pie</button>-->
+                        <!--<button type="button" class="btn btn-light">Donut</button>-->
+                        <!--<button type="button" class="btn btn-light">3D Pie</button>-->
+                        <!--<button type="button" class="btn btn-light">Half</button>-->
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
+        <!--</div>-->
 
-                </div>
-                <div class="box" style="background:yellow;">
 
-                </div>
-            </div>
-        </div>
+        <!--<div class="general-stats row">-->
+            <!--<h2>-->
+                <!--General Stats For-->
+                <!--<strong>-->
+                    <!--Sheet Name-->
+                    <!--<div class="underline" style="margin-left: 250px;">&nbsp;</div>-->
+                <!--</strong>-->
 
-    </div>
+            <!--</h2>-->
+            <!--<div id="gen-stat-1" class="col-md-10">-->
+
+            <!--</div>-->
+            <!--<div class="col-md-2" style="display:flex;flex-direction: column;justify-content: center;">-->
+                <!--<div class="box" style="background:blue;">-->
+
+                <!--</div>-->
+                <!--<div class="box" style="background:yellow;">-->
+
+                <!--</div>-->
+            <!--</div>-->
+        <!--</div>-->
+
+    <!--</div>-->
 
 
-</section>
+<!--</section>-->
 
 
 

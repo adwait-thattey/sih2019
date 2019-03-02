@@ -35,17 +35,15 @@
 
 </head>
 <body>
-    <!--Including the navbar-->
-    {% include 'sheets/partials/_navbar.html' %}
 
-    <!--Including the option filters-->
-    {% include 'sheets/partials/_option.html' %}
 
-    <!--Including the main charts-->
-    {% include 'sheets/partials/_charts.html' %}
 
-    <!--Footer-->
-    {% include 'sheets/partials/_footer.html' %}
+
+
+
+
+
+
 
 
 
@@ -59,38 +57,38 @@
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.7.3/js/mdb.min.js"></script>
 
 
+    <script src="{% static 'sheets/js/option.js' %}"></script>
+    <script src="{% static 'sheets/js/custom-chart.js' %}"></script>
+
     {% block scripts %}
-        <script src="{% static 'sheets/js/search.js' %}"></script>
-{#        {% static 'sheets/js/search.js' %}#}
+    <script src="{% static 'sheets/js/search.js' %}"></script>
 
-        <script src="{% static 'sheets/js/suggestions.js' %}"></script>
+    <script src="{% static 'sheets/js/suggestions.js' %}"></script>
 
-        <script>
-        function findParentChain(featureId, jsonData) {
+    <script>
+        // function findParentChain(featureId, jsonData) {
+        //
+        //     var parentId = featureId;
+        //     var parentChildList = [];
+        //     parentChildList.push(featureId);
+        //     while (parentId != null) {
+        //         parentId = findParent(parentId, jsonData);
+        //         parentChildList.unshift(parentId)
+        //     }
+        //
+        //
+        //     return parentChildList;   // The function returns the list of parent to the feature
+        // }
+        //
+        // function findParent(featureId, jsonData) {
+        //     for (var i in jsonData) {
+        //         if (featureId == jsonData[i]["id"]) {
+        //             return jsonData[i]["parent"]
+        //         }
+        //     }
+        // }
 
-            var parentId = featureId
-            var parentChildList = []
-            parentChildList.push(featureId)
-            while (parentId != null){
-                parentId = findParent(parentId,jsonData)
-                parentChildList.unshift(parentId)
-            }
-
-
-  return parentChildList;   // The function returns the list of parent to the feature
-}
-
-function findParent(featureId,jsonData) {
-            for (var i in jsonData){
-                if (featureId == jsonData[i]["id"]){
-                    return jsonData[i]["parent"]
-                }
-            }
-
-    
-}
-       // console.log(findParent(2,4))
-        </script>
+    </script>
 
     {% endblock %}
 
