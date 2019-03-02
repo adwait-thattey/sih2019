@@ -51,3 +51,4 @@ def get_feature_search_list(request):
     obj = utils.get_sheet_feature_names_list_with_parent(sheet, lang)
 
     return JsonResponse(obj, safe=False)
+

@@ -396,12 +396,30 @@
 //
 //
 
+var dummyJson = {
+    activity_id:4,
+    activity_name: 'Agriculture',
+    GVA: {
+        start_year:2012,
+        current: [4, 7, 20, 43, 17],
+        constant: [49, 34, 16, 27, 69]
+    },
+    NVA: {
+        start_year:2012,
+        current: [41, 34, 11, 30, 67],
+        constant: [37, 70, 53, 52, 94]
+    },
+    Indices: {
+        start_year:2012,
+        price: [3,16,32,51,17],
+        quantum: [15,27,30,34,97]
+    }
+};
 
-
-
-
-
-
+$('body').on('click', '.eco-aggregate a', function() {
+     console.log($(this));
+     return false;
+});
 
 
 

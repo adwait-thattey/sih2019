@@ -1,0 +1,120 @@
+{%  load static %}
+<header>
+
+    <!-- Sidebar navigation -->
+    <div id="slide-out" class="side-nav sn-bg-4 fixed"
+         style="transform: translateX(0px);width: 17rem !important;background: white;">
+
+        <ul class="custom-scrollbar ">
+            <!-- Logo -->
+            <li class="logo-sn d-block waves-effect">
+                <div class="text-center">
+                    <a class="pl-0" href="https://mdbootstrap.com/"><img id="MDB-logo" src="{% static 'img/logo.jpg' %}"
+                                                                         alt="" style="width:80%;"></a>
+                </div>
+            </li>
+            <!--/. Logo -->
+            <div class="logo-wrapper waves-light waves-effect waves-light">
+                <h5 class="black-text font-weight-bold" style="padding:35px; font-family:'Comic Sans MS';">MOSPI
+                    GVA
+                </h5>
+            </div>
+            <br>
+
+
+            <div id="navbar" class="navbar-menu navbar-scroll eco-aggre">
+                <li>
+<select class="mdb-select md-form">
+  <option value="" disabled selected>Choose your option</option>
+  <option value="1">Option 1</option>
+  <option value="2">Option 2</option>
+  <option value="3">Option 3</option>
+</select>
+                </li>
+                    <li><a href="#gva"><i class="mr-3 fa fa-pie-chart"></i>GVA</a>
+                    </li>
+                    <li><a href="#nva"><i class="mr-3 fa fa-user"></i>NVA
+                    </a>
+                    </li>
+                <li><a href="#indices"><i data-v-4186c4c0="" data-v-9ce54d62="" class="mr-3 fa fa-table"
+                                          data-v-10d9e33b=""></i>Indices
+                </a></li>
+                <li><a href="#consumption"><i class="mr-3 fa fa-map"></i>Consumption
+                </a>
+                </li>
+
+            </div>
+            <!--/Dropdown primary-->
+    </div>
+    </li>
+
+    <div class="sidenav-bg mask-strong"></div>
+    </div>
+    <!--/. Sidebar navigation -->
+
+
+    <!--Navbar-->
+
+    <nav class="navbar fixed-top navbar-toggleable-sm navbar-expand-sm scrolling-navbar double-nav"
+         style="background-color: #002750;color: white;">
+        <!-- SideNav slide-out button -->
+        <div class="float-left">
+            <a href="#" data-activates="slide-out" class="button-collapse"><i class="fa fa-bars"></i></a>
+        </div>
+        <!-- Breadcrumb-->
+
+
+        <button class="navbar-toggler " type="button" data-toggle="collapse" data-target="#basicExampleNav"
+                aria-controls="basicExampleNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <!-- Collapsible content -->
+
+        <div class="collapse navbar-collapse" id="basicExampleNav" style="margin-left:100px;">
+
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link black-text" style="color:white !important;" id="nav-text" href=""><i
+                            class="fa fa-fw fa-home"></i>Home
+                        <span class="sr-only">(current)</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link black-text" style="color:white !important;" href="{{ category_url }}">A-</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link black-text" style="color:white !important;" href="{{ book_list_url }}">A+</a>
+                </li>
+
+
+                {% if not request.user.is_authenticated %}
+
+                <li class="nav-item" style="padding-left: 10px;padding-right: 10px;">
+                    <a class="nav-link black-text" style="color:white !important;" aria-hidden="true" href="{{ signup_url }}"><i
+                            class="fa fa-fw fa-user"></i>Screen Reader
+                        </a>
+                </li>
+                <!--<li class="nav-item" style="padding-left: 10px;padding-right: 50px;">-->
+                    <!--<a class="nav-link black-text" aria-hidden="true" href="{{ login_url }}"><i-->
+                            <!--class="fa fa-fw fa-user" style="color:white !important;"></i>Log-->
+                        <!--In</a>-->
+                <!--</li>-->
+                {% else %}
+                <li class="nav-item" style="padding-left: 10px;padding-right: 20px;">
+                    <a class="nav-link black-text" style="color:white !important;" aria-hidden="true">Hello, {{ request.user.first_name }}</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle black-text" id="navbarDropdownMenuLink" data-toggle="dropdown"
+                       aria-haspopup="true" aria-expanded="false" style="color:white !important;">Accounts</a>
+
+                </li>
+
+
+                {% endif %}
+            </ul>
+        </div>
+    </nav>
+    <!--/.Navbar-->
+
+
+</header>
