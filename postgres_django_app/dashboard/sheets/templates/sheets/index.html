@@ -24,9 +24,7 @@
         .main {
             padding-left: 15rem;
             padding-top: 5.5rem;
-    </style>
-
-    <style type="text/css">
+        }
         /* Chart.js */
         @-webkit-keyframes chartjs-render-animation {
             from {
@@ -103,6 +101,13 @@
             color: white;
         }
 
+        .eco-aggre {
+            margin-left: 20px !important;
+        }
+
+        #slide-out {
+            background: white;
+        }
     </style>
 </head>
 
@@ -160,18 +165,19 @@
                 </div>
             </li>
 
-            <a data-v-9ce54d62="" href="#/dashboard" class="" style="margin-top:50px;">
+            <a href="#/dashboard" class="eco-aggre" style="margin-top:50px;">
                 <li><i data-v-4186c4c0="" data-v-9ce54d62="" class="mr-3 fa fa-pie-chart" data-v-10d9e33b=""></i>GVA
                 </li>
             </a>
-            <a data-v-9ce54d62="" href="#/profile" class="router-link-exact-active router-link-active"
-               data-v-3434610b="">
-                <li><i data-v-4186c4c0="" data-v-9ce54d62="" class="mr-3 fa fa-user" data-v-10d9e33b=""></i>NVA</li>
-            </a> <a data-v-9ce54d62="" href="#/tables" class="" data-v-3434610b="">
-            <li><i data-v-4186c4c0="" data-v-9ce54d62="" class="mr-3 fa fa-table" data-v-10d9e33b=""></i>Indices</li>
-        </a> <a data-v-9ce54d62="" href="#/maps" class="" data-v-3434610b="">
-            <li><i data-v-4186c4c0="" data-v-9ce54d62="" class="mr-3 fa fa-map" data-v-10d9e33b=""></i>Consumption</li>
-        </a>
+            <a href="#/profile" class="eco-aggre">
+                <li><i class="mr-3 fa fa-user" ></i>NVA</li>
+            </a>
+            <a href="#/tables" class="eco-aggre">
+                <li><i class="mr-3 fa fa-table" ></i>Indices</li>
+            </a>
+            <a href="#/maps" class="eco-aggre" >
+                <li><i class="mr-3 fa fa-map"></i>Consumption</li>
+            </a>
 
         <button class="btn btn-primary" style="margin-left:50px;margin-top:50px;">Compare</button>
             <!--/Dropdown primary-->
