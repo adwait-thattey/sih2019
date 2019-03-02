@@ -17,3 +17,23 @@
 .chart-all {
     margin: 50px;
 }
+
+.stat-chip {
+    height: 100px;
+    background: white;
+    width: 25%;
+    margin: 15px 40px;
+}
+
+.stat-value {
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.stat-value h2 {
+    font-weight: 700;
+    letter-spacing: 2px;
+}
