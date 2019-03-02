@@ -1,7 +1,7 @@
 import math
 
 from . import models
-from .sheet_parser import parse_sheet_to_object
+from .sheet_parser import parse_sheet_to_object, parse_meta_sheet
 
 
 def check_and_create_lang_object(lang_name):
@@ -48,12 +48,14 @@ def parse_types(sheet):
         # Check if similar tp alredy exists
 
         possible_type = does_type_exist(tp)
-        print(possible_type, bool(possible_type))
+        # print(possible_type, bool(possible_type))
         if not possible_type:
             type_obj = models.Type.objects.create()
             for lang in tp.names:
                 lang_obj = check_and_create_lang_object(lang)
 
+                if tp.names[lang] == "nan":
+                    tp.names[lang] = "none"
                 models.TypeName.objects.create(type=type_obj, language=lang_obj, name=tp.names[lang])
 
         else:
@@ -77,20 +79,26 @@ def parse_feature_values(feature, db_feature, db_type_obj_dict):
 
         cur_year = feature.start_year
 
-        idx = 0
-        for val in feature.values[tp]:
-            if math.isnan(val):
-                val = 0.0
-
-            models.Cell.objects.create(feature=db_feature,
-                                       type=db_type_obj_dict[tp],
-                                       start_year=cur_year + idx,
-                                       end_year=cur_year + idx + 1,
-                                       value=val
-                                       )
-            idx += 1
+        # idx = 0
+        # for val in feature.values[tp]:
+        #     if math.isnan(val):
+        #         val = 0.0
+        #
+        #     models.Cell.objects.create(feature=db_feature,
+        #                                type=db_type_obj_dict[tp],
+        #                                start_year=cur_year + idx,
+        #                                end_year=cur_year + idx + 1,
+        #                                value=val
+        #                                )
+        #     idx += 1
         # gracefully handle nans while inserting
 
+        formatted_values = [0 if math.isnan(val) else val for val in feature.values[tp]]
+
+        models.FeatureRow.objects.create(feature=db_feature,
+                                         type=db_type_obj_dict[tp],
+                                         values=formatted_values
+                                         )
 
 def parse_feature(db_sheet, db_type_obj_dict, feature, db_parent_feature):
     if db_parent_feature:
@@ -107,13 +115,15 @@ def parse_feature(db_sheet, db_type_obj_dict, feature, db_parent_feature):
         parse_feature(db_sheet, db_type_obj_dict, child_feat, db_feature)
 
 
-def parse_sheet_to_db(sheet_path, category):
+def parse_sheet_to_db(sheet_path, meta_file_path, category):
     sheet = parse_sheet_to_object(sheet_path)
+    parse_meta_sheet(sheet, meta_file_path)
 
+    # raise StopIteration()
     # create sheet
     db_sheet = models.Sheet(category=category, file_loc=sheet_path)
-    db_sheet.save()
 
+    db_sheet.save()
     # create sheet names
     for lang in sheet.names:
         lang_obj = check_and_create_lang_object(lang)
@@ -153,10 +163,12 @@ def get_feature_python_object(db_feature, db_language, depth):
 
     cell_set = db_feature.cell_set
 
-    type_ids = set(cell_set.values_list('type', flat=True).distinct())
+    row_set = db_feature.featurerow_set
+
+    # type_ids = set(cell_set.values_list('type', flat=True).distinct())
+    type_ids = set(row_set.values_list('type', flat=True).distinct())
 
     types = models.Type.objects.filter(id__in=type_ids)
-
     type_names = list()
     for tp in types:
         try:
@@ -169,9 +181,16 @@ def get_feature_python_object(db_feature, db_language, depth):
 
         type_names.append(type_name)
 
-    values_dict = {type_names[ix]: list(db_feature.cell_set.filter(type=types[ix]).values_list('value', flat=True)) for
-                   ix in
-                   range(len(types))}
+    # values_dict = {type_names[ix]: list(db_feature.cell_set.filter(type=types[ix]).values_list('value', flat=True)) for
+    #                ix in
+    #                range(len(types))}
+
+    # print(types)
+
+    values_dict = {type_names[ix]: row_set.get(type=types[ix]).values for ix in range(len(types))}
+
+
+    # row_set = db_feature.feature_row_set
 
     # print(values_dict)
 
@@ -210,7 +229,7 @@ def get_feature_tree_python_object(db_sheet, db_language):
     for db_feat in db_sheet.feature_set.all():
         feat_list.append(get_feat_object_tree(db_feat, db_language))
 
-    print(feat_list)
+    # print(feat_list)
     return feat_list
 
 
@@ -234,5 +253,5 @@ def get_sheet_feature_names_list_with_parent(db_sheet, db_language):
     for feat in db_sheet.feature_set.all():
         l.extend(get_feature_names_parent(feat, db_language))
 
-    print(l)
+    # print(l)
     return l
