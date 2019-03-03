@@ -9,7 +9,7 @@
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <!-- Material Design Bootstrap -->
     <link href="css/mdb.min.css" rel="stylesheet">
-    <link href="css/style.css" rel="stylesheet">
+    <link href="css/gradient.css" rel="stylesheet">
 </head>
 <body>
 <!-- Card -->
@@ -37,10 +37,11 @@
     <!-- Material Design Bootstrap -->
 
     <link rel="stylesheet" href="{% static 'category_base/css/mdb.min.css' %}">
+    <link rel="stylesheet" href="{% static 'category_base/css/gradient.css' %}">
 
     <style>
-        main {
-            padding-left: 0 !important;
+        .main {
+            padding-left: 15rem;
             padding-top: 5.5rem;
         }
         /* Chart.js */
@@ -111,13 +112,6 @@
         #slide-out {
             background: white;
         }
-
-        footer{
-            padding-left: 0 !important;
-        }
-        .side-nav{
-            display: none;
-        }
     </style>
 
 <script>
@@ -157,16 +151,14 @@ $('.mdb-select').materialSelect();
 <!--Main layout-->
 <main>
     <div class="container">
-    <section class="text-center my-5">
-
   <!-- Section heading --><div class="container">
-  <h2 class="black-text h1-responsive font-weight-bold text-center my-5">Economic Aggregates</h2>
+  <h2 class="black-text h1-responsive font-weight-bold my-5">Economic Aggregates</h2>
 <div class="row">
 
 
     <!-- Grid column -->
     <div class="col-md-4 mb-md-0 mb-4">
-      <div class="card card-image" style="background-image: url(4.jpg);">
+      <div class="card card-image" style="background-image: url('{% static "img/13.jpg" %}');">
         <div class="text-white text-center d-flex align-items-center rgba-black-strong py-5 px-4 rounded">
           <div>
             <h3 class="py-3 font-weight-bold">
@@ -179,7 +171,7 @@ $('.mdb-select').materialSelect();
     </div>
 
     <div class="col-md-4 mb-md-0 mb-4">
-      <div class="card card-image" style="background-image: url(3.jpg);">
+      <div class="card card-image" style="background-image: url('{% static "img/14.png" %}');">
         <div class="text-white text-center d-flex align-items-center rgba-black-strong py-5 px-4 rounded">
           <div>
             <h3 class="py-3 font-weight-bold">
@@ -192,11 +184,11 @@ $('.mdb-select').materialSelect();
     </div>
 
     <div class="col-md-4 mb-md-0 mb-4">
-      <div class="card card-image" style="background-image: url(3.jpg);">
+      <div class="card card-image" style="background-image: url('{% static "img/15.png" %}');">
         <div class="text-white text-center d-flex align-items-center rgba-black-strong py-5 px-4 rounded">
           <div>
-            <h3 class="py-3 font-weight-bold text-center">
-              <strong style="text-align: center;">Gross Fixed Capital Formation (GFCF)</strong>
+            <h3 class="py-3 font-weight-bold ">
+              <strong style="text-align: center;">Gross fixed capital formation</strong>
             </h3>
             <a class="btn btn-secondary btn-rounded btn-md"><i class="fa fa-clone left"></i> Explore</a>
           </div>
@@ -210,11 +202,11 @@ $('.mdb-select').materialSelect();
 
     <!-- Grid column -->
     <div class="col-md-4 mb-md-0 mb-4">
-      <div class="card card-image" style="background-image: url(4.jpg);">
+      <div class="card card-image" style="background-image: url('{% static "img/16.jpg" %}');">
         <div class="text-white text-center d-flex align-items-center rgba-black-strong py-5 px-4 rounded">
           <div>
             <h3 class="py-3 font-weight-bold">
-              <strong>Gross Fixed Capital (GFC)</strong>
+              <strong>GFC</strong>
             </h3>
             <a class="btn btn-secondary btn-rounded btn-md"><i class="fa fa-clone left"></i> Explore</a>
           </div>
@@ -223,11 +215,11 @@ $('.mdb-select').materialSelect();
     </div>
 
     <div class="col-md-4 mb-md-0 mb-4">
-      <div class="card card-image" style="background-image: url(3.jpg);">
+      <div class="card card-image" style="background-image: url('{% static "img/17.png" %}');">
         <div class="text-white text-center d-flex align-items-center rgba-black-strong py-5 px-4 rounded">
           <div>
             <h3 class="py-3 font-weight-bold">
-              <strong>Net Capital Stock (NCS)</strong>
+              <strong>NCS</strong>
             </h3>
             <a class="btn btn-secondary btn-rounded btn-md"><i class="fa fa-clone left"></i> Explore</a>
           </div>
@@ -236,7 +228,7 @@ $('.mdb-select').materialSelect();
     </div>
 
     <div class="col-md-4 mb-md-0 mb-4">
-      <div class="card card-image" style="background-image: url(3.jpg);">
+      <div class="card card-image" style="background-image: url('{% static "img/18.png" %}');">
         <div class="text-white text-center d-flex align-items-center rgba-black-strong py-5 px-4 rounded">
           <div>
             <h3 class="py-3 font-weight-bold text-center">
@@ -254,20 +246,20 @@ $('.mdb-select').materialSelect();
     <!-- Grid column -->
 
 <div class="container">
-    <section class="text-center my-5">
+
 
   <!-- Section heading --><div class="container">
-  <h2 class="black-text h1-responsive font-weight-bold text-center my-5">Economic Activity</h2>
+  <h2 class="black-text h1-responsive font-weight-bold my-5">Economic Activity</h2>
 <div class="row">
 
 
     <!-- Grid column -->
     <div class="col-md-4 mb-md-0 mb-4">
-      <div class="card card-image" style="background-image: url(4.jpg);">
+      <div class="card card-image" style="background-image: url('{% static "img/1.jpg" %}');">
         <div class="text-white text-center d-flex align-items-center rgba-black-strong py-5 px-4 rounded">
           <div>
             <h3 class="py-3 font-weight-bold">
-              <strong>Agriculture</strong>
+              <strong a href=''>Agriculture </strong>
             </h3>
             <a class="btn btn-secondary btn-rounded btn-md"><i class="fa fa-clone left"></i> Explore</a>
           </div>
@@ -276,7 +268,7 @@ $('.mdb-select').materialSelect();
     </div>
 
     <div class="col-md-4 mb-md-0 mb-4">
-      <div class="card card-image" style="background-image: url(3.jpg);">
+      <div class="card card-image" style="background-image: url('{% static "img/2.jpg" %}');">
         <div class="text-white text-center d-flex align-items-center rgba-black-strong py-5 px-4 rounded">
           <div>
             <h3 class="py-3 font-weight-bold">
@@ -289,7 +281,7 @@ $('.mdb-select').materialSelect();
     </div>
 
     <div class="col-md-4 mb-md-0 mb-4">
-      <div class="card card-image" style="background-image: url(3.jpg);">
+      <div class="card card-image" style="background-image: url('{% static "img/3.jpg" %}');">
         <div class="text-white text-center d-flex align-items-center rgba-black-strong py-5 px-4 rounded">
           <div>
             <h3 class="py-3 font-weight-bold text-center">
@@ -307,7 +299,7 @@ $('.mdb-select').materialSelect();
 
     <!-- Grid column -->
     <div class="col-md-4 mb-md-0 mb-4">
-      <div class="card card-image" style="background-image: url(4.jpg);">
+      <div class="card card-image" style="background-image: url('{% static "img/4.jpeg" %}');">
         <div class="text-white text-center d-flex align-items-center rgba-black-strong py-5 px-4 rounded">
           <div>
             <h3 class="py-3 font-weight-bold">
@@ -320,11 +312,11 @@ $('.mdb-select').materialSelect();
     </div>
 
     <div class="col-md-4 mb-md-0 mb-4">
-      <div class="card card-image" style="background-image: url(3.jpg);">
+      <div class="card card-image" style="background-image: url('{% static "img/5.jpg" %}');">
         <div class="text-white text-center d-flex align-items-center rgba-black-strong py-5 px-4 rounded">
           <div>
             <h3 class="py-3 font-weight-bold">
-              <strong>Gas,Electricity</strong>
+              <strong>Gas, Electricity</strong>
             </h3>
             <a class="btn btn-secondary btn-rounded btn-md"><i class="fa fa-clone left"></i> Explore</a>
           </div>
@@ -333,7 +325,7 @@ $('.mdb-select').materialSelect();
     </div>
 
     <div class="col-md-4 mb-md-0 mb-4">
-      <div class="card card-image" style="background-image: url(3.jpg);">
+      <div class="card card-image" style="background-image: url('{% static "img/6.jpg" %}');">
         <div class="text-white text-center d-flex align-items-center rgba-black-strong py-5 px-4 rounded">
           <div>
             <h3 class="py-3 font-weight-bold text-center">
@@ -350,7 +342,7 @@ $('.mdb-select').materialSelect();
 
     <!-- Grid column -->
     <div class="col-md-4 mb-md-0 mb-4">
-      <div class="card card-image" style="background-image: url(4.jpg);">
+      <div class="card card-image" style="background-image: url('{% static "img/7.jpg" %}');">
         <div class="text-white text-center d-flex align-items-center rgba-black-strong py-5 px-4 rounded">
           <div>
             <h3 class="py-3 font-weight-bold">
@@ -363,11 +355,11 @@ $('.mdb-select').materialSelect();
     </div>
 
     <div class="col-md-4 mb-md-0 mb-4">
-      <div class="card card-image" style="background-image: url(3.jpg);">
+      <div class="card card-image" style="background-image: url('{% static "img/8.jpg" %}');">
         <div class="text-white text-center d-flex align-items-center rgba-black-strong py-5 px-4 rounded">
           <div>
             <h3 class="py-3 font-weight-bold">
-              <strong>Transport,storage</strong>
+              <strong>Transport, storage</strong>
             </h3>
             <a class="btn btn-secondary btn-rounded btn-md"><i class="fa fa-clone left"></i> Explore</a>
           </div>
@@ -376,7 +368,7 @@ $('.mdb-select').materialSelect();
     </div>
 
     <div class="col-md-4 mb-md-0 mb-4">
-      <div class="card card-image" style="background-image: url(3.jpg);">
+      <div class="card card-image" style="background-image: url('{% static "img/9.jpg" %}');">
         <div class="text-white text-center d-flex align-items-center rgba-black-strong py-5 px-4 rounded">
           <div>
             <h3 class="py-3 font-weight-bold text-center">
@@ -387,18 +379,18 @@ $('.mdb-select').materialSelect();
         </div>
       </div>
     </div>
-    </div>
+    </div><br><br>
      <div class="row">
 
 
     <!-- Grid column -->
 
     <div class="col-md-4 mb-md-0 mb-4">
-      <div class="card card-image" style="background-image: url(3.jpg);">
-        <div class="text-white text-center d-flex align-items-center rgba-black-strong py-5 px-4 rounded">
+      <div class="card card-image" style="background-image: url('{% static "img/10.jpg" %}');">
+        <div class="text-white d-flex align-items-center rgba-black-strong py-5 px-4 rounded ">
           <div>
             <h3 class="py-3 font-weight-bold">
-              <strong>Public Administration</strong>
+              <strong>Administration</strong>
             </h3>
             <a class="btn btn-secondary btn-rounded btn-md"><i class="fa fa-clone left"></i> Explore</a>
           </div>
@@ -407,7 +399,7 @@ $('.mdb-select').materialSelect();
     </div>
 
     <div class="col-md-4 mb-md-0 mb-4">
-      <div class="card card-image" style="background-image: url(3.jpg);">
+      <div class="card card-image" style="background-image: url('{% static "img/11.jpg" %}');">
         <div class="text-white text-center d-flex align-items-center rgba-black-strong py-5 px-4 rounded">
           <div>
             <h3 class="py-3 font-weight-bold text-center">
@@ -420,7 +412,7 @@ $('.mdb-select').materialSelect();
     </div>
     </div>
 <!-- Card -->
-</div>
+</div><br><br>
 
 </main>
 <!--/Main layout-->
@@ -428,7 +420,7 @@ $('.mdb-select').materialSelect();
 <!--Footer-->
 <footer class="page-footer font-small blue-grey lighten-5">
 
-    <div style="background-color: #21d192;">
+    <div style="background-color: #0b2a41">
         <div class="container">
 
             <!-- Grid row-->
@@ -483,11 +475,9 @@ $('.mdb-select').materialSelect();
             <div class="col-md-3 col-lg-4 col-xl-3 mb-4">
 
                 <!-- Content -->
-                <h6 class="text-uppercase font-weight-bold">Book Cafe</h6>
+                <h6 class="text-uppercase font-weight-bold">Dashboard</h6>
                 <hr class="teal accent-3 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
-                <p>A library management website for the students to go through different categories of books and
-                    then choose
-                    the desired book and issue it.</p>
+                <p>A dashboard where an user can view the data for different ministries as well as for macro aggregates and graphs will be plotted for each and every entity</p>
 
             </div>
             <!-- Grid column -->
@@ -501,12 +491,7 @@ $('.mdb-select').materialSelect();
                 <p>
                     <a class="dark-grey-text" href="#!">Home</a>
                 </p>
-                <p>
-                    <a class="dark-grey-text" href="#!">Issue</a>
-                </p>
-                <p>
-                    <a class="dark-grey-text" href="#!">Categories</a>
-                </p>
+
                 <p>
                     <a class="dark-grey-text" href="#!">Feedback</a>
                 </p>
@@ -520,15 +505,7 @@ $('.mdb-select').materialSelect();
                 <!-- Links -->
                 <h6 class="text-uppercase font-weight-bold">Useful links</h6>
                 <hr class="teal accent-3 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
-                <p>
-                    <a class="dark-grey-text" href="#!">Your Account</a>
-                </p>
-                <p>
-                    <a class="dark-grey-text" href="#!">Issue a Book</a>
-                </p>
-                <p>
-                    <a class="dark-grey-text" href="#!">Recommended</a>
-                </p>
+
                 <p>
                     <a class="dark-grey-text" href="#!">Help</a>
                 </p>
@@ -543,14 +520,13 @@ $('.mdb-select').materialSelect();
                 <h6 class="text-uppercase font-weight-bold">Contact</h6>
                 <hr class="teal accent-3 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
                 <p>
-                    <i class="fa fa-home mr-3"></i> Indian Institute Of Information Technology Sricity, Chittoor -
-                    517646</p>
+                    <i class="fa fa-home mr-3"></i> Ministry of Statistics and Programme Implementation</p>
                 <p>
-                    <i class="fa fa-envelope mr-3"></i> ronytowilson3097@gmail.com</p>
+                    <i class="fa fa-envelope mr-3"></i> mospi.gov.in</p>
                 <p>
-                    <i class="fa fa-phone mr-3"></i> + 91 720 233 71</p>
+                    <i class="fa fa-phone mr-3"></i> + 91-11-23363045</p>
                 <p>
-                    <i class="fa fa-print mr-3"></i> + 91 231 462 08</p>
+                    <i class="fa fa-print mr-3"></i> + 91-11-26171146</p>
 
             </div>
             <!-- Grid column -->
@@ -563,12 +539,11 @@ $('.mdb-select').materialSelect();
 
     <!-- Copyright -->
     <div class="footer-copyright text-center text-black-50 py-3">© 2018 Copyright:
-        <a class="dark-grey-text" href="https://mdbootstrap.com/education/bootstrap/"> www.bookcafe.com</a>
+        <a class="dark-grey-text" href="https://mdbootstrap.com/education/bootstrap/"> mospi.gov.in</a>
     </div>
     <!-- Copyright -->
 
 </footer>
-
 <!--/.Footer-->
 
 
