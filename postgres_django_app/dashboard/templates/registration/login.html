@@ -1,8 +1,166 @@
-{% extends 'base.html' %}
+{#{% extends 'base.html' %}#}
+{##}
+{##}
+{#{% block content %}#}
+{#  {% if form.non_field_errors %}#}
+{#    <div class="alert alert-danger alert-dismissible fade show" role="alert">#}
+{#      {% for error in form.non_field_errors %}#}
+{#        <p{% if forloop.last %} class="mb-0"{% endif %}>{{ error }}</p>#}
+{#      {% endfor %}#}
+{#      <button type="button" class="close" data-dismiss="alert" aria-label="Close">#}
+{#        <span aria-hidden="true">&times;</span>#}
+{#      </button>#}
+{#    </div>#}
+{#  {% endif %}#}
+{#  <div class="row">#}
+{#    <div class="col-lg-4 col-md-6 col-sm-8 col-12">#}
+{#      <h2>Log in</h2>#}
+{#      <form method="post" novalidate>#}
+{#        {% csrf_token %}#}
+{#        <input type="hidden" name="next" value="{{ next }}">#}
+{#        {{ form.username }}#}
+{#        {{ form.password }}#}
+{#        <button type="submit" class="btn btn-primary">Log in</button>#}
+{#      </form>#}
+{#    </div>#}
+{#  </div>#}
+{#{% endblock %}#}
 
 
-{% block content %}
-  {% if form.non_field_errors %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Required meta tags always come first -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Graphs for National Accounts</title>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <link rel="stylesheet" href="{% static 'category_base/css/font-awesome.css' %}">
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="{% static 'category_base/css/bootstrap.min.css' %}">
+    <!-- Material Design Bootstrap -->
+
+    <link rel="stylesheet" href="{% static 'category_base/css/mdb.min.css' %}">
+
+     <script type="text/javascript" src="{% static 'category_base/js/jquery-3.3.1.min.js' %}"></script>
+    <style>
+        .main {
+            padding-left: 15rem;
+            padding-top: 5.5rem;
+        }
+        /* Chart.js */
+        @-webkit-keyframes chartjs-render-animation {
+            from {
+                opacity: 0.99
+            }
+            to {
+                opacity: 1
+            }
+        }
+        @keyframes chartjs-render-animation {
+            from {
+                opacity: 0.99
+            }
+            to {
+                opacity: 1
+            }
+        }
+        .chartjs-render-monitor {
+            -webkit-animation: chartjs-render-animation 0.001s;
+            animation: chartjs-render-animation 0.001s;
+        }
+        .icon-bar {
+            position: fixed;
+            top: 50%;
+            right: 0%;
+            -webkit-transform: translateY(-50%);
+            -ms-transform: translateY(-50%);
+            transform: translateY(-50%);
+        }
+        /* Style the icon bar links */
+        .icon-bar a {
+            display: block;
+            text-align: center;
+            padding: 16px;
+            transition: all 0.3s ease;
+            color: white;
+            font-size: 20px;
+        }
+        /* Style the social media icons with color, if you want */
+        .icon-bar a:hover {
+            background-color: #000;
+        }
+        .facebook {
+            background: #3B5998;
+            color: white;
+        }
+        .twitter {
+            background: #55ACEE;
+            color: white;
+        }
+        .google {
+            background: #dd4b39;
+            color: white;
+        }
+        .linkedin {
+            background: #007bb5;
+            color: white;
+        }
+        .youtube {
+            background: #bb0000;
+            color: white;
+        }
+        .eco-aggre {
+            margin-left: 8% !important;
+        }
+        #slide-out {
+            background: white;
+        }
+    </style>
+
+
+    <!-- SCRIPTS -->
+    <!-- JQuery -->
+
+
+
+    <!-- Tooltips -->
+
+    <script type="text/javascript" src="{% static 'category_base/js/popper.min.js' %}"></script>
+
+    <!-- Bootstrap core JavaScript -->
+
+    <script type="text/javascript" src="{% static 'category_base/js/bootstrap.min.js' %}"></script>
+
+    <!-- MDB core JavaScript -->
+
+    <script type="text/javascript" src="{% static 'category_base/js/mdb.min.js' %}"></script>
+
+    <script src="{% static 'sheets/js/highcharts.js' %}"></script>
+
+    <script src="{% static 'sheets/js/custom-chart.js' %}"></script>
+    <script src="{% static 'sheets/js/option.js' %}"></script>
+</head>
+
+<body class="fixed-sn white-skin" aria-busy="true">
+
+<!--Double navigation-->
+{% include 'sheets/partials/_header.html' %}
+<!--/.Double navigation-->
+
+<!--Main layout-->
+<main>
+{#    {% include 'sheets/partials/_charts.html' %}#}
+
+<!--/Main layout-->
+{% if form.non_field_errors %}#}
     <div class="alert alert-danger alert-dismissible fade show" role="alert">
       {% for error in form.non_field_errors %}
         <p{% if forloop.last %} class="mb-0"{% endif %}>{{ error }}</p>
@@ -18,10 +176,164 @@
       <form method="post" novalidate>
         {% csrf_token %}
         <input type="hidden" name="next" value="{{ next }}">
-        {{ form.username }}
-        {{ form.password }}
+        username : {{ form.username }} <br>
+          <br>
+        password : {{ form.password }} <br>
         <button type="submit" class="btn btn-primary">Log in</button>
       </form>
     </div>
   </div>
-{% endblock %}
+</main>
+    <!--Footer-->
+<footer class="page-footer font-small blue-grey lighten-4" style="margin-top: 310px;margin-left: -4% !important;margin-right: -2% !important;">
+        <div class="container">
+
+            <!-- Grid row-->
+            <div class="row py-4 d-flex align-items-center" style="background-color: #0b2a41" >
+
+                <!-- Grid column -->
+                <div class="col-md-6 col-lg-5 text-center text-md-left mb-4 mb-md-0" >
+                    <h6 class="mb-0">Get connected with us on social networks!</h6>
+                </div>
+                <!-- Grid column -->
+
+                <!-- Grid column -->
+                <div class="col-md-6 col-lg-7 text-center text-md-right">
+
+                    <!-- Facebook -->
+                    <a class="fb-ic">
+                        <i class="fa fa-facebook white-text mr-4"> </i>
+                    </a>
+                    <!-- Twitter -->
+                    <a class="tw-ic">
+                        <i class="fa fa-twitter white-text mr-4"> </i>
+                    </a>
+                    <!-- Google +-->
+                    <a class="gplus-ic">
+                        <i class="fa fa-google-plus white-text mr-4"> </i>
+                    </a>
+                    <!--Linkedin -->
+                    <a class="li-ic">
+                        <i class="fa fa-linkedin white-text mr-4"> </i>
+                    </a>
+                    <!--Instagram-->
+                    <a class="ins-ic">
+                        <i class="fa fa-instagram white-text"> </i>
+                    </a>
+
+                </div>
+                <!-- Grid column -->
+
+            </div>
+            <!-- Grid row-->
+
+        </div>
+
+    <!-- Footer Links -->
+    <div class="container text-center text-md-left mt-5">
+
+        <!-- Grid row -->
+        <div class="row mt-3 dark-grey-text">
+
+            <!-- Grid column -->
+            <div class="col-md-3 col-lg-4 col-xl-3 mb-4">
+
+                <!-- Content -->
+                <h6 class="text-uppercase font-weight-bold">Dashboard</h6>
+                <hr class="teal accent-3 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
+                <p>A dashboard where an user can view the data for different ministries as well as for macro aggregates and graphs will be plotted for each and every entity</p>
+
+            </div>
+            <!-- Grid column -->
+
+            <!-- Grid column -->
+            <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
+
+                <!-- Links -->
+                <h6 class="text-uppercase font-weight-bold">Features</h6>
+                <hr class="teal accent-3 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
+                <p>
+                    <a class="dark-grey-text" href="#!">Home</a>
+                </p>
+
+                <p>
+                    <a class="dark-grey-text" href="#!">Feedback</a>
+                </p>
+
+            </div>
+            <!-- Grid column -->
+
+            <!-- Grid column -->
+            <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
+
+                <!-- Links -->
+                <h6 class="text-uppercase font-weight-bold">Useful links</h6>
+                <hr class="teal accent-3 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
+
+                <p>
+                    <a class="dark-grey-text" href="#!">Help</a>
+                </p>
+
+            </div>
+            <!-- Grid column -->
+
+            <!-- Grid column -->
+            <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+
+                <!-- Links -->
+                <h6 class="text-uppercase font-weight-bold">Contact</h6>
+                <hr class="teal accent-3 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
+                <p>
+                    <i class="fa fa-home mr-3"></i> Ministry of Statistics and Programme Implementation</p>
+                <p>
+                    <i class="fa fa-envelope mr-3"></i> mospi.gov.in</p>
+                <p>
+                    <i class="fa fa-phone mr-3"></i> + 91-11-23363045</p>
+                <p>
+                    <i class="fa fa-print mr-3"></i> + 91-11-26171146</p>
+
+            </div>
+            <!-- Grid column -->
+
+        </div>
+        <!-- Grid row -->
+
+    </div>
+    <!-- Footer Links -->
+
+    <!-- Copyright -->
+    <div class="footer-copyright text-center text-black-50 py-3">© 2018 Copyright:
+        <a class="dark-grey-text" href="https://mdbootstrap.com/education/bootstrap/"> mospi.gov.in</a>
+    </div>
+    <!-- Copyright -->
+
+</footer>
+
+<!--/.Footer-->
+
+
+{#<script>#}
+{#    // SideNav Initialization#}
+{#    $(".button-collapse").sideNav();#}
+{##}
+{#    new WOW().init();#}
+{##}
+{#</script>#}
+<div class="drag-target"
+     style="left: 0px; touch-action: pan-y; user-select: none; -webkit-user-drag: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></div>
+
+
+
+
+<script src="{% static 'sheets/js/scrollspy/vanillajs-scrollspy.min.js' %}"></script>
+<script src="{% static 'sheets/js/scrollspy/sliding.js' %}"></script>
+<script src="{% static 'sheets/js/custom-font.js' %}"></script>
+	<Script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.js"></script>
+
+
+<script src="{% static 'sheets/js/search.js' %}"></script>
+<script src="{% static 'sheets/js/suggestions.js' %}"></script>
+
+</body>
+
+</html>
