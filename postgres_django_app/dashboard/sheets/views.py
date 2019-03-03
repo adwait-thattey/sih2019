@@ -171,6 +171,7 @@ def get_gva_shares(request):
             farrs = models.FeatureRow.objects.filter(entity__in=e, feature=feat)
             values = {f.type.english_name(): f.values for f in farrs}
             fdict['values'] = values
+            fdict['start_year'] = farrs[0].start_year
 
             feature_dict.append(fdict)
 
@@ -199,7 +200,7 @@ def get_gva_shares_with_feat_id(request, feat_id):
             farrs = models.FeatureRow.objects.filter(entity__in=e, feature=feat)
             values = {f.type.english_name(): f.values for f in farrs}
             fdict['values'] = values
-
+            fdict['start_year'] = farrs[0].start_year
             feature_dict.append(fdict)
 
     print(feature_dict)
