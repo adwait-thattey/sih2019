@@ -30,9 +30,9 @@ class Entity:
 
     def __repr__(self):
         if 'english' in self.names:
-            return f'<Feature:{self.names["english"]}>'
+            return f'<Entity:{self.names["english"]}>'
         else:
-            return f'<Feature:[no english name][{id(self)}]>'
+            return f'<Entity:[no english name][{id(self)}]>'
 
     def set_language_name(self, language, name):
         self.names[language.lower()] = name
@@ -122,7 +122,7 @@ class Feature:
         self.values[ty] = values
 
     def _set_parent(self, feature):
-        if not isinstance(feature, Feature):
+        if not (isinstance(feature, Feature) or isinstance(feature, Entity)):
             raise TypeError("The given object is not an instance of Feature object")
 
         self.parent = feature
@@ -227,10 +227,10 @@ class SheetObject:
             self.data_obj.append(entity)
 
         feat_par = entity.parent
-        if isinstance(feat_par, Entity):
+        if feat_par and isinstance(feat_par, Entity):
             entity.parent_entity = feat_par
 
-        while (not isinstance(feat_par, Feature)):
+        while (feat_par and not isinstance(feat_par, Feature)):
             feat_par = feat_par.parent
 
         entity.parent_feature = feat_par

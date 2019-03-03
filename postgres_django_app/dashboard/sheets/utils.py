@@ -80,75 +80,122 @@ def parse_entity_names(entity, db_entity):
         db_entity_name = models.EntityName.objects.create(entity=db_entity, language=lang_obj, name=entity.names[lang])
 
 
+def find_feature_by_english_name(feature_name):
+    feat_name = models.FeatureName.objects.filter(name=feature_name)
+    print("found - ", feat_name)
+    if feat_name.exists():
+        return feat_name[0].feature
+    else:
+        return None
 
-def parse_feature_values(feature, db_feature, db_type_obj_dict):
-    for tp in feature.values:
-        db_type = db_type_obj_dict[tp]
 
-        cur_year = feature.start_year
+def find_entity_by_english_name(entity_name):
+    ent_name = models.EntityName.objects.filter(name=entity_name)
+    if ent_name.exists():
+        return ent_name[0].entity
+    else:
+        return None
 
-        # idx = 0
-        # for val in feature.values[tp]:
-        #     if math.isnan(val):
-        #         val = 0.0
-        #
-        #     models.Cell.objects.create(feature=db_feature,
-        #                                type=db_type_obj_dict[tp],
-        #                                start_year=cur_year + idx,
-        #                                end_year=cur_year + idx + 1,
-        #                                value=val
-        #                                )
-        #     idx += 1
-        # gracefully handle nans while inserting
 
-        formatted_values = [0 if math.isnan(val) else val for val in feature.values[tp]]
-
-        models.FeatureRow.objects.create(feature=db_feature,
-                                         type=db_type_obj_dict[tp],
-                                         values=formatted_values
-                                         )
 
 
 def parse_feature(db_sheet, db_type_obj_dict, feat_entity, db_parent_feature):
-    if db_parent_feature:
-        db_feature = models.Feature.objects.create(parent_feature=db_parent_feature)
-    else:
-        db_feature = models.Feature.objects.create(sheet=db_sheet)
+    # print("parent feature:", db_parent_feature)
 
-    parse_feature_names(feat_entity, db_feature)
+    if isinstance(feat_entity.parent, Entity):
+        if db_parent_feature:
+            db_parent_feature = db_parent_feature.parent_feature
+
+    print(feat_entity.names['english'])
+    possible_feat = find_feature_by_english_name(feat_entity.names['english'].lower())
+    print(possible_feat)
+    if possible_feat:
+        if possible_feat.parent_feature != db_parent_feature:
+            print("error - ", possible_feat,"-" ,  possible_feat.parent_feature, "-", db_parent_feature)
+            raise AssertionError("Feature: Existing parent not same as incoming parent!")
+
+        db_feature = possible_feat
+    else:
+        if db_parent_feature:
+            db_feature = models.Feature.objects.create(parent_feature=db_parent_feature)
+        else:
+            db_feature = models.Feature.objects.create(sheet=db_sheet)
+
+        parse_feature_names(feat_entity, db_feature)
 
     print("feature", feat_entity.names['english'])
-    for child_feat in feat_entity.subfeatures:
-        parse_feature(db_sheet, db_type_obj_dict, child_feat, db_feature)
+    # for child_feat in feat_entity.subfeatures:
+    #     parse_feature(db_sheet, db_type_obj_dict, child_feat, db_feature)
 
+    return db_feature
 
 def parse_entity(db_sheet, db_type_obj_dict, feat_entity, db_parent_feature, db_parent_entity):
-    db_entity = models.Entity(sheet=db_sheet)
+
+    db_entity = models.Entity()
     if db_parent_entity:
         db_entity.parent_entity = db_parent_entity
     if db_parent_feature:
         db_entity.parent_feature = db_parent_feature
+
+    if not (db_parent_feature or db_parent_entity):
+        db_entity.sheet = db_sheet
 
     db_entity.save()
 
     print("entity", feat_entity.names['english'])
     parse_entity_names(feat_entity, db_entity)
 
+    return db_entity
+
+def parse_feature_entity_values(feat_entity, db_feat_entity, db_parent_entity, db_parent_feature, db_type_obj_dict):
+    for tp in feat_entity.values:
+        db_type = db_type_obj_dict[tp]
+
+        cur_year = feat_entity.start_year
+
+        formatted_values = [0 if math.isnan(val) else val for val in feat_entity.values[tp]]
+
+        print(feat_entity, "-", db_parent_entity, "-", db_feat_entity)
+        if isinstance(feat_entity, Feature):
+            models.FeatureRow.objects.create(feature=db_feat_entity,
+                                             entity=db_parent_entity,
+                                             type=db_type_obj_dict[tp],
+                                             values=formatted_values,
+                                             start_year=cur_year
+                                             )
+        else:
+            models.FeatureRow.objects.create(feature=db_parent_feature,
+                                             entity=db_feat_entity,
+                                             type=db_type_obj_dict[tp],
+                                             values=formatted_values,
+                                             start_year=cur_year
+                                             )
+
+
+
 
 def parse_feature_or_entity(db_sheet, db_type_object_entity, feat_entity, last_feature, last_entity):
+    # print(feat_entity, feat_entity.subfeatures)
     feat_flag = False
     if isinstance(feat_entity, Feature):
         new_feat_ent = parse_feature(db_sheet, db_type_object_entity, feat_entity, last_feature)
         feat_flag = True
     elif isinstance(feat_entity, Entity):
+        # print("xxxxxxxxxxparse entity")
         new_feat_ent = parse_entity(db_sheet, db_type_object_entity, feat_entity, last_feature, last_entity)
     else:
         raise TypeError("Expected either feature or entity")
 
+    print("flag", feat_flag)
+    # print(feat_entity.subfeatures)
+
+    parse_feature_entity_values(feat_entity, new_feat_ent,last_entity, last_feature,db_type_object_entity)
     for sub_feat_ent in feat_entity.subfeatures:
         if feat_flag:
+
             parse_feature_or_entity(db_sheet, db_type_object_entity, sub_feat_ent, new_feat_ent, last_entity)
         else:
+
             parse_feature_or_entity(db_sheet, db_type_object_entity, sub_feat_ent, last_feature, new_feat_ent)
 
 
@@ -175,9 +222,11 @@ def parse_sheet_to_db(sheet_path, meta_file_path, category):
             nms = entity_names.split(',')
             lang_objs = ['english', 'hindi']
             for ix in range(len(nms)):
-                models.EntityName.objects.create(entity=entity, language=check_and_create_lang_object(lang_objs[ix]), name=nms[ix])
+                models.EntityName.objects.create(entity=entity, language=check_and_create_lang_object(lang_objs[ix]),
+                                                 name=nms[ix])
 
     # parse features and entities
+    # print(sheet.data_obj)
     for feat_entity in sheet.data_obj:
         parse_feature_or_entity(db_sheet, db_type_obj_dict, feat_entity, last_feature=None, last_entity=entity)
 

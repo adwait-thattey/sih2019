@@ -7,6 +7,35 @@ from . import models
 
 # Create your views here.
 
+def get_economic_activities():
+    cat_name = models.CategoryName.objects.filter(name="Economic Activities")
+    cat = cat_name[0].category
+
+    feats = models.Feature.objects.filter(sheet__category=cat)
+
+    ret_dict = []
+
+    for feat in feats:
+        fdict = {"id": feat.id,
+                 "name": feat.featurename_set.filter(language__name="english")[0].name,
+                 }
+
+
+        for entity in feat.entity_set.all():
+            efdict = {
+                'start_year' : 2011
+            }
+            for fr in entity.featurerow_set.filter(feature=feat):
+                efdict[fr.type.typename_set.filter(language__name="english")[0].name] = fr.values
+
+
+            fdict[entity.entityname_set.filter(language__name="english")[0].name] = efdict
+
+        ret_dict.append(fdict)
+
+    print(ret_dict)
+
+def get
 def get_feature(request):
     feature_id = request.GET.get('feature', None)
     lang_name = request.GET.get('language', None)
@@ -41,8 +70,6 @@ def get_feature_name_tree(request):
 def get_complete_tree_by_category(request):
     category_name = request.GET.get('category', None)
     lang_name = request.GET.get('language', None)
-
-
 
 
 def get_feature_search_list(request):
