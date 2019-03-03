@@ -1,0 +1,14 @@
+name:
+1.1: Key aggregates of national accounts
+1.1: राष्‍ट्रीय लेखा के प्रमुख समाहार
+-----------------------------------------------------------------
+types:
+price indices,
+quantun indices,
+---------------
+entity:
+consumption,
+--------------
+unit:
+crore,करोड़
+ 
