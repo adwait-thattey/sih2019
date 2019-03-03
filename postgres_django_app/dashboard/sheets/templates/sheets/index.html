@@ -20,6 +20,7 @@
 
     <link rel="stylesheet" href="{% static 'category_base/css/mdb.min.css' %}">
 
+     <script type="text/javascript" src="{% static 'category_base/js/jquery-3.3.1.min.js' %}"></script>
     <style>
         .main {
             padding-left: 15rem;
@@ -95,15 +96,11 @@
         }
     </style>
 
-<script>
-    $(document).ready(function() {
-$('.mdb-select').materialSelect();
-});
-</script>
+
     <!-- SCRIPTS -->
     <!-- JQuery -->
 
-    <script type="text/javascript" src="{% static 'category_base/js/jquery-3.3.1.min.js' %}"></script>
+
 
     <!-- Tooltips -->
 
@@ -282,13 +279,13 @@ $('.mdb-select').materialSelect();
 <!--/.Footer-->
 
 
-<script>
-    // SideNav Initialization
-    $(".button-collapse").sideNav();
-
-    new WOW().init();
-
-</script>
+{#<script>#}
+{#    // SideNav Initialization#}
+{#    $(".button-collapse").sideNav();#}
+{##}
+{#    new WOW().init();#}
+{##}
+{#</script>#}
 <div class="drag-target"
      style="left: 0px; touch-action: pan-y; user-select: none; -webkit-user-drag: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></div>
 
@@ -299,6 +296,10 @@ $('.mdb-select').materialSelect();
 <script src="{% static 'sheets/js/scrollspy/sliding.js' %}"></script>
 <script src="{% static 'sheets/js/custom-font.js' %}"></script>
 	<Script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.js"></script>
+
+
+<script src="{% static 'sheets/js/search.js' %}"></script>
+<script src="{% static 'sheets/js/suggestions.js' %}"></script>
 
 </body>
 
