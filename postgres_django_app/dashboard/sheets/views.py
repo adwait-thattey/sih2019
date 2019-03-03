@@ -20,14 +20,12 @@ def get_economic_activities():
                  "name": feat.featurename_set.filter(language__name="english")[0].name,
                  }
 
-
         for entity in feat.entity_set.all():
             efdict = {
-                'start_year' : 2011
+                'start_year': 2011
             }
             for fr in entity.featurerow_set.filter(feature=feat):
                 efdict[fr.type.typename_set.filter(language__name="english")[0].name] = fr.values
-
 
             fdict[entity.entityname_set.filter(language__name="english")[0].name] = efdict
 
@@ -35,7 +33,37 @@ def get_economic_activities():
 
     print(ret_dict)
 
-def get
+
+def get_agriculture_data():
+    fname = models.FeatureName.objects.filter(name__contains="agriculture")[0]
+
+    feat = fname.feature
+
+    fdict = {"id": feat.id,
+             "name": fname.name,
+             }
+
+    for entity in feat.entity_set.all():
+        efdict = {
+            'start_year': 2011
+        }
+        for fr in entity.featurerow_set.filter(feature=feat):
+            efdict[fr.type.typename_set.filter(language__name="english")[0].name] = fr.values
+
+        fdict[entity.entityname_set.filter(language__name="english")[0].name] = efdict
+
+    fdict['subfeatures'] = [subf.featurename_set.filter(language__name="english")[0].name for subf in
+                            feat.feature_set.all()]
+
+    return JsonResponse(fdict)
+
+
+def get_agriculture_data_view(request):
+
+    return render(request, 'sheets/activity.html')
+
+
+
 def get_feature(request):
     feature_id = request.GET.get('feature', None)
     lang_name = request.GET.get('language', None)
