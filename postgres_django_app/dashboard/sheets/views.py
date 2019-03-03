@@ -67,29 +67,7 @@ def gva_view(request):
 
 
 def get_gva():
-    cat_name = models.CategoryName.objects.filter(name="Economic Activities")
-    cat = cat_name[0].category
-
-    gva_name_object = models.EntityName.objects.filter(name='gva at basic prices')
-    basic_gva_list = [x.entity for x in gva_name_object]
-
-    features = [x.parent_feature for x in basic_gva_list if x.parent_feature]
-
-    print(features)
-    types = [x.type for x in models.TypeName.objects.filter(name="Current")]
-    print(types)
-    frr = models.FeatureRow.objects.filter(entity__in=basic_gva_list, feature__in=features, type__in=types)
-
-    print(frr)
-    ret_list = [
-        {
-            "id": x.id,
-            "feature": x.feature.featurename_set.filter(language__name="english")[0].name,
-            "values": x.values
-        } for x in frr
-    ]
-
-    return JsonResponse(ret_list)
+    pass
 
 
 def get_gva_timeseries():
@@ -169,4 +147,38 @@ def get_gdp(request):
         "values": {tp.english_name(): fr.filter(type=tp)[0].values for tp in [f.type for f in fr]}
     })
 
+
 def get_gdp_share(request):
+    pass
+
+
+def get_gva_shares(request):
+    en = models.EntityName.objects.filter(name__contains="gva at basic prices")
+    e = [x.entity for x in en]
+
+    feats = [x.parent_feature for x in e if x]
+
+
+
+    feature_dict = [
+
+    ]
+
+    for feat in feats:
+        if feat:
+            fdict = {
+                "id": feat.id,
+                "name": feat.english_name(),
+            }
+            farrs = models.FeatureRow.objects.filter(entity__in=e, feature=feat)
+            values = {f.type.english_name(): f.values for f in farrs}
+            fdict['values'] = values
+
+            feature_dict.append(fdict)
+
+    print(feature_dict)
+    return JsonResponse(feature_dict, safe=False)
+
+
+def get_gva_shares_with_feat_id(request, feat_id):
+    pass

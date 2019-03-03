@@ -1,3 +1,5 @@
+import os
+
 from sheets import models
 from sheets.objects import *
 import pandas as pd
@@ -37,7 +39,7 @@ def get_start_year(tdf):
 def parse_sheet_to_object(sheet_path):
     # tdf = pd.read_excel('S1.1_ref.xlsx')
     tdf = pd.read_excel(sheet_path)
-    sheet = create_sheet({"english": 'statement1.1'})
+    sheet = create_sheet({"english": os.path.basename(sheet_path)})
 
     # print(tdf.columns)
     year_col_idx = tdf.columns[0]
