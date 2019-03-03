@@ -6,6 +6,8 @@ class Type:
         self.names = {}
 
     def set_language_name(self, language, name):
+        if name in ['nan', '-']:
+            name = 'none'
         self.names[language.lower()] = name
 
     def __repr__(self):
@@ -94,6 +96,7 @@ class SheetObject:
         self.types = []
         self.data_obj = []
         self.xyz = 10
+        self.unit = 'crore'
 
     def __repr__(self):
         if "english" in self.names:
@@ -110,6 +113,9 @@ class SheetObject:
             raise TypeError("type must be an instance of Type")
 
         self.types.append(type)
+
+    def set_unit(self, unit):
+        self.unit = unit
 
     def create_type(self, names):
         T = Type()

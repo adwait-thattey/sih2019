@@ -96,3 +96,44 @@ def parse_sheet_to_object(sheet_path):
     # print(pe.subfeatures[0].start_year, pe.subfeatures[0].values)
 
     return sheet
+
+
+def parse_meta_sheet(sheet_object, meta_file_path):
+    if not isinstance(sheet_object, SheetObject):
+        raise TypeError("sheet_object must be of type Sheet Object ")
+
+    f = open(meta_file_path, mode="r")
+    lines = f.readlines()
+    f.close()
+
+    split_idx = [idx for idx in range(len(lines)) if lines[idx][5:] == "-----"]
+
+    names = lines[:split_idx[0]]
+    types = lines[split_idx[0] + 1:split_idx[1]]
+    unit = lines[split_idx[1] + 1:split_idx[2]]
+
+    if names[0].lower() != "name" or types[0].lower() != "types" or unit[0].lower() != "unit":
+        raise SyntaxError("Inconsistant format. Unable to parse meta file.")
+
+    names = names[1:]
+    types = types[1:]
+    unit = unit[1:]
+
+    if len(names) < 1 or len(unit) < 1:
+        raise SyntaxError("Inconsistant format. Either name or unit os not supplied.")
+
+    lang_idx = 0
+    lang_dict = ["english", "hindi"]
+    for name_str in names:
+        sheet_object.set_language_name(lang_dict[lang_idx], name_str)
+        lang_idx += 1
+
+    for tp in types:
+        type_names = tp.split(',')
+        possible_tp = sheet_object.find_type_by_english_name(type_names[0])
+        if possible_tp:
+            if len(type_names) > 1:
+                possible_tp.set_language_name('hindi', type_names[1])
+
+    u = unit[0].split(',')[0]
+    sheet_object.set_unit(u)
