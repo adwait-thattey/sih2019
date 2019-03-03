@@ -2,7 +2,8 @@ from django.contrib import admin
 
 # Register your models here.
 
-from .models import Language, Category, CategoryName, Sheet, SheetName, Feature, FeatureName, Type, TypeName, Cell
+from .models import Language, Category, CategoryName, Sheet, SheetName, Feature, FeatureName, Type, TypeName, Cell, \
+    FeatureRow
 
 admin.site.register((
     Language,
@@ -14,5 +15,6 @@ admin.site.register((
     Feature,
     Type,
     TypeName,
-    Cell
+    Cell,
+    FeatureRow
 ))

@@ -1,3 +1,4 @@
+from django.contrib.postgres.fields import ArrayField
 from django.core.exceptions import ValidationError
 from django.db import models
 import os.path
@@ -36,7 +37,7 @@ class CategoryName(models.Model):
 
 class Sheet(models.Model):
     category = models.ForeignKey(to=Category, on_delete=models.CASCADE)
-    file_loc = models.FileField(upload_to=get_sheet_upload_path)
+    file_loc = models.FileField(upload_to=get_sheet_upload_path, max_length=1000)
 
 
 class SheetName(models.Model):
@@ -49,6 +50,7 @@ class Feature(models.Model):
     sheet = models.ForeignKey(to=Sheet, on_delete=models.CASCADE, null=True, blank=True)
     parent_feature = models.ForeignKey(to='self', on_delete=models.CASCADE, null=True, blank=True)
     start_year = models.IntegerField()
+
     def clean(self):
         if not (self.sheet or self.parent_feature):
             raise ValidationError("Every super column must have either a sheet or a parent column")
@@ -78,6 +80,11 @@ class TypeName(models.Model):
     language = models.ForeignKey(to=Language, on_delete=models.PROTECT)
     name = models.CharField(max_length=200)
 
+
+class FeatureRow(models.Model):
+    type = models.ForeignKey(to=Type, on_delete=models.PROTECT)
+    feature = models.ForeignKey(to=Feature, on_delete=models.CASCADE)
+    values = ArrayField(base_field=models.FloatField())
 
 class Cell(models.Model):
     feature = models.ForeignKey(to=Feature, on_delete=models.CASCADE)
