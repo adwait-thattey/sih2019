@@ -7,6 +7,13 @@ from . import models
 
 # Create your views here.
 
+def view_uploaded_filelist(request):
+    qs = models.Sheet.objects.all()
+    qnames = [(x.id, x.sheetname_set.filter(language__name="english")[0].name) for x in qs]
+
+    print(qnames)
+    return render(request,'sheets/upload.html', {"obj_list":qs,"file_list":qnames})
+
 def get_feature(request):
     feature_id = request.GET.get('feature', None)
     lang_name = request.GET.get('language', None)

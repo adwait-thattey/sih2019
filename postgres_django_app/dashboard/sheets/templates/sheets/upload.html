@@ -25,6 +25,7 @@
             padding-left: 15rem;
             padding-top: 5.5rem;
         }
+
         /* Chart.js */
         @-webkit-keyframes chartjs-render-animation {
             from {
@@ -34,6 +35,7 @@
                 opacity: 1
             }
         }
+
         @keyframes chartjs-render-animation {
             from {
                 opacity: 0.99
@@ -42,10 +44,12 @@
                 opacity: 1
             }
         }
+
         .chartjs-render-monitor {
             -webkit-animation: chartjs-render-animation 0.001s;
             animation: chartjs-render-animation 0.001s;
         }
+
         .icon-bar {
             position: fixed;
             top: 50%;
@@ -54,6 +58,7 @@
             -ms-transform: translateY(-50%);
             transform: translateY(-50%);
         }
+
         /* Style the icon bar links */
         .icon-bar a {
             display: block;
@@ -63,43 +68,51 @@
             color: white;
             font-size: 20px;
         }
+
         /* Style the social media icons with color, if you want */
         .icon-bar a:hover {
             background-color: #000;
         }
+
         .facebook {
             background: #3B5998;
             color: white;
         }
+
         .twitter {
             background: #55ACEE;
             color: white;
         }
+
         .google {
             background: #dd4b39;
             color: white;
         }
+
         .linkedin {
             background: #007bb5;
             color: white;
         }
+
         .youtube {
             background: #bb0000;
             color: white;
         }
+
         .eco-aggre {
             margin-left: 8% !important;
         }
+
         #slide-out {
             background: white;
         }
     </style>
 
-<script>
-    $(document).ready(function() {
-$('.mdb-select').materialSelect();
-});
-</script>
+    <script>
+        $(document).ready(function () {
+            $('.mdb-select').materialSelect();
+        });
+    </script>
     <!-- SCRIPTS -->
     <!-- JQuery -->
 
@@ -131,7 +144,35 @@ $('.mdb-select').materialSelect();
 
 <!--Main layout-->
 <main>
-    {% include 'sheets/partials/_charts.html' %}
+    <table class="table">
+        <thead class="black white-text">
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">File Name</th>
+            <th scope="col"> upload file</th>
+        </tr>
+        </thead>
+        <tbody>
+
+        {% for tup in file_list %}
+
+            <tr>
+                <th scope="row">{{ tup.0 }}</th>
+                <td>{{ tup.1 }}</td>
+
+
+            <td>
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <input type="hidden" name="id" value="{{ tup.0 }}">
+                <input type="file" name="myfile">
+                <button class="btn btn-link" type="submit">Re-upload</button>
+            </form>
+</td>
+ </tr>
+        {% endfor %}
+        </tbody>
+    </table>
 </main>
 <!--/Main layout-->
 
@@ -291,8 +332,6 @@ $('.mdb-select').materialSelect();
 </script>
 <div class="drag-target"
      style="left: 0px; touch-action: pan-y; user-select: none; -webkit-user-drag: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></div>
-
-
 
 
 <script src="{% static 'sheets/js/scrollspy/vanillajs-scrollspy.min.js' %}"></script>
