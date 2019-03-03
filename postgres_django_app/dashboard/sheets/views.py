@@ -7,6 +7,13 @@ from . import models
 
 # Create your views here.
 
+def view_uploaded_filelist(request):
+    qs = models.Sheet.objects.all()
+    qnames = [(x.id, x.sheetname_set.filter(language__name="english")[0].name) for x in qs]
+
+    print(qnames)
+    return render(request,'sheets/upload.html', {"obj_list":qs,"file_list":qnames})
+
 def get_feature(request):
     feature_id = request.GET.get('feature', None)
     lang_name = request.GET.get('language', None)
@@ -52,3 +59,8 @@ def get_feature_search_list(request):
 
     return JsonResponse(obj, safe=False)
 
+import random
+def file_reupload_ajax(request):
+    response_lists = ["uploading", "wait for few seconds", "thanks while we parse the file"]
+    response_text = random.choice(response_lists)
+    return JsonResponse(response_text, safe=False)

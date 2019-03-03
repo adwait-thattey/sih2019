@@ -25,6 +25,7 @@
             padding-left: 15rem;
             padding-top: 5.5rem;
         }
+
         /* Chart.js */
         @-webkit-keyframes chartjs-render-animation {
             from {
@@ -34,6 +35,7 @@
                 opacity: 1
             }
         }
+
         @keyframes chartjs-render-animation {
             from {
                 opacity: 0.99
@@ -42,10 +44,12 @@
                 opacity: 1
             }
         }
+
         .chartjs-render-monitor {
             -webkit-animation: chartjs-render-animation 0.001s;
             animation: chartjs-render-animation 0.001s;
         }
+
         .icon-bar {
             position: fixed;
             top: 50%;
@@ -54,6 +58,7 @@
             -ms-transform: translateY(-50%);
             transform: translateY(-50%);
         }
+
         /* Style the icon bar links */
         .icon-bar a {
             display: block;
@@ -63,43 +68,51 @@
             color: white;
             font-size: 20px;
         }
+
         /* Style the social media icons with color, if you want */
         .icon-bar a:hover {
             background-color: #000;
         }
+
         .facebook {
             background: #3B5998;
             color: white;
         }
+
         .twitter {
             background: #55ACEE;
             color: white;
         }
+
         .google {
             background: #dd4b39;
             color: white;
         }
+
         .linkedin {
             background: #007bb5;
             color: white;
         }
+
         .youtube {
             background: #bb0000;
             color: white;
         }
+
         .eco-aggre {
             margin-left: 8% !important;
         }
+
         #slide-out {
             background: white;
         }
     </style>
 
-<script>
-    $(document).ready(function() {
-$('.mdb-select').materialSelect();
-});
-</script>
+    <script>
+        $(document).ready(function () {
+            $('.mdb-select').materialSelect();
+        });
+    </script>
     <!-- SCRIPTS -->
     <!-- JQuery -->
 
@@ -131,19 +144,75 @@ $('.mdb-select').materialSelect();
 
 <!--Main layout-->
 <main>
-    {% include 'sheets/partials/_charts.html' %}
+    <table class="table">
+        <thead class="black white-text">
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">File Name</th>
+            <th scope="col"> upload file</th>
+        </tr>
+        </thead>
+        <tbody>
+
+        {% for tup in file_list %}
+
+            <tr>
+                <th scope="row">{{ tup.0 }}</th>
+                <td>{{ tup.1 }}</td>
+
+
+            <td>
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <input type="hidden" name="id" value="{{ tup.0 }}">
+                <input type="file" name="myfile">
+                <button class="btn btn-link" type="submit">Re-upload</button>
+            </form>
+</td>
+ </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+
+    <script>
+      function responseFunction() {
+          $.ajax({
+              type: 'GET',
+              //    async: false,
+              url: "http://127.0.0.1:8000/sheets/upload-response",
+              data: {
+                  // hardcoded
+                  //sheet: 22,
+                  //language: 'english',
+                  // csrfmiddlewaretoken: csrfToken
+              },
+              dataType: 'json',
+              success: function (data) {
+                  JSONdata = data;
+                  console.log(JSONdata)
+
+
+              }
+
+          });
+      }
+ setInterval(responseFunction,1000);
+    </script>
 </main>
 <!--/Main layout-->
 
 <!--Footer-->
-<footer class="page-footer font-small blue-grey lighten-4">
+<footer class="page-footer font-small blue-grey lighten-5">
+
+    <div style="background-color: #21d192;">
         <div class="container">
 
             <!-- Grid row-->
-            <div class="row py-4 d-flex align-items-center" style="background-color: #0b2a41" >
+            <div class="row py-4 d-flex align-items-center">
 
                 <!-- Grid column -->
-                <div class="col-md-6 col-lg-5 text-center text-md-left mb-4 mb-md-0" >
+                <div class="col-md-6 col-lg-5 text-center text-md-left mb-4 mb-md-0">
                     <h6 class="mb-0">Get connected with us on social networks!</h6>
                 </div>
                 <!-- Grid column -->
@@ -179,6 +248,7 @@ $('.mdb-select').materialSelect();
             <!-- Grid row-->
 
         </div>
+    </div>
 
     <!-- Footer Links -->
     <div class="container text-center text-md-left mt-5">
@@ -190,9 +260,11 @@ $('.mdb-select').materialSelect();
             <div class="col-md-3 col-lg-4 col-xl-3 mb-4">
 
                 <!-- Content -->
-                <h6 class="text-uppercase font-weight-bold">Dashboard</h6>
+                <h6 class="text-uppercase font-weight-bold">Book Cafe</h6>
                 <hr class="teal accent-3 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
-                <p>A dashboard where an user can view the data for different ministries as well as for macro aggregates and graphs will be plotted for each and every entity</p>
+                <p>A library management website for the students to go through different categories of books and
+                    then choose
+                    the desired book and issue it.</p>
 
             </div>
             <!-- Grid column -->
@@ -206,7 +278,12 @@ $('.mdb-select').materialSelect();
                 <p>
                     <a class="dark-grey-text" href="#!">Home</a>
                 </p>
-
+                <p>
+                    <a class="dark-grey-text" href="#!">Issue</a>
+                </p>
+                <p>
+                    <a class="dark-grey-text" href="#!">Categories</a>
+                </p>
                 <p>
                     <a class="dark-grey-text" href="#!">Feedback</a>
                 </p>
@@ -220,7 +297,15 @@ $('.mdb-select').materialSelect();
                 <!-- Links -->
                 <h6 class="text-uppercase font-weight-bold">Useful links</h6>
                 <hr class="teal accent-3 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
-
+                <p>
+                    <a class="dark-grey-text" href="#!">Your Account</a>
+                </p>
+                <p>
+                    <a class="dark-grey-text" href="#!">Issue a Book</a>
+                </p>
+                <p>
+                    <a class="dark-grey-text" href="#!">Recommended</a>
+                </p>
                 <p>
                     <a class="dark-grey-text" href="#!">Help</a>
                 </p>
@@ -235,13 +320,14 @@ $('.mdb-select').materialSelect();
                 <h6 class="text-uppercase font-weight-bold">Contact</h6>
                 <hr class="teal accent-3 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
                 <p>
-                    <i class="fa fa-home mr-3"></i> Ministry of Statistics and Programme Implementation</p>
+                    <i class="fa fa-home mr-3"></i> Indian Institute Of Information Technology Sricity, Chittoor -
+                    517646</p>
                 <p>
-                    <i class="fa fa-envelope mr-3"></i> mospi.gov.in</p>
+                    <i class="fa fa-envelope mr-3"></i> ronytowilson3097@gmail.com</p>
                 <p>
-                    <i class="fa fa-phone mr-3"></i> + 91-11-23363045</p>
+                    <i class="fa fa-phone mr-3"></i> + 91 720 233 71</p>
                 <p>
-                    <i class="fa fa-print mr-3"></i> + 91-11-26171146</p>
+                    <i class="fa fa-print mr-3"></i> + 91 231 462 08</p>
 
             </div>
             <!-- Grid column -->
@@ -254,7 +340,7 @@ $('.mdb-select').materialSelect();
 
     <!-- Copyright -->
     <div class="footer-copyright text-center text-black-50 py-3">© 2018 Copyright:
-        <a class="dark-grey-text" href="https://mdbootstrap.com/education/bootstrap/"> mospi.gov.in</a>
+        <a class="dark-grey-text" href="https://mdbootstrap.com/education/bootstrap/"> www.bookcafe.com</a>
     </div>
     <!-- Copyright -->
 
@@ -274,12 +360,8 @@ $('.mdb-select').materialSelect();
      style="left: 0px; touch-action: pan-y; user-select: none; -webkit-user-drag: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></div>
 
 
-
-
 <script src="{% static 'sheets/js/scrollspy/vanillajs-scrollspy.min.js' %}"></script>
 <script src="{% static 'sheets/js/scrollspy/sliding.js' %}"></script>
-<script src="{% static 'sheets/js/custom-font.js' %}"></script>
-	<Script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.js"></script>
 
 </body>
 
