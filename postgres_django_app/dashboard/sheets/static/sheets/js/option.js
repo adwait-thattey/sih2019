@@ -366,35 +366,7 @@
 // //////// Working with JSON ////////
 // ///////////////////////////////////
 //
-//
-// // Gets the names
-//
-// $.ajax({
-//     type: 'GET',
-//     url: nameUrl,
-//     data: {
-//         // hardcoded
-//         sheet: 22,
-//         language: 'english',
-//         // csrfmiddlewaretoken: csrfToken
-//     },
-//     dataType: 'json',
-//     success: function (data) {
-//         // JSONdata = data;
-//         JSONdata = data;
-//         var selectedUl = document.querySelector('.level-1');
-//
-//         $.each(data, function (index, value) {
-//             selectedUl.appendChild(createLi(1, value));
-//         })
-//     }
-//
-// });
-//
-//
-//
-//
-//
+
 
 // function plotData(data, idList) {
 //    $.ajax({

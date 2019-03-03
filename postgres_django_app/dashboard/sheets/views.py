@@ -59,7 +59,7 @@ def get_agriculture_data(request):
 
 
 def get_agriculture_data_view(request):
-    return render(request, 'sheets/activity.html')
+    return render(request, 'sheets/activity.html', {'acc_name':'Agricultural Data'})
 
 
 def gva_view(request):

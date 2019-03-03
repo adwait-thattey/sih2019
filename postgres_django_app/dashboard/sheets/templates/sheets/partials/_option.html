@@ -221,12 +221,10 @@ a{
 {% block scripts %}
 
     <script>
-        var dataUrl = "{% url 'sheets:feature_values' %}";
-        var nameUrl = "{% url 'sheets:feature_name_tree' %}";
         var csrfToken = "{{ csrf_token }}";
     </script>
 
-    <script src="{% static 'sheets/js/option.js' %}"></script>
+    <!--<script src="{% static 'sheets/js/option.js' %}"></script>-->
     <script src="{% static 'sheets/js/custom-chart.js' %}"></script>
 
 {% endblock %}

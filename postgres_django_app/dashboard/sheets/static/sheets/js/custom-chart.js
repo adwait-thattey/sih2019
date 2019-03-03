@@ -39,6 +39,8 @@ function getYears(data, property) {
 
 function buildTimeSeriesChart(htmlId, JSONdata, type) {
 
+    console.log(JSONdata);
+
     var twoChildAttr = [];
     var text;
     var types = [];
@@ -141,6 +143,8 @@ function buildPieChart(htmlId, JSONdata, type) {
         }
         var text = 'Distribution of Constant GVA value for 2015'
     }
+
+    if (type === '')
 
      if (type === 'consumption') {
         var data = [];
