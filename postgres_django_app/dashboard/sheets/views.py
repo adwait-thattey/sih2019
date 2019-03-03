@@ -12,7 +12,7 @@ def view_uploaded_filelist(request):
     qnames = [(x.id, x.sheetname_set.filter(language__name="english")[0].name) for x in qs]
 
     print(qnames)
-    return render(request,'sheets/upload.html', {"obj_list":qs,"file_list":qnames})
+    return render(request,'sheets/upload_loader.html', {"obj_list":qs,"file_list":qnames})
 
 def get_feature(request):
     feature_id = request.GET.get('feature', None)
