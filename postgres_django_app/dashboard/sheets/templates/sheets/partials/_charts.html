@@ -17,7 +17,7 @@
 
 
             <div class="container">
-                <div class="row">
+                <div class="row stats">
                     <div class="col-md-3 stat-chip">
                         <div class="stat-value">
                             <h2>180</h2>
@@ -31,7 +31,10 @@
                         </div>
                     </div>
                     <div class="col-md-3 stat-chip">
-                        180
+                        <div class="stat-value">
+                            <h2>55%</h2>
+                            <p>% Increase in last year</p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -39,7 +42,7 @@
 
 
             <div class="row chart-all">
-                <div class="col-md-8" id="gva-container-timeSeries1"></div>
+                <div class="col-md-8" id="gva-container-timeSeries"></div>
                 <div class="col-md-4" id="gva-container-pie1"></div>
             </div>
 
@@ -55,27 +58,29 @@
                 <div class="col-md-8" id="gva-container-db1"></div>
             </div>
 
-            <div class="row chart-all">
-                <div class="col-md-6" id="gva-container-pie4"></div>
-            </div>
         </div>
     </section>
 
     <section class="charts nva-charts page" id="nva">
+
 
         <div class="chart-heading">
             <h2 style="display:block;">NVA</h2>
             <div class="underline">&nbsp;</div>
         </div>
 
-        <div class="row">
-            <div class="col-md-6" id="nva-container-timeSeries"></div>
-            <div class="col-md-6" id="nva-container-db"></div>
+        <div class="card">
+
+            <div class="row chart-all">
+                <div class="col-md-8" id="nva-container-timeSeries"></div>
+                <div class="col-md-4" id="nva-container-pie1"></div>
+            </div>
+            <div class="row chart-all">
+                <div class="col-md-4" id="nva-container-pie2"></div>
+                <div class="col-md-8" id="nva-container-db1"></div>
+            </div>
         </div>
-        <div class="row">
-            <div class="col-md-6" id="nva-container-pie1"></div>
-            <div class="col-md-6" id="nva-container-pie2"></div>
-        </div>
+
     </section>
 
 
@@ -86,14 +91,17 @@
             <div class="underline">&nbsp;</div>
         </div>
 
-        <div class="row">
-            <div class="col-md-6" id="indices-container-timeSeries"></div>
-            <div class="col-md-6" id="indices-container-db"></div>
+        <div class="card">
+            <div class="row chart-all">
+                <div class="col-md-8" id="indices-container-timeSeries"></div>
+                <div class="col-md-4" id="indices-container-pie1"></div>
+            </div>
+            <div class="row chart-all">
+                <div class="col-md-4" id="indices-container-pie2"></div>
+                <div class="col-md-8" id="indices-container-db1"></div>
+            </div>
         </div>
-        <div class="row">
-            <div class="col-md-6" id="indices-container-pie1"></div>
-            <div class="col-md-6" id="indices-container-pie2"></div>
-        </div>
+
     </section>
 </section>
 

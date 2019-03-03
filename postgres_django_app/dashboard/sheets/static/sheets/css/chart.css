@@ -22,7 +22,7 @@
     height: 100px;
     background: white;
     width: 25%;
-    margin: 15px 40px;
+    margin: 25px 38px;
 }
 
 .stat-value {
@@ -36,4 +36,12 @@
 .stat-value h2 {
     font-weight: 700;
     letter-spacing: 2px;
+}
+
+.chart-heading h2 {
+    letter-spacing: 2px;
+}
+
+.stats {
+    margin-left:14px;
 }
