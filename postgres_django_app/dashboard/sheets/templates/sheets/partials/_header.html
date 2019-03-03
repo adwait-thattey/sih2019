@@ -1,28 +1,35 @@
 {%  load static %}
 <header>
-
+<link href="https://fonts.googleapis.com/css?family=Bree+Serif|PT+Serif|Quicksand|Source+Sans+Pro" rel="stylesheet">
+<div style="width: 100%;height:160px;margin-top:130px;margin-left: 320px">
+     <a class="pl-0" href="https://mdbootstrap.com/"><img id="MDB-logo" src="{% static 'img/logo.jpg' %}"
+                                                                         alt=""></a>
+</div>
     <!-- Sidebar navigation -->
     <div id="slide-out" class="side-nav sn-bg-4 fixed"
-         style="transform: translateX(0px);width: 17rem !important;background: white ;">
-
+         style="transform: translateX(0px);width: 17rem !important;background-color: #0b2a41;
         <ul class="custom-scrollbar ">
             <!-- Logo -->
-            <li class="logo-sn d-block waves-effect">
-                <div class="text-center">
-                    <a class="pl-0" href="https://mdbootstrap.com/"><img id="MDB-logo" src="{% static 'img/logo.jpg' %}"
-                                                                         alt="" style="width:80%;"></a>
-                </div>
-            </li>
+{#            <li class="logo-sn d-block waves-effect">#}
+{#                <div class="text-center" style="height: 160px;">#}
+{##}
+{#                </div>#}
+{#            </li>#}
             <!--/. Logo -->
-            <div class="logo-wrapper waves-light waves-effect waves-light">
-                <h5 class="black-text font-weight-bold" style="padding:35px; font-family:'Comic Sans MS';">MOSPI
-                    GVA
-                </h5>
-            </div>
+{#            <div class="logo-wrapper waves-light waves-effect waves-light">#}
+{#                <h5 class="black-text font-weight-bold" style="padding:35px; font-family:'Comic Sans MS';">MOSPI#}
+{#                    GVA#}
+{#                </h5>#}
+{#            </div>#}
             <br>
 
 
-            <div id="navbar" class="navbar-menu navbar-scroll eco-aggre">
+            <div id="navbar" class="navbar-menu navbar-scroll eco-aggre" style="">
+                <li style="font-family:'Quicksand';font-size: 45px; ">
+                    Dashboard
+                </li>
+                <li>
+                    <div style="height:40px;"></div>
                 </li>
                     <li><a href="#gva"><i class="mr-3 fa fa-pie-chart"></i>GVA</a>
                     </li>

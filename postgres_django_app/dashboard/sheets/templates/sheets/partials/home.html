@@ -1,10 +1,11 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link href="https://fonts.googleapis.com/css?family=Istok+Web" rel="stylesheet">
+
     <meta charset="UTF-8">
     <title>home</title>
-     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <!-- Bootstrap core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <!-- Material Design Bootstrap -->
@@ -44,6 +45,7 @@
             padding-left: 15rem;
             padding-top: 5.5rem;
         }
+
         /* Chart.js */
         @-webkit-keyframes chartjs-render-animation {
             from {
@@ -53,6 +55,7 @@
                 opacity: 1
             }
         }
+
         @keyframes chartjs-render-animation {
             from {
                 opacity: 0.99
@@ -61,10 +64,12 @@
                 opacity: 1
             }
         }
+
         .chartjs-render-monitor {
             -webkit-animation: chartjs-render-animation 0.001s;
             animation: chartjs-render-animation 0.001s;
         }
+
         .icon-bar {
             position: fixed;
             top: 50%;
@@ -73,6 +78,7 @@
             -ms-transform: translateY(-50%);
             transform: translateY(-50%);
         }
+
         /* Style the icon bar links */
         .icon-bar a {
             display: block;
@@ -82,43 +88,51 @@
             color: white;
             font-size: 20px;
         }
+
         /* Style the social media icons with color, if you want */
         .icon-bar a:hover {
             background-color: #000;
         }
+
         .facebook {
             background: #3B5998;
             color: white;
         }
+
         .twitter {
             background: #55ACEE;
             color: white;
         }
+
         .google {
             background: #dd4b39;
             color: white;
         }
+
         .linkedin {
             background: #007bb5;
             color: white;
         }
+
         .youtube {
             background: #bb0000;
             color: white;
         }
+
         .eco-aggre {
             margin-left: 8% !important;
         }
+
         #slide-out {
             background: white;
         }
     </style>
 
-<script>
-    $(document).ready(function() {
-$('.mdb-select').materialSelect();
-});
-</script>
+    <script>
+        $(document).ready(function () {
+            $('.mdb-select').materialSelect();
+        });
+    </script>
     <!-- SCRIPTS -->
     <!-- JQuery -->
 
@@ -149,274 +163,63 @@ $('.mdb-select').materialSelect();
 <!--/.Double navigation-->
 
 <!--Main layout-->
-<main>
+<main style="margin-top: 0;padding-top: 0;">
     <div class="container">
-  <!-- Section heading --><div class="container">
-  <h2 class="black-text h1-responsive font-weight-bold my-5">Economic Aggregates</h2>
-<div class="row">
-
-
-    <!-- Grid column -->
-    <div class="col-md-4 mb-md-0 mb-4">
-      <div class="card card-image" style="background-image: url('{% static "img/13.jpg" %}');">
-        <div class="text-white text-center d-flex align-items-center rgba-black-strong py-5 px-4 rounded">
-          <div>
-            <h3 class="py-3 font-weight-bold">
-              <strong>Gross Value Added (GVA)</strong>
-            </h3>
-            <a class="btn btn-secondary btn-rounded btn-md"><i class="fa fa-clone left"></i> Explore</a>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="col-md-4 mb-md-0 mb-4">
-      <div class="card card-image" style="background-image: url('{% static "img/14.png" %}');">
-        <div class="text-white text-center d-flex align-items-center rgba-black-strong py-5 px-4 rounded">
-          <div>
-            <h3 class="py-3 font-weight-bold">
-              <strong>Gross Domestic Product (GDP)</strong>
-            </h3>
-            <a class="btn btn-secondary btn-rounded btn-md"><i class="fa fa-clone left"></i> Explore</a>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="col-md-4 mb-md-0 mb-4">
-      <div class="card card-image" style="background-image: url('{% static "img/15.png" %}');">
-        <div class="text-white text-center d-flex align-items-center rgba-black-strong py-5 px-4 rounded">
-          <div>
-            <h3 class="py-3 font-weight-bold ">
-              <strong style="text-align: center;">Gross fixed capital formation</strong>
-            </h3>
-            <a class="btn btn-secondary btn-rounded btn-md"><i class="fa fa-clone left"></i> Explore</a>
-          </div>
-        </div>
-      </div>
-    </div>
-    </div>
-    <br><br>
-    <div class="row">
-
-
-    <!-- Grid column -->
-    <div class="col-md-4 mb-md-0 mb-4">
-      <div class="card card-image" style="background-image: url('{% static "img/16.jpg" %}');">
-        <div class="text-white text-center d-flex align-items-center rgba-black-strong py-5 px-4 rounded">
-          <div>
-            <h3 class="py-3 font-weight-bold">
-              <strong>GFC</strong>
-            </h3>
-            <a class="btn btn-secondary btn-rounded btn-md"><i class="fa fa-clone left"></i> Explore</a>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="col-md-4 mb-md-0 mb-4">
-      <div class="card card-image" style="background-image: url('{% static "img/17.png" %}');">
-        <div class="text-white text-center d-flex align-items-center rgba-black-strong py-5 px-4 rounded">
-          <div>
-            <h3 class="py-3 font-weight-bold">
-              <strong>NCS</strong>
-            </h3>
-            <a class="btn btn-secondary btn-rounded btn-md"><i class="fa fa-clone left"></i> Explore</a>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="col-md-4 mb-md-0 mb-4">
-      <div class="card card-image" style="background-image: url('{% static "img/18.png" %}');">
-        <div class="text-white text-center d-flex align-items-center rgba-black-strong py-5 px-4 rounded">
-          <div>
-            <h3 class="py-3 font-weight-bold text-center">
-              <strong style="text-align: center;">Net Value Added</strong>
-            </h3>
-            <a class="btn btn-secondary btn-rounded btn-md"><i class="fa fa-clone left"></i> Explore</a>
-          </div>
-        </div>
-      </div>
-    </div>
-    </div>
+        <!-- Section heading -->
+        <h2 class="black-text h1-responsive font-weight-bold my-5" style="padding-bottom:2 rem;">Economic
+            Aggregates</h2>
         <div class="row">
-
-
-    <!-- Grid column -->
-
-<div class="container">
-
-
-  <!-- Section heading --><div class="container">
-  <h2 class="black-text h1-responsive font-weight-bold my-5">Economic Activity</h2>
-<div class="row">
-
-
-    <!-- Grid column -->
-    <div class="col-md-4 mb-md-0 mb-4">
-      <div class="card card-image" style="background-image: url('{% static "img/1.jpg" %}');">
-        <div class="text-white text-center d-flex align-items-center rgba-black-strong py-5 px-4 rounded">
-          <div>
-            <h3 class="py-3 font-weight-bold">
-              <strong a href=''>Agriculture </strong>
-            </h3>
-            <a class="btn btn-secondary btn-rounded btn-md"><i class="fa fa-clone left"></i> Explore</a>
-          </div>
+            <button type="button" class="btn btn-outline-default waves-effect mx-auto font-weight-bold " data-toggle="tooltip" data-placement="top" title="Gross Domestic Product"><i class="fa fa-chain"></i> GDP</button>
+            <button type="button" class="btn btn-outline-default waves-effect mx-auto font-weight-bold " data-toggle="tooltip" data-placement="top" title="Gross Value Added"><i class="fa fa-dedent"></i> GVA</button>
+            <button type="button" class="btn btn-outline-default waves-effect mx-auto font-weight-bold"><i class="fa fa-file-text-o"></i> Gross Output</button>
+            <button type="button" class="btn btn-outline-default waves-effect mx-auto font-weight-bold " data-toggle="tooltip" data-placement="top" title="Consumption of Fixed Capital"><i class="fa fa-list-ol"></i> CFC</button>
         </div>
-      </div>
-    </div>
-
-    <div class="col-md-4 mb-md-0 mb-4">
-      <div class="card card-image" style="background-image: url('{% static "img/2.jpg" %}');">
-        <div class="text-white text-center d-flex align-items-center rgba-black-strong py-5 px-4 rounded">
-          <div>
-            <h3 class="py-3 font-weight-bold">
-              <strong>Mining</strong>
-            </h3>
-            <a class="btn btn-secondary btn-rounded btn-md"><i class="fa fa-clone left"></i> Explore</a>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="col-md-4 mb-md-0 mb-4">
-      <div class="card card-image" style="background-image: url('{% static "img/3.jpg" %}');">
-        <div class="text-white text-center d-flex align-items-center rgba-black-strong py-5 px-4 rounded">
-          <div>
-            <h3 class="py-3 font-weight-bold text-center">
-              <strong style="text-align: center;">Construction</strong>
-            </h3>
-            <a class="btn btn-secondary btn-rounded btn-md"><i class="fa fa-clone left"></i> Explore</a>
-          </div>
-        </div>
-      </div>
-    </div>
-    </div>
-    <br><br>
-    <div class="row">
-
-
-    <!-- Grid column -->
-    <div class="col-md-4 mb-md-0 mb-4">
-      <div class="card card-image" style="background-image: url('{% static "img/4.jpeg" %}');">
-        <div class="text-white text-center d-flex align-items-center rgba-black-strong py-5 px-4 rounded">
-          <div>
-            <h3 class="py-3 font-weight-bold">
-              <strong>Manufacturing</strong>
-            </h3>
-            <a class="btn btn-secondary btn-rounded btn-md"><i class="fa fa-clone left"></i> Explore</a>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="col-md-4 mb-md-0 mb-4">
-      <div class="card card-image" style="background-image: url('{% static "img/5.jpg" %}');">
-        <div class="text-white text-center d-flex align-items-center rgba-black-strong py-5 px-4 rounded">
-          <div>
-            <h3 class="py-3 font-weight-bold">
-              <strong>Gas, Electricity</strong>
-            </h3>
-            <a class="btn btn-secondary btn-rounded btn-md"><i class="fa fa-clone left"></i> Explore</a>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="col-md-4 mb-md-0 mb-4">
-      <div class="card card-image" style="background-image: url('{% static "img/6.jpg" %}');">
-        <div class="text-white text-center d-flex align-items-center rgba-black-strong py-5 px-4 rounded">
-          <div>
-            <h3 class="py-3 font-weight-bold text-center">
-              <strong style="text-align: center;">Real Estate</strong>
-            </h3>
-            <a class="btn btn-secondary btn-rounded btn-md"><i class="fa fa-clone left"></i> Explore</a>
-          </div>
-        </div>
-      </div>
-    </div>
-    </div><br><br>
         <div class="row">
-
-
-    <!-- Grid column -->
-    <div class="col-md-4 mb-md-0 mb-4">
-      <div class="card card-image" style="background-image: url('{% static "img/7.jpg" %}');">
-        <div class="text-white text-center d-flex align-items-center rgba-black-strong py-5 px-4 rounded">
-          <div>
-            <h3 class="py-3 font-weight-bold">
-              <strong>Trade and hotels</strong>
-            </h3>
-            <a class="btn btn-secondary btn-rounded btn-md"><i class="fa fa-clone left"></i> Explore</a>
-          </div>
+            <button type="button" class="btn btn-outline-default waves-effect mx-auto  btn-large font-weight-bold" data-toggle="tooltip" data-placement="top" title="Net Capital Stock"><i class="fa fa-th"></i> NCS</button>
+            <button type="button" class="btn btn-outline-default waves-effect mx-auto btn-large font-weight-bold" data-toggle="tooltip" data-placement="top" title="Gross Fixed Capital Formation"><i class="fa fa-th-list"></i> GFCF</button>
+            <button type="button" class="btn btn-outline-default waves-effect mx-auto btn-large font-weight-bold" data-toggle="tooltip" data-placement="top" title="Compensation of employees"><i class="fa fa-space-shuttle"></i> CE</button>
+            <button type="button" class="btn btn-outline-default waves-effect mx-auto btn-large font-weight-bold" data-toggle="tooltip" data-placement="top" title="Net Value Added "><i class="	fa fa-pause-circle-o"></i> NVA</button>
         </div>
-      </div>
+        <div style="align-content: center"> <button type="button" class="btn btn-outline-info waves-effect mx-auto  btn-large " onclick="myFunction()" >Show More</button></div>
+            <div id="myDIV">
+                    <div class="btn-group">
+
+  <!-- Basic dropdown -->
+  <button class="btn btn-primary dropdown-toggle mr-4" type="button" data-toggle="dropdown" aria-haspopup="true"
+    aria-expanded="false">Basic dropdown</button>
+
+
+  <!-- Basic dropdown -->
+
+  <!--Dropdown primary-->
+  <div class="dropdown">
+
+
+    <!--Menu-->
+    <div class="dropdown-menu dropdown-primary">
+      <a class="dropdown-item" href="#">Gross Savings</a>
+      <a class="dropdown-item" href="#">Gross disposable income</a>
+      <a class="dropdown-item" href="#">Private Final Consumption Expediture</a>
+      <a class="dropdown-item" href="#">Cheanges in stocks</a>
     </div>
+  </div>
+  <!--/Dropdown primary-->
+</div>
+            </div>
 
-    <div class="col-md-4 mb-md-0 mb-4">
-      <div class="card card-image" style="background-image: url('{% static "img/8.jpg" %}');">
-        <div class="text-white text-center d-flex align-items-center rgba-black-strong py-5 px-4 rounded">
-          <div>
-            <h3 class="py-3 font-weight-bold">
-              <strong>Transport, storage</strong>
-            </h3>
-            <a class="btn btn-secondary btn-rounded btn-md"><i class="fa fa-clone left"></i> Explore</a>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="col-md-4 mb-md-0 mb-4">
-      <div class="card card-image" style="background-image: url('{% static "img/9.jpg" %}');">
-        <div class="text-white text-center d-flex align-items-center rgba-black-strong py-5 px-4 rounded">
-          <div>
-            <h3 class="py-3 font-weight-bold text-center">
-              <strong style="text-align: center;">Financial Services</strong>
-            </h3>
-            <a class="btn btn-secondary btn-rounded btn-md"><i class="fa fa-clone left"></i> Explore</a>
-          </div>
-        </div>
-      </div>
-    </div>
-    </div><br><br>
-     <div class="row">
-
-
-    <!-- Grid column -->
-
-    <div class="col-md-4 mb-md-0 mb-4">
-      <div class="card card-image" style="background-image: url('{% static "img/10.jpg" %}');">
-        <div class="text-white d-flex align-items-center rgba-black-strong py-5 px-4 rounded ">
-          <div>
-            <h3 class="py-3 font-weight-bold">
-              <strong>Administration</strong>
-            </h3>
-            <a class="btn btn-secondary btn-rounded btn-md"><i class="fa fa-clone left"></i> Explore</a>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="col-md-4 mb-md-0 mb-4">
-      <div class="card card-image" style="background-image: url('{% static "img/11.jpg" %}');">
-        <div class="text-white text-center d-flex align-items-center rgba-black-strong py-5 px-4 rounded">
-          <div>
-            <h3 class="py-3 font-weight-bold text-center">
-              <strong style="text-align: center;">Others</strong>
-            </h3>
-            <a class="btn btn-secondary btn-rounded btn-md"><i class="fa fa-clone left"></i> Explore</a>
-          </div>
-        </div>
-      </div>
-    </div>
-    </div>
-<!-- Card -->
-</div><br><br>
-
+--><script>
+function myFunction() {
+  var x = document.getElementById("myDIV");
+  if (x.style.display === "none") {
+    x.style.display = "block";
+  } else {
+    x.style.display = "none";
+  }
+}
+</script>
 </main>
 <!--/Main layout-->
-
+<br><br>
 <!--Footer-->
 <footer class="page-footer font-small blue-grey lighten-5">
 
@@ -477,7 +280,8 @@ $('.mdb-select').materialSelect();
                 <!-- Content -->
                 <h6 class="text-uppercase font-weight-bold">Dashboard</h6>
                 <hr class="teal accent-3 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
-                <p>A dashboard where an user can view the data for different ministries as well as for macro aggregates and graphs will be plotted for each and every entity</p>
+                <p>A dashboard where an user can view the data for different ministries as well as for macro aggregates
+                    and graphs will be plotted for each and every entity</p>
 
             </div>
             <!-- Grid column -->
@@ -556,8 +360,6 @@ $('.mdb-select').materialSelect();
 </script>
 <div class="drag-target"
      style="left: 0px; touch-action: pan-y; user-select: none; -webkit-user-drag: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></div>
-
-
 
 
 <script src="{% static 'sheets/js/scrollspy/vanillajs-scrollspy.min.js' %}"></script>
