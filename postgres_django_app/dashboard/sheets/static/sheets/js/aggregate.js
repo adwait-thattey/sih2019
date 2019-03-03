@@ -10,3 +10,15 @@ if(agg_name === 'gdp') {
         }
     });
 }
+
+if (agg_name === 'gva') {
+    $.ajax({
+       type: 'GET',
+       url: gvaUrl,
+       data: {},
+       dataType: 'json',
+       success: function (JSONdata) {
+           buildTimeSeriesChart('chart-agg-container-timeSeries', JSONdata, 'gva');
+       }
+    });
+}

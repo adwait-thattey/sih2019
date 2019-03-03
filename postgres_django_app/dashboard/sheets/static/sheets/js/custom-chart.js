@@ -48,6 +48,14 @@ function buildTimeSeriesChart(htmlId, JSONdata, type) {
         text = 'Current and constant GVA Values';
         types = ['current', 'constant'];
     }
+    if (type === 'gva') {
+        childArr = [];
+
+        for (var indyGva of JSONdata) {
+            console.log(indyGva);
+        }
+
+    }
     if (type === 'nva at basic prices') {
         twoChildAttr = [JSONdata[type].current, JSONdata[type].constant];
         text = 'Current and constant NVA Values';

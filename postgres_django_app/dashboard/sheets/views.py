@@ -65,7 +65,6 @@ def get_agriculture_data_view(request):
 def gva_view(request):
     return render()
 
-
 def get_gva(request):
     cat_name = models.CategoryName.objects.filter(name="Economic Activities")
     cat = cat_name[0].category
@@ -90,6 +89,7 @@ def get_gva(request):
     ]
 
     return JsonResponse(ret_list, safe=False)
+
 
 
 def get_gva_timeseries():
@@ -178,3 +178,38 @@ def get_gdp(request):
 
 def acc_name(request, acc_name):
     return render(request, 'sheets/account.html', {'acc_name':acc_name})
+
+def get_gdp_share(request):
+    pass
+
+
+def get_gva_shares(request):
+    en = models.EntityName.objects.filter(name__contains="gva at basic prices")
+    e = [x.entity for x in en]
+
+    feats = [x.parent_feature for x in e if x]
+
+
+
+    feature_dict = [
+
+    ]
+
+    for feat in feats:
+        if feat:
+            fdict = {
+                "id": feat.id,
+                "name": feat.english_name(),
+            }
+            farrs = models.FeatureRow.objects.filter(entity__in=e, feature=feat)
+            values = {f.type.english_name(): f.values for f in farrs}
+            fdict['values'] = values
+
+            feature_dict.append(fdict)
+
+    print(feature_dict)
+    return JsonResponse(feature_dict, safe=False)
+
+
+def get_gva_shares_with_feat_id(request, feat_id):
+    pass
