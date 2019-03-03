@@ -18,7 +18,8 @@ if (agg_name === 'gva') {
        data: {},
        dataType: 'json',
        success: function (JSONdata) {
-           buildTimeSeriesChart('chart-agg-container-timeSeries', JSONdata, 'gva');
+            buildTimeSeriesChart('chart-agg-container-timeSeries', JSONdata, 'gva');
+            buildPieChart('chart-agg-container-pie1', JSONdata, 'gva');
        }
     });
 }

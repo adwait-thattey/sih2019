@@ -49,12 +49,9 @@ function buildTimeSeriesChart(htmlId, JSONdata, type) {
         types = ['current', 'constant'];
     }
     if (type === 'gva') {
-        childArr = [];
-
-        for (var indyGva of JSONdata) {
-            console.log(indyGva);
-        }
-
+        twoChildAttr = [JSONdata[11].values.current, JSONdata[11].values.constant];
+        text = 'Total Current and constant GVA Values';
+        types = ['current', 'constant'];
     }
     if (type === 'nva at basic prices') {
         twoChildAttr = [JSONdata[type].current, JSONdata[type].constant];
@@ -131,8 +128,19 @@ function buildTimeSeriesChart(htmlId, JSONdata, type) {
 
 
 
-function buildPieChart(htmlId, data) {
+function buildPieChart(htmlId, JSONdata, type) {
 
+    if (type === 'gva') {
+        var data = [];
+        for (var i = 0; i < 11; i++) {
+            var object = {
+                name: JSONdata[i].name,
+                y: JSONdata[i].values.constant[4]
+            }
+            data.push(object);
+        }
+        var text = 'Distribution of Constant GVA value for 2015'
+    }
 
     Highcharts.chart(htmlId, {
         chart: {
@@ -142,7 +150,7 @@ function buildPieChart(htmlId, data) {
             type: 'pie'
         },
         title: {
-            text: 'Current and constant GVA Values'
+            text: text
         },
         subtitle: {
             text: 'Source: mospi.gov.in'
@@ -163,27 +171,7 @@ function buildPieChart(htmlId, data) {
         series: [{
             name: 'Brands',
             colorByPoint: true,
-            data: [{
-                name: '2011',
-                y: 61.41,
-                sliced: true,
-                selected: true
-            }, {
-                name: '2012',
-                y: 11.84
-            }, {
-                name: '2013',
-                y: 10.85
-            }, {
-                name: '2014',
-                y: 4.67
-            }, {
-                name: '2015',
-                y: 4.18
-            }, {
-                name: '2016',
-                y: 7.05
-            }]
+            data: data
         }]
     });
 
