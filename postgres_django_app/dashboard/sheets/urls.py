@@ -16,5 +16,5 @@ urlpatterns = [
     path('get_gdp/', views.get_gdp, name="get_gdp"),
     path('get_gva_shares/', views.get_gva_shares, name="get_gva_shares"),
     path('consumption_share/', views.consumption_share, name="consumption_share"),
-    path('get_consumption_share', views.get_consumption_share, name="get_consumption_share"),
+    path('get_consumption_share/', views.get_consumption_share, name="get_consumption_share"),
 ]

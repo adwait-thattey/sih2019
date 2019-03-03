@@ -97,8 +97,6 @@ def find_entity_by_english_name(entity_name):
         return None
 
 
-
-
 def parse_feature(db_sheet, db_type_obj_dict, feat_entity, db_parent_feature):
     # print("parent feature:", db_parent_feature)
 
@@ -111,7 +109,7 @@ def parse_feature(db_sheet, db_type_obj_dict, feat_entity, db_parent_feature):
     print(possible_feat)
     if possible_feat:
         if possible_feat.parent_feature != db_parent_feature:
-            print("error - ", possible_feat,"-" ,  possible_feat.parent_feature, "-", db_parent_feature)
+            print("error - ", possible_feat, "-", possible_feat.parent_feature, "-", db_parent_feature)
             raise AssertionError("Feature: Existing parent not same as incoming parent!")
 
         db_feature = possible_feat
@@ -129,8 +127,8 @@ def parse_feature(db_sheet, db_type_obj_dict, feat_entity, db_parent_feature):
 
     return db_feature
 
-def parse_entity(db_sheet, db_type_obj_dict, feat_entity, db_parent_feature, db_parent_entity):
 
+def parse_entity(db_sheet, db_type_obj_dict, feat_entity, db_parent_feature, db_parent_entity):
     db_entity = models.Entity()
     if db_parent_entity:
         db_entity.parent_entity = db_parent_entity
@@ -146,6 +144,7 @@ def parse_entity(db_sheet, db_type_obj_dict, feat_entity, db_parent_feature, db_
     parse_entity_names(feat_entity, db_entity)
 
     return db_entity
+
 
 def parse_feature_entity_values(feat_entity, db_feat_entity, db_parent_entity, db_parent_feature, db_type_obj_dict):
     for tp in feat_entity.values:
@@ -172,8 +171,6 @@ def parse_feature_entity_values(feat_entity, db_feat_entity, db_parent_entity, d
                                              )
 
 
-
-
 def parse_feature_or_entity(db_sheet, db_type_object_entity, feat_entity, last_feature, last_entity):
     # print(feat_entity, feat_entity.subfeatures)
     feat_flag = False
@@ -189,7 +186,7 @@ def parse_feature_or_entity(db_sheet, db_type_object_entity, feat_entity, last_f
     print("flag", feat_flag)
     # print(feat_entity.subfeatures)
 
-    parse_feature_entity_values(feat_entity, new_feat_ent,last_entity, last_feature,db_type_object_entity)
+    parse_feature_entity_values(feat_entity, new_feat_ent, last_entity, last_feature, db_type_object_entity)
     for sub_feat_ent in feat_entity.subfeatures:
         if feat_flag:
 
@@ -201,7 +198,7 @@ def parse_feature_or_entity(db_sheet, db_type_object_entity, feat_entity, last_f
 
 def parse_sheet_to_db(sheet_path, meta_file_path, category):
     sheet = parse_sheet_to_object(sheet_path)
-    db_sheet = models.Sheet(category=category, file_loc=sheet_path)
+    db_sheet = models.Sheet(category=category, file_loc=sheet_path, meta_file_loc=meta_file_path)
     db_sheet.save()
     for lang in sheet.names:
         lang_obj = check_and_create_lang_object(lang)
@@ -301,7 +298,7 @@ def get_feature_python_object(db_feature, db_language, depth):
     # print(values_dict)
 
     return_dict = {
-        "id":db_feature.id,
+        "id": db_feature.id,
         "name": name,
         "start_year": db_feature.start_year,
         "values": values_dict,
