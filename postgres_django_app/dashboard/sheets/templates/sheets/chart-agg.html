@@ -9,7 +9,7 @@
     <section class="charts gva-charts page" id="gva">
 
         <div class="chart-heading">
-            <h2 style="display:block;" class="agg-name-value">GVA</h2>
+            <h2 style="display:block;color: black;font-weight: 600;" class="agg-name-value">{{ agg_name|upper }}</h2>
             <div class="underline">&nbsp;</div>
         </div>
 
@@ -20,14 +20,12 @@
 
                 <!--Trigger-->
                 <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown"
-                        aria-haspopup="true" aria-expanded="false">Select Activities
+                        aria-haspopup="true" aria-expanded="false">Select Sectors
                 </button>
 
 
                 <!--Menu-->
-                <div class="dropdown-menu dropdown-primary">
-                    <a class="dropdown-item agg-name-indy" href="{% url 'sheets:agg_name_deep' agg_name 'agriculture' %}">Agriculture</a>
-                </div>
+                <!---->
             </div>
             <!--/Dropdown primary-->
         </div>
@@ -61,8 +59,8 @@
 
 
             <div class="row chart-all">
-                <div class="col-md-8" id="graph-container-timeSeries"></div>
-                <div class="col-md-4" id="graph-container-pie1"></div>
+                <div class="col-md-8" id="chart-agg-container-timeSeries"></div>
+                <div class="col-md-4" id="chart-agg-container-pie1"></div>
             </div>
 
         <!--<div class="card">-->
@@ -73,8 +71,8 @@
         <!--</div>-->
 
             <div class="row chart-all">
-                <div class="col-md-4" id="graph-container-pie2"></div>
-                <div class="col-md-8" id="graph-container-db1"></div>
+                <div class="col-md-4" id="chart-agg-container-pie2"></div>
+                <div class="col-md-8" id="chart-agg-container-db1"></div>
             </div>
 
         </div>

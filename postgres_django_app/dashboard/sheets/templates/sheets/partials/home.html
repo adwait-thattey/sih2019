@@ -138,9 +138,6 @@ $('.mdb-select').materialSelect();
 
     <script src="{% static 'sheets/js/highcharts.js' %}"></script>
 
-    <script>
-        var agg_name = {{ agg_name  }};
-    </script>
 
     <script src="{% static 'sheets/js/custom-chart.js' %}"></script>
     <script src="{% static 'sheets/js/option.js' %}"></script>
@@ -271,7 +268,7 @@ $('.mdb-select').materialSelect();
         <div class="text-white text-center d-flex align-items-center rgba-black-strong py-5 px-4 rounded">
           <div>
             <h3 class="py-3 font-weight-bold">
-              <strong><a href="{% url 'sheets:agriculture_view' %}">Agriculture</a> </strong>
+              <strong><a href="{% url 'sheets:acc_name' 'agriculture'  %}">Agriculture</a> </strong>
             </h3>
             <a class="btn btn-secondary btn-rounded btn-md"><i class="fa fa-clone left"></i> Explore</a>
           </div>

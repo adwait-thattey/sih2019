@@ -37,20 +37,25 @@ function getYears(data, property) {
 // buildDualChart('gva-container-db1');
 //
 
-function buildTimeSeriesChart(htmlId, data, type) {
+function buildTimeSeriesChart(htmlId, JSONdata, type) {
 
     var twoChildAttr = [];
     var text;
     var types = [];
 
     if (type === 'gva at basic prices') {
-        twoChildAttr = [data[type].current, data[type].constant];
+        twoChildAttr = [JSONdata[type].current, JSONdata[type].constant];
         text = 'Current and constant GVA Values';
         types = ['current', 'constant'];
     }
     if (type === 'nva at basic prices') {
-        twoChildAttr = [data[type].current, data[type].constant];
+        twoChildAttr = [JSONdata[type].current, JSONdata[type].constant];
         text = 'Current and constant NVA Values';
+        types = ['current', 'constant'];
+    }
+    if (type === 'gdp') {
+        twoChildAttr = [JSONdata.values.current, JSONdata.values.constant];
+        text = 'Current and constant GDP Values';
         types = ['current', 'constant'];
     }
     if (type === 'indices') {
@@ -86,7 +91,7 @@ function buildTimeSeriesChart(htmlId, data, type) {
                 label: {
                     connectorAllowed: false
                 },
-                pointStart: data[type].start_year
+                pointStart: JSONdata.start_year
             }
         },
 

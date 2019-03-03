@@ -158,4 +158,23 @@ def agg_name(request, agg_name):
 
 
 def agg_name_deep(request, agg_name, activity_name):
-    return render(request, 'sheets//aggregate-deep.html', {'agg_name':agg_name, 'activity_name':activity_name})
+    return render(request, 'sheets/aggregate-deep.html', {'agg_name':agg_name, 'activity_name':activity_name})
+
+def get_gdp(request):
+    gdp = models.EntityName.objects.filter(name="gdp")
+
+    par = models.EntityName.objects.filter(name='percentage change over previous year')
+    par = [x.entity for x in par]
+
+    gdp = gdp.filter(entity__parent_entity__in=par)[0].entity
+
+    fr = gdp.featurerow_set.all()
+
+    return JsonResponse({
+        "name": "GDP",
+        "start_year": fr[0].start_year,
+        "values": {tp.english_name(): fr.filter(type=tp)[0].values for tp in [f.type for f in fr]}
+    })
+
+def acc_name(request, acc_name):
+    return render(request, 'sheets/account.html', {'acc_name':acc_name})

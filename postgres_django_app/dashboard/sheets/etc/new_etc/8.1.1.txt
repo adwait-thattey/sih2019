@@ -1,0 +1,12 @@
+name:
+STATEMENT 8.1.1: OUTPUT & VALUE ADDED FROM CROP SECTOR
+1.1: राष्‍ट्रीय लेखा के प्रमुख समाहार
+-----------------------------------------------------------------
+current,
+constant,
+---------------
+entity:
+none
+--------------
+unit:
+crore,करोड़

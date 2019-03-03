@@ -1,0 +1,14 @@
+name:
+1.1: Net Value Added by economic activity
+1.1: राष्‍ट्रीय लेखा के प्रमुख समाहार
+-----------------------------------------------------------------
+types:
+current,
+constant
+---------------
+entity:
+consumption of fixed capital by economic activity
+--------------
+unit:
+crore,करोड़
+ 

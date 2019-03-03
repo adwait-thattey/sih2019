@@ -5,24 +5,8 @@ import os.path
 
 # Create your models here.
 
-FEATURE_LIST = ['derived from national accounts (implicit)',
-                'gva at basic prices',
-                'directly available',
-                'output',
-                'intermediate consumption',
-                'gva at basic prices',
-                'cfc',
-                'nva at basic prices',
-                'ce',
-                'os/mi',
-                'production taxes less production subsidies',
-                'gross capital formation',
-                'gva to output ratio',
-                'gcf to output ratio',
-                'total gva at basic prices',
-                'gva by economic activity',
-                'percentage share of gva by economic activity'
-                ]
+FEATURE_LIST = ['final expenditure', 'export of services', 'gross value added', 'gcf to gdp', 'cis', 'ce', 'gcf  excluding valuables to gdp', 'import of services.1', 'gva by economic activity', 'gcf', 'net value added', 'intermediate consumption', 'percentage share of gva by economic activity', 'export of goods', 'pfce', 'gfce.1', 'gdp.1', 'gva to output ratio', 'total gva at basic prices', 'input', 'directly available', 'fisim', 'valuables', 'percentage change over previous year', 'gva at basic prices', 'gva at basic prices', 'primary income receivable from row (net)', 'gva at basic prices.1', 'nndi(18-5)', 'gfcf', 'discrepancies', 'nva at basic prices', 'rates', 'gross capital formation', 'nni (15-5)', 'cfc', 'valuables', 'gfcf', 'domestic product', 'gdp (1+2-3)', 'export of goods and services', 'production taxes less production subsidies', 'gcf to output ratio', 'other current transfers (net) from row', 'export of goods.1', 'discrepancies.1', 'cfc', 'nva by economic activity', 'pfce.1', 'ndp(4-5)', 'gross saving', 'gdp', 'total nva at basic prices', 'rates of expenditure components to gdp', 'less import of goods and services', 'derived from national accounts (implicit)', 'import of goods', 'gfce', 'gni(13+14)', 'exports of goods and services', 'gndi(15+17)', 'net saving', 'export of services.1', 'taxes on products including import duties', 'cis', 'less imports of goods and services', 'value of output', 'os/mi', 'import of goods.1', 'import of services', 'less subsidies on products', 'output', 'gross saving to gndi', 'pfce to nni']
+
 
 
 def get_sheet_upload_path(instance, filename):
@@ -68,17 +52,20 @@ class Sheet(models.Model):
         else:
             return f'Category Unnamed'
 
+    def english_name(self):
+        return self.sheetname_set.filter(language__name="english")[0].name
+
+
 class SheetName(models.Model):
     sheet = models.ForeignKey(to=Sheet, on_delete=models.CASCADE, null=True, blank=True)
     language = models.ForeignKey(to=Language, on_delete=models.PROTECT)
     name = models.CharField(max_length=200)
 
     def save(self, *args, **kwargs):
-        if self.language.name=="english":
+        if self.language.name == "english":
             self.name = self.name.lower()
 
         super().save(*args, **kwargs)
-
 
 
 class Feature(models.Model):
@@ -104,6 +91,9 @@ class Feature(models.Model):
             return eng_name[0].name
         else:
             return f'Category Unnamed'
+
+    def english_name(self):
+        return self.featurename_set.filter(language__name="english")[0].name
 
 
 class FeatureName(models.Model):
@@ -145,6 +135,9 @@ class Entity(models.Model):
         else:
             return f'Category Unnamed'
 
+    def english_name(self):
+        return self.entity_set.filter(language__name="english")[0].name
+
 
 class EntityName(models.Model):
     entity = models.ForeignKey(to=Entity, on_delete=models.CASCADE)
@@ -171,14 +164,17 @@ class Type(models.Model):
         else:
             return f'Type Unnamed'
 
+    def english_name(self):
+        return self.typename_set.filter(language__name="english")[0].name
+
+
 class TypeName(models.Model):
     type = models.ForeignKey(to=Type, on_delete=models.CASCADE)
     language = models.ForeignKey(to=Language, on_delete=models.PROTECT)
     name = models.CharField(max_length=200)
 
     def save(self, *args, **kwargs):
-
-        if self.language.name=="english":
+        if self.language.name == "english":
             self.name = self.name.lower()
         super().save(*args, **kwargs)
 
@@ -203,6 +199,7 @@ class FeatureRow(models.Model):
             fr.save()
             print("Integrity error. Duplicate entry.", self.type, self.entity, self.feature)
 
+
 class Cell(models.Model):
     feature = models.ForeignKey(to=Feature, on_delete=models.CASCADE)
     type = models.ForeignKey(to=Type, on_delete=models.PROTECT)
@@ -212,3 +209,14 @@ class Cell(models.Model):
 
     class Meta:
         ordering = ['feature', 'start_year', 'end_year']
+
+
+
+MAIN_ATTRIBUTE_MAPPING = {
+    "gva":"total gva at basic prices",
+    "gdp":" ",
+    "gfcf":"",
+    "gcf":"",
+    "ncs":"",
+    "nva":"",
+}

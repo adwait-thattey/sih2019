@@ -1,13 +1,12 @@
-$.ajax({
-    type: 'GET',
-    url: chartUrl,
+if(agg_name === 'gdp') {
+    $.ajax({
+        type: 'GET',
+        url: gdpUrl,
 
-    data: {
-
-    },
-    dataType: 'json',
-    success: function (data) {
-        console.log('hello');
-    }
-
-});
+        data: {},
+        dataType: 'json',
+        success: function (JSONdata) {
+            buildTimeSeriesChart('chart-agg-container-timeSeries', JSONdata, 'gdp');
+        }
+    });
+}
