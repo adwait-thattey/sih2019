@@ -158,8 +158,6 @@ def get_gva_shares(request):
 
     feats = [x.parent_feature for x in e if x]
 
-
-
     feature_dict = [
 
     ]
@@ -181,4 +179,28 @@ def get_gva_shares(request):
 
 
 def get_gva_shares_with_feat_id(request, feat_id):
-    pass
+    en = models.EntityName.objects.filter(name__contains="gva by economic activity")
+    e = [x.entity for x in en]
+
+    incoming_feat = get_object_or_404(models.Feature, id=feat_id)
+
+    feats = incoming_feat.feature_set.all()
+
+    feature_dict = [
+
+    ]
+
+    for feat in feats:
+        if feat:
+            fdict = {
+                "id": feat.id,
+                "name": feat.english_name(),
+            }
+            farrs = models.FeatureRow.objects.filter(entity__in=e, feature=feat)
+            values = {f.type.english_name(): f.values for f in farrs}
+            fdict['values'] = values
+
+            feature_dict.append(fdict)
+
+    print(feature_dict)
+    return JsonResponse(feature_dict, safe=False)
