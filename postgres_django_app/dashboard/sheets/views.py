@@ -66,7 +66,7 @@ def gva_view(request):
     return render()
 
 
-def get_gva():
+def get_gva(request):
     cat_name = models.CategoryName.objects.filter(name="Economic Activities")
     cat = cat_name[0].category
 
@@ -89,7 +89,7 @@ def get_gva():
         } for x in frr
     ]
 
-    return JsonResponse(ret_list)
+    return JsonResponse(ret_list, safe=False)
 
 
 def get_gva_timeseries():
@@ -99,7 +99,7 @@ def get_gva_timeseries():
 
     frr = gva.featurerow_set.all()[1]
 
-    return JsonResponse(frr)
+    return JsonResponse(frr, safe=False)
 
 
 def get_feature(request):
@@ -130,7 +130,7 @@ def get_feature_name_tree(request):
 
     obj = utils.get_feature_tree_python_object(sheet, lang)
 
-    return JsonResponse(obj, safe=False)
+    return JsonResponse(obj, safe=False )
 
 
 def get_complete_tree_by_category(request):
@@ -151,3 +151,11 @@ def get_feature_search_list(request):
     obj = utils.get_sheet_feature_names_list_with_parent(sheet, lang)
 
     return JsonResponse(obj, safe=False)
+
+
+def agg_name(request, agg_name):
+    return render(request, 'sheets/aggregate.html', {'agg_name':agg_name})
+
+
+def agg_name_deep(request, agg_name, activity_name):
+    return render(request, 'sheets//aggregate-deep.html', {'agg_name':agg_name, 'activity_name':activity_name})

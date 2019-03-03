@@ -23,7 +23,7 @@ $.ajax({
         // For NVA
         buildTimeSeriesChart(idList[1][0], data, 'nva at basic prices');
         // buildPieChart(idList[1][1], data, 'cfc');
-        // buildPieChart(idList[1][2], data, 'ce');
+        buildPieChart(idList[1][2], data, 'ce');
         buildDualChart(idList[1][3], data, 'nva at basic prices');
 
 
@@ -38,5 +38,28 @@ $.ajax({
 });
 
 
+$.ajax({
+    type: 'GET',
+    url: agri_url2,
+    data: {
+        // sheet: 22,
+        // language: 'english',
+        // csrfmiddlewaretoken: csrfToken
+    },
+    dataType: 'json',
+    success: function (data) {
+        buildTimeSeriesChart(idList[0][0], data, 'gva at basic prices');
 
-console.log('test');
+
+        console.log(data);
+
+        // For indices
+        // buildTimeSeriesChart(idList[2][0], data, "indices")
+        // buildDualChart(idList[2][1], data, "indices")
+    },
+    error: function (e) {
+        console.log(e);
+    }
+});
+
+

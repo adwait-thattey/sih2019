@@ -251,8 +251,6 @@ function buildLineChart(htmlId) {
 function buildDualChart(htmlId, data, type) {
 
     var twoChildAttr = [];
-    console.log(data);
-    console.log('data');
     if (type === 'gva at basic prices') {
         twoChildAttr = [data[type].current, data[type].constant];
     }

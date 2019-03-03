@@ -138,6 +138,10 @@ $('.mdb-select').materialSelect();
 
     <script src="{% static 'sheets/js/highcharts.js' %}"></script>
 
+    <script>
+        var agg_name = {{ agg_name  }};
+    </script>
+
     <script src="{% static 'sheets/js/custom-chart.js' %}"></script>
     <script src="{% static 'sheets/js/option.js' %}"></script>
 </head>
@@ -164,7 +168,8 @@ $('.mdb-select').materialSelect();
             <h3 class="py-3 font-weight-bold">
               <strong>Gross Value Added (GVA)</strong>
             </h3>
-            <a class="btn btn-secondary btn-rounded btn-md" href="{% url 'sheets:agriculture_view' %}"><i class="fa fa-clone left"></i> Explore</a>
+            <a class="btn btn-secondary btn-rounded btn-md"
+               href="{% url 'sheets:agg_name' 'gva' %}"><i class="fa fa-clone left"></i> Explore</a>
           </div>
         </div>
       </div>
@@ -177,7 +182,8 @@ $('.mdb-select').materialSelect();
             <h3 class="py-3 font-weight-bold">
               <strong>Gross Domestic Product (GDP)</strong>
             </h3>
-            <a class="btn btn-secondary btn-rounded btn-md"><i class="fa fa-clone left"></i> Explore</a>
+            <a class="btn btn-secondary btn-rounded btn-md"
+                href="{% url 'sheets:agg_name' 'gdp' %}"><i class="fa fa-clone left"></i> Explore</a>
           </div>
         </div>
       </div>
@@ -190,7 +196,9 @@ $('.mdb-select').materialSelect();
             <h3 class="py-3 font-weight-bold ">
               <strong style="text-align: center;">Gross fixed capital formation</strong>
             </h3>
-            <a class="btn btn-secondary btn-rounded btn-md"><i class="fa fa-clone left"></i> Explore</a>
+            <a class="btn btn-secondary btn-rounded btn-md"
+                href="{% url 'sheets:agg_name' 'gfcf' %}"><i class="fa fa-clone left"></i> Explore
+            </a>
           </div>
         </div>
       </div>
@@ -206,9 +214,10 @@ $('.mdb-select').materialSelect();
         <div class="text-white text-center d-flex align-items-center rgba-black-strong py-5 px-4 rounded">
           <div>
             <h3 class="py-3 font-weight-bold">
-              <strong>GFC</strong>
+              <strong>GCF</strong>
             </h3>
-            <a class="btn btn-secondary btn-rounded btn-md"><i class="fa fa-clone left"></i> Explore</a>
+            <a class="btn btn-secondary btn-rounded btn-md"
+                href="{% url 'sheets:agg_name' 'gcf' %}"><i class="fa fa-clone left"></i> Explore</a>
           </div>
         </div>
       </div>
@@ -221,7 +230,8 @@ $('.mdb-select').materialSelect();
             <h3 class="py-3 font-weight-bold">
               <strong>NCS</strong>
             </h3>
-            <a class="btn btn-secondary btn-rounded btn-md"><i class="fa fa-clone left"></i> Explore</a>
+            <a class="btn btn-secondary btn-rounded btn-md"
+                href="{% url 'sheets:agg_name' 'ncs' %}"><i class="fa fa-clone left"></i> Explore</a>
           </div>
         </div>
       </div>
@@ -234,7 +244,9 @@ $('.mdb-select').materialSelect();
             <h3 class="py-3 font-weight-bold text-center">
               <strong style="text-align: center;">Net Value Added</strong>
             </h3>
-            <a class="btn btn-secondary btn-rounded btn-md"><i class="fa fa-clone left"></i> Explore</a>
+            <a class="btn btn-secondary btn-rounded btn-md"
+                href="{% url 'sheets:agg_name' 'nva' %}"><i class="fa fa-clone left"></i> Explore
+            </a>
           </div>
         </div>
       </div>
@@ -259,7 +271,7 @@ $('.mdb-select').materialSelect();
         <div class="text-white text-center d-flex align-items-center rgba-black-strong py-5 px-4 rounded">
           <div>
             <h3 class="py-3 font-weight-bold">
-              <strong a href=''>Agriculture </strong>
+              <strong><a href="{% url 'sheets:agriculture_view' %}">Agriculture</a> </strong>
             </h3>
             <a class="btn btn-secondary btn-rounded btn-md"><i class="fa fa-clone left"></i> Explore</a>
           </div>

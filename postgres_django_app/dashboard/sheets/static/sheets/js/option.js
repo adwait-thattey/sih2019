@@ -423,13 +423,10 @@ function plotData(data, idList) {
             // For indices
             buildTimeSeriesChart(idList[2][0], JSONdata, "indices")
             buildDualChart(idList[2][1], JSONdata, "indices")
-}
-//          var selectedUl = document.querySelector('.level-1');
+        },
+   }
+)};
 
-//        }
-
-//    });
-//}
 
 
 var idList = [
@@ -453,3 +450,33 @@ document.addEventListener('DOMContentLoaded', function () {
 }, false);
 
 
+if (agg_name === 'gdp') {
+    $.ajax({
+       type: 'GET',
+       url: nameUrl,
+       data: {
+           sheet: 22,
+           language: 'english',
+       },
+       dataType: 'json',
+       success: function (data) {
+            var JSONdata = data;
+
+            // For GVA
+            buildTimeSeriesChart(idList[0][0], JSONdata, 'GVA');
+            //buildPieChart(htmlId[1], JSONdata);
+            //buildPieChart(htmlId[2], JSONdata);
+            buildDualChart(idList[0][3], JSONdata, 'GVA');
+
+
+            // For NVA
+            buildTimeSeriesChart(idList[1][0], JSONdata, 'NVA');
+            buildDualChart(idList[1][3], JSONdata, 'NVA');
+
+
+            // For indices
+            buildTimeSeriesChart(idList[2][0], JSONdata, "indices")
+            buildDualChart(idList[2][1], JSONdata, "indices")
+        },
+   }
+}
