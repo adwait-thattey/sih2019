@@ -44,6 +44,7 @@ class CategoryName(models.Model):
 class Sheet(models.Model):
     category = models.ForeignKey(to=Category, on_delete=models.CASCADE)
     file_loc = models.FileField(upload_to=get_sheet_upload_path, max_length=1000)
+    meta_file_loc = models.FileField(upload_to=get_sheet_upload_path, max_length=10000)
 
     def __str__(self):
         eng_name = self.sheetname_set.filter(language__name="english")
