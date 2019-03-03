@@ -59,9 +59,47 @@ def get_agriculture_data(request):
 
 
 def get_agriculture_data_view(request):
-
     return render(request, 'sheets/activity.html')
 
+
+def gva_view(request):
+    return render()
+
+
+def get_gva():
+    cat_name = models.CategoryName.objects.filter(name="Economic Activities")
+    cat = cat_name[0].category
+
+    gva_name_object = models.EntityName.objects.filter(name='gva at basic prices')
+    basic_gva_list = [x.entity for x in gva_name_object]
+
+    features = [x.parent_feature for x in basic_gva_list if x.parent_feature]
+
+    print(features)
+    types = [x.type for x in models.TypeName.objects.filter(name="Current")]
+    print(types)
+    frr = models.FeatureRow.objects.filter(entity__in=basic_gva_list, feature__in=features, type__in=types)
+
+    print(frr)
+    ret_list = [
+        {
+            "id": x.id,
+            "feature": x.feature.featurename_set.filter(language__name="english")[0].name,
+            "values": x.values
+        } for x in frr
+    ]
+
+    return JsonResponse(ret_list)
+
+
+def get_gva_timeseries():
+    gva = models.EntityName.objects.filter(name='total gva at basic prices')
+    gva = [x.entity for x in gva]
+    gva = gva[0]
+
+    frr = gva.featurerow_set.all()[1]
+
+    return JsonResponse(frr)
 
 
 def get_feature(request):
