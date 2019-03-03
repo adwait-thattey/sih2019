@@ -1,126 +1,347 @@
-$.getJSON(
-    'https://cdn.jsdelivr.net/gh/highcharts/highcharts@v7.0.0/samples/data/usdeur.json',
-    function (data) {
+// // Function to get the start to End Year
 
-        Highcharts.chart('container', {
-            chart: {
-                zoomType: 'x'
-            },
-            title: {
-                text: 'USD to EUR exchange rate over time'
-            },
-            subtitle: {
-                text: document.ontouchstart === undefined ?
-                    'Click and drag in the plot area to zoom in' : 'Pinch the chart to zoom in'
-            },
-            xAxis: {
-                type: 'datetime'
-            },
-            yAxis: {
-                title: {
-                    text: 'Exchange rate'
-                }
-            },
-            legend: {
-                enabled: false
-            },
-            plotOptions: {
-                area: {
-                    fillColor: {
-                        linearGradient: {
-                            x1: 0,
-                            y1: 0,
-                            x2: 0,
-                            y2: 1
-                        },
-                        stops: [
-                            [0, Highcharts.getOptions().colors[0]],
-                            [1, Highcharts.Color(Highcharts.getOptions().colors[0]).setOpacity(0).get('rgba')]
-                        ]
-                    },
-                    marker: {
-                        radius: 2
-                    },
-                    lineWidth: 1,
-                    states: {
-                        hover: {
-                            lineWidth: 1
-                        }
-                    },
-                    threshold: null
-                }
-            },
+// // Returns an array like ['2012-13','2013-14'..'2017-18']
+function getYears(data, property) {
 
-            series: [{
-                type: 'area',
-                name: 'USD to EUR',
-                data: data
-            }]
-        });
+    var yearList = [];
+
+    var startingYear = data[property];
+
+
+
+    return yearList;
+}
+//
+//
+// function getSeriesData(graphDataValues) {
+//     var seriesData = []; // New data everytime
+//
+//     for (row of graphDataValues) {
+//
+//         // Filling the data
+//         var seriesElement = {
+//             name: row.name,
+//             // TEMPORARY SELECTED CURRENT
+//             data: row.values.current,
+//         };
+//         seriesData.push(seriesElement);
+//     }
+//     return seriesData;
+// }
+
+
+
+//
+// buildTimeSeriesChart('gva-container-timeSeries1');
+// buildPieChart('gva-container-pie1');
+// buildDualChart('gva-container-db1');
+//
+
+function buildTimeSeriesChart(htmlId, data, type) {
+
+    var twoChildAttr = [];
+    var text;
+    var types = [];
+
+    if (type === 'GVA') {
+        twoChildAttr = [data[type].current, data[type].constant];
+        text = 'Current and constant GVA Values';
+        types = ['current', 'constant'];
     }
-);
-
-
-$.getJSON(
-    'https://cdn.jsdelivr.net/gh/highcharts/highcharts@v7.0.0/samples/data/usdeur.json',
-    function (data) {
-
-        Highcharts.chart('container1', {
-            chart: {
-                zoomType: 'x'
-            },
-            title: {
-                text: 'USD to EUR exchange rate over time'
-            },
-            subtitle: {
-                text: document.ontouchstart === undefined ?
-                    'Click and drag in the plot area to zoom in' : 'Pinch the chart to zoom in'
-            },
-            xAxis: {
-                type: 'datetime'
-            },
-            yAxis: {
-                title: {
-                    text: 'Exchange rate'
-                }
-            },
-            legend: {
-                enabled: false
-            },
-            plotOptions: {
-                area: {
-                    fillColor: {
-                        linearGradient: {
-                            x1: 0,
-                            y1: 0,
-                            x2: 0,
-                            y2: 1
-                        },
-                        stops: [
-                            [0, Highcharts.getOptions().colors[0]],
-                            [1, Highcharts.Color(Highcharts.getOptions().colors[0]).setOpacity(0).get('rgba')]
-                        ]
-                    },
-                    marker: {
-                        radius: 2
-                    },
-                    lineWidth: 1,
-                    states: {
-                        hover: {
-                            lineWidth: 1
-                        }
-                    },
-                    threshold: null
-                }
-            },
-
-            series: [{
-                type: 'area',
-                name: 'USD to EUR',
-                data: data
-            }]
-        });
+    if (type === 'NVA') {
+        twoChildAttr = [data[type].current, data[type].constant];
+        text = 'Current and constant GVA Values';
+        types = ['current', 'constant'];
     }
-);
+    if (type === 'indices') {
+        twoChildAttr = [data[type].price, data[type].quantum];
+        text = 'Price and Quantum GVA Values';
+        types = ['price', 'quantum'];
+    }
+
+
+    Highcharts.chart(htmlId, {
+
+        title: {
+            text: text
+        },
+
+        subtitle: {
+            text: 'Source: mospi.gov.in'
+        },
+
+        yAxis: {
+            title: {
+                text: 'Current And Constant Values'
+            }
+        },
+        legend: {
+            layout: 'vertical',
+            align: 'right',
+            verticalAlign: 'middle'
+        },
+
+        plotOptions: {
+            series: {
+                label: {
+                    connectorAllowed: false
+                },
+                pointStart: data[type].start_year
+            }
+        },
+
+        series: [{
+            name: types[0],
+            data: twoChildAttr[0]
+        }, {
+            name: types[1],
+            data: twoChildAttr[1]
+        }],
+
+        responsive: {
+            rules: [{
+                condition: {
+                    maxWidth: 500
+                },
+                chartOptions: {
+                    legend: {
+                        layout: 'horizontal',
+                        align: 'center',
+                        verticalAlign: 'bottom'
+                    }
+                }
+            }]
+        }
+
+    });
+}
+
+
+
+function buildPieChart(htmlId, data) {
+
+
+    Highcharts.chart(htmlId, {
+        chart: {
+            plotBackgroundColor: null,
+            plotBorderWidth: null,
+            plotShadow: false,
+            type: 'pie'
+        },
+        title: {
+            text: 'Current and constant GVA Values'
+        },
+        subtitle: {
+            text: 'Source: mospi.gov.in'
+        },
+        tooltip: {
+            pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+        },
+        plotOptions: {
+            pie: {
+                allowPointSelect: true,
+                cursor: 'pointer',
+                dataLabels: {
+                    enabled: false
+                },
+                showInLegend: true
+            }
+        },
+        series: [{
+            name: 'Brands',
+            colorByPoint: true,
+            data: [{
+                name: '2011',
+                y: 61.41,
+                sliced: true,
+                selected: true
+            }, {
+                name: '2012',
+                y: 11.84
+            }, {
+                name: '2013',
+                y: 10.85
+            }, {
+                name: '2014',
+                y: 4.67
+            }, {
+                name: '2015',
+                y: 4.18
+            }, {
+                name: '2016',
+                y: 7.05
+            }]
+        }]
+    });
+
+}
+
+function buildLineChart(htmlId) {
+
+    var twoChildAttr = [];
+
+    if (type === 'GVA') {
+        twoChildAttr = [data[type].current, data[type].constant];
+    }
+    if (type === 'NVA') {
+        twoChildAttr = [data[type].current, data[type].constant];
+    }
+    if (type === 'indices') {
+        twoChildAttr = [data[type].price, data[type].quantum];
+    }
+
+    Highcharts.chart(htmlId, {
+
+        title: {
+            text: 'Current And Constant value GVA values'
+        },
+
+        subtitle: {
+            text: 'Source: mospi.gov.in'
+        },
+
+        yAxis: {
+            title: {
+                text: 'Current And Constant Values'
+            }
+        },
+        legend: {
+            layout: 'vertical',
+            align: 'right',
+            verticalAlign: 'middle'
+        },
+
+        plotOptions: {
+            series: {
+                label: {
+                    connectorAllowed: false
+                },
+                pointStart: 2010
+            }
+        },
+
+        series: [{
+            name: 'Installation',
+            data: twoChildAttr[0]
+        }, {
+            name: 'Manufacturing',
+            data: twoChildAttr[1]
+        }],
+
+        responsive: {
+            rules: [{
+                condition: {
+                    maxWidth: 500
+                },
+                chartOptions: {
+                    legend: {
+                        layout: 'horizontal',
+                        align: 'center',
+                        verticalAlign: 'bottom'
+                    }
+                }
+            }]
+        }
+
+    });
+
+};
+
+
+function buildDualChart(htmlId, data, type) {
+
+    var twoChildAttr = [];
+
+    if (type === 'GVA') {
+        twoChildAttr = [data[type].current, data[type].constant];
+    }
+    if (type === 'NVA') {
+        twoChildAttr = [data[type].current, data[type].constant];
+    }
+    if (type === 'indices') {
+        twoChildAttr = [data[type].price, data[type].quantum];
+    }
+
+
+   
+    Highcharts.chart(htmlId, {
+        chart: {
+            type: 'column',
+            options3d: {
+                enabled: true,
+                alpha: 15,
+                beta: 15,
+                viewDistance: 25,
+                depth: 40
+            }
+        },
+
+        title: {
+            text: 'Total Current And Constant Prices'
+        },
+        subtitle: {
+            text: 'Source: mospi.gov.in'
+        },
+        xAxis: {
+            categories: ['2011', '2012', '2013', '2014', '2015'],
+            labels: {
+                skew3d: true,
+                style: {
+                    fontSize: '16px'
+                }
+            }
+        },
+
+        yAxis: {
+            allowDecimals: false,
+            min: 0,
+            title: {
+                text: 'Number of fruits',
+                skew3d: true
+            }
+        },
+
+        tooltip: {
+            headerFormat: '<b>{point.key}</b><br>',
+            pointFormat: '<span style="color:{series.color}">\u25CF</span> {series.name}: {point.y} / {point.stackTotal}'
+        },
+
+        plotOptions: {
+            column: {
+                stacking: 'normal',
+                depth: 40
+            }
+        },
+
+        series: [{
+            name: 'Current',
+            data: twoChildAttr[0],
+            stack: 'male'
+        }, {
+            name: 'Constant',
+            data: twoChildAttr[1],
+            stack: 'female'
+        }]
+    });
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 

@@ -301,6 +301,7 @@ def get_feature_python_object(db_feature, db_language, depth):
     # print(values_dict)
 
     return_dict = {
+        "id":db_feature.id,
         "name": name,
         "start_year": db_feature.start_year,
         "values": values_dict,

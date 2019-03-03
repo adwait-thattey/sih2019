@@ -5,5 +5,43 @@
 
 .underline {
     border-top: 5px solid blue;
-    width: 5%;
+    width: 30px;
+}
+
+.card {
+    /*border: 1px solid #0b2e13;*/
+    margin-top: 50px;
+    background-color: rgba(100,149,237, 0.1);
+}
+
+.chart-all {
+    margin: 50px;
+}
+
+.stat-chip {
+    height: 100px;
+    background: white;
+    width: 25%;
+    margin: 25px 38px;
+}
+
+.stat-value {
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.stat-value h2 {
+    font-weight: 700;
+    letter-spacing: 2px;
+}
+
+.chart-heading h2 {
+    letter-spacing: 2px;
+}
+
+.stats {
+    margin-left:14px;
 }
