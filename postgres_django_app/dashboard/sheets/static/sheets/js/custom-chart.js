@@ -43,6 +43,7 @@ function buildTimeSeriesChart(htmlId, data, type) {
     var text;
     var types = [];
 
+
     if (type === 'GVA') {
         twoChildAttr = [data[type].current, data[type].constant];
         text = 'Current and constant GVA Values';
@@ -50,12 +51,12 @@ function buildTimeSeriesChart(htmlId, data, type) {
     }
     if (type === 'NVA') {
         twoChildAttr = [data[type].current, data[type].constant];
-        text = 'Current and constant GVA Values';
+        text = 'Current and constant NVA Values';
         types = ['current', 'constant'];
     }
     if (type === 'indices') {
         twoChildAttr = [data[type].price, data[type].quantum];
-        text = 'Price and Quantum GVA Values';
+        text = 'Price and Quantum indices Values';
         types = ['price', 'quantum'];
     }
 

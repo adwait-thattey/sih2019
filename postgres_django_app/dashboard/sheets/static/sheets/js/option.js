@@ -417,8 +417,8 @@ function plotData(data, idList) {
 
 
     // For NVA
-    buildTimeSeriesChart(idList[1][0], JSONdata, 'GVA');
-    buildDualChart(idList[1][3], JSONdata, 'GVA');
+    buildTimeSeriesChart(idList[1][0], JSONdata, 'NVA');
+    buildDualChart(idList[1][3], JSONdata, 'NVA');
 
 
     // For indices
