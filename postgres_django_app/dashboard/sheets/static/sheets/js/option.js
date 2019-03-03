@@ -397,33 +397,32 @@
 //
 
 function plotData(data, idList) {
-//    $.ajax({
-//        type: 'GET',
-//        url: nameUrl,
-//        data: {
-    // hardcoded
-//            sheet: 22,
-//            language: 'english',
-//        },
-//        dataType: 'json',
-//        success: function (data) {
-    var JSONdata = data;
+   $.ajax({
+       type: 'GET',
+       url: nameUrl,
+       data: {
+           sheet: 22,
+           language: 'english',
+       },
+       dataType: 'json',
+       success: function (data) {
+            var JSONdata = data;
 
-    // For GVA
-    buildTimeSeriesChart(idList[0][0], JSONdata, 'GVA');
-    //buildPieChart(htmlId[1], JSONdata);
-    //buildPieChart(htmlId[2], JSONdata);
-    buildDualChart(idList[0][3], JSONdata, 'GVA');
-
-
-    // For NVA
-    buildTimeSeriesChart(idList[1][0], JSONdata, 'NVA');
-    buildDualChart(idList[1][3], JSONdata, 'NVA');
+            // For GVA
+            buildTimeSeriesChart(idList[0][0], JSONdata, 'GVA');
+            //buildPieChart(htmlId[1], JSONdata);
+            //buildPieChart(htmlId[2], JSONdata);
+            buildDualChart(idList[0][3], JSONdata, 'GVA');
 
 
-    // For indices
-    buildTimeSeriesChart(idList[2][0], JSONdata, "indices")
-    buildDualChart(idList[2][1], JSONdata, "indices")
+            // For NVA
+            buildTimeSeriesChart(idList[1][0], JSONdata, 'NVA');
+            buildDualChart(idList[1][3], JSONdata, 'NVA');
+
+
+            // For indices
+            buildTimeSeriesChart(idList[2][0], JSONdata, "indices")
+            buildDualChart(idList[2][1], JSONdata, "indices")
 }
 //          var selectedUl = document.querySelector('.level-1');
 
@@ -439,54 +438,6 @@ var idList = [
     ['indices-container-timeSeries', 'indices-container-pie1', 'indices-container-pie2', 'indices-container-db1'] // Indices
 ];
 
-
-var dummyJson = {
-    id:4,
-    name: 'agriculture',
-    GVA: {
-        start_year:2012,
-        current: [4, 7, 20, 43, 17],
-        constant: [49, 34, 16, 27, 69]
-    },
-    NVA: {
-        start_year:2012,
-        current: [41, 34, 11, 30, 67],
-        constant: [37, 70, 53, 52, 94]
-    },
-    indices: {
-        start_year:2011,
-        price: [3,16,32,51,17],
-        quantum: [15,27,30,34,97]
-    },
-    subFeatures: [
-        {
-            activity_id: 3,
-            activity_name: 'crops',
-            GVA: {
-                start_year:2011,
-                current: [982151, 1088814, 1248776, 1277590, 1312189],
-                constant: [982151, 983809, 1037060, 997959, 975739]
-            },
-            NVA: {
-
-            },
-            indices: {
-                start_year: 2012,
-                price: [3, 16, 32, 51, 17],
-                quantum: [15, 27, 30, 34, 97]
-            },
-        },
-        {
-            activity_id: 5,
-            activity_name: 'livestock',
-            GVA: {
-                start_year: 2012,
-                current: [327334, 368823, 422733, 510020, 560613],
-                constant: [327334, 344375, 363558, 390436, 415949]
-            }
-        }
-    ]
-};
 
 
 document.addEventListener('DOMContentLoaded', function () {

@@ -1,6 +1,8 @@
+from sheets import models
 from sheets.objects import *
 import pandas as pd
 import math
+from sheets.models import FEATURE_LIST
 
 ROW_READ_OFFSET = 3
 
@@ -37,6 +39,7 @@ def parse_sheet_to_object(sheet_path):
     tdf = pd.read_excel(sheet_path)
     sheet = create_sheet({"english": 'statement1.1'})
 
+    # print(tdf.columns)
     year_col_idx = tdf.columns[0]
     year_col = list(tdf[year_col_idx])
     # x = tdf['Gross Saving']
@@ -50,7 +53,8 @@ def parse_sheet_to_object(sheet_path):
         col = list(tdf[idx])
 
         # get name of column
-        names = {LANGUAGE1: col[LANGUAGE1_ROW].strip(), LANGUAGE2: col[LANGUAGE2_ROW].strip()}
+        # print(col[LANGUAGE1_ROW], col[LANGUAGE2_ROW])
+        names = {LANGUAGE1: col[LANGUAGE1_ROW].strip().strip('*'), LANGUAGE2: col[LANGUAGE2_ROW].strip().strip('*')}
 
         cur_depth = len(idx.split('.'))
         if cur_depth > pre_idx_depth:
@@ -58,7 +62,11 @@ def parse_sheet_to_object(sheet_path):
         if cur_depth < pre_idx_depth:
             current_parent = current_parent.parent
 
-        feat = sheet.create_feature(names, start_year, current_parent)
+        if col[LANGUAGE1_ROW].strip().lower() in FEATURE_LIST:
+            feat = sheet.create_entity(names, start_year, current_parent)
+        else:
+            feat = sheet.create_feature(names, start_year, current_parent)
+
         last_feature = feat
         pre_idx_depth = cur_depth
         type_pos = [i for i in range(ROW_READ_OFFSET, len(col)) if col[i] and isinstance(col[i], str)]
@@ -106,17 +114,21 @@ def parse_meta_sheet(sheet_object, meta_file_path):
     lines = f.readlines()
     f.close()
 
-    split_idx = [idx for idx in range(len(lines)) if lines[idx][5:] == "-----"]
+    split_idx = [idx for idx in range(len(lines)) if lines[idx][:5] == "-----"]
 
+    # print(split_idx)
     names = lines[:split_idx[0]]
     types = lines[split_idx[0] + 1:split_idx[1]]
-    unit = lines[split_idx[1] + 1:split_idx[2]]
+    entity = lines[split_idx[1] + 1:split_idx[2]]
+    unit = lines[split_idx[2]+1:]
 
-    if names[0].lower() != "name" or types[0].lower() != "types" or unit[0].lower() != "unit":
+    print(names, types, unit)
+    if names[0].lower().strip(':\n') != "name" or types[0].lower().strip(':\n') != "types" or unit[0].lower().strip(':\n') != "unit":
         raise SyntaxError("Inconsistant format. Unable to parse meta file.")
 
     names = names[1:]
     types = types[1:]
+    entity = entity[1:]
     unit = unit[1:]
 
     if len(names) < 1 or len(unit) < 1:
@@ -135,5 +147,11 @@ def parse_meta_sheet(sheet_object, meta_file_path):
             if len(type_names) > 1:
                 possible_tp.set_language_name('hindi', type_names[1])
 
+        else:
+            new_tp = Type()
+            for ix in range(len(type_names)):
+                new_tp.set_language_name(lang_dict[ix], type_names[ix])
     u = unit[0].split(',')[0]
     sheet_object.set_unit(u)
+
+    return entity[0].lower()

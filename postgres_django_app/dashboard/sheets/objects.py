@@ -18,6 +18,80 @@ class Type:
             return f'<Type:[no english name][{id(self)}]>'
 
 
+class Entity:
+    def __init__(self, start_year=2011, ):
+        self.names = {}
+        self.start_year = 2011
+        self.values = dict()
+        self.subfeatures = list()
+        self.parent_entity = None
+        self.parent_feature = None
+        self.parent = None
+
+    def __repr__(self):
+        if 'english' in self.names:
+            return f'<Entity:{self.names["english"]}>'
+        else:
+            return f'<Entity:[no english name][{id(self)}]>'
+
+    def set_language_name(self, language, name):
+        self.names[language.lower()] = name
+
+    def set_start_year(self, start_year):
+        if not isinstance(start_year, int):
+            raise TypeError("start year must be of type int")
+        self.start_year = start_year
+
+    def set_values(self, ty, values):
+
+        if not isinstance(values, list):
+            raise TypeError("Expected values to be of type list")
+
+        self.values[ty] = values
+
+    def _set_parent(self, entity):
+        if not (isinstance(entity, Entity) or isinstance(entity, Feature)):
+            raise TypeError("The given object is not an instance of Entity object")
+
+        self.parent = entity
+
+    def add_subfeature(self, entity):
+        if not (isinstance(entity, Entity) or isinstance(entity, Feature)):
+            raise TypeError("The given object is not an instance of Entity object")
+
+        if not isinstance(self.subfeatures, list):
+            self.subfeatures = list()
+
+        entity._set_parent(self)
+        self.subfeatures.append(entity)
+
+        return self.subfeatures[-1]
+
+    def remove_initial_nans(self):
+        if self.values:
+            no_nan_list = list()
+
+            for tp in self.values:
+                pos = 0
+                while (pos < len(self.values[tp])):
+                    if not math.isnan(self.values[tp][pos]):
+                        no_nan_list.append(pos)
+                        break
+                    else:
+                        pos += 1
+
+            min_nans = min(no_nan_list)
+            # print(min_nans)
+            if min_nans > 0:
+                for tp in self.values:
+                    self.values[tp] = self.values[tp][min_nans:]
+
+                # print(self.start_year)
+                self.start_year += min_nans
+                # print(self.start_year)
+            # remove min_nans from each tuple
+
+
 class Feature:
     def __init__(self):
         self.names = {}
@@ -48,14 +122,14 @@ class Feature:
         self.values[ty] = values
 
     def _set_parent(self, feature):
-        if not isinstance(feature, Feature):
+        if not (isinstance(feature, Feature) or isinstance(feature, Entity)):
             raise TypeError("The given object is not an instance of Feature object")
 
         self.parent = feature
 
     def add_subfeature(self, feature):
-        if not isinstance(feature, Feature):
-            raise TypeError("The given object is not an instance of Feature object")
+        if not (isinstance(feature, Feature) or isinstance(feature, Entity)):
+            raise TypeError("The given object is not an instance of Feature or Entity object")
 
         if not isinstance(self.subfeatures, list):
             self.subfeatures = list()
@@ -137,6 +211,32 @@ class SheetObject:
     def find_parent(self, type):
         pass
 
+    def create_entity(self, entity_names, start_year=None, parent_feature=None):
+        entity = Entity()
+        for key in entity_names:
+            entity.set_language_name(key, entity_names[key].strip('$'))
+
+        entity.set_start_year(start_year)
+        if parent_feature:
+            if not (isinstance(parent_feature, Feature) or isinstance(parent_feature, Entity)):
+                raise TypeError("The given parent object is not an instance of feature")
+
+            parent_feature.add_subfeature(entity)
+
+        else:
+            self.data_obj.append(entity)
+
+        feat_par = entity.parent
+        if feat_par and isinstance(feat_par, Entity):
+            entity.parent_entity = feat_par
+
+        while (feat_par and not isinstance(feat_par, Feature)):
+            feat_par = feat_par.parent
+
+        entity.parent_feature = feat_par
+
+        return entity
+
     def create_feature(self, feature_names, start_year=None, parent_feature=None):
         # if not (parent_feature or type):
         #     raise TypeError("You must supply either the parent feature or a type name")
@@ -150,7 +250,7 @@ class SheetObject:
 
         feature.set_start_year(start_year)
         if parent_feature:
-            if not isinstance(parent_feature, Feature):
+            if not (isinstance(parent_feature, Feature) or isinstance(parent_feature, Entity)):
                 raise TypeError("The given parent object is not an instance of feature")
 
             parent_feature.add_subfeature(feature)
@@ -161,7 +261,7 @@ class SheetObject:
         return feature
 
     def set_feature_type_values(self, feature, type_name, values):
-        if not isinstance(feature, Feature):
+        if not (isinstance(feature, Feature) or isinstance(feature, Entity)):
             raise TypeError("The given object is not an instance of feature")
 
         ty = self.find_type_by_english_name(type_name)

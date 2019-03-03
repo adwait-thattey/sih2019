@@ -100,34 +100,29 @@
 <!-- SCRIPTS -->
 <!-- JQuery -->
 
-<script type="text/javascript" src="{% static 'category_base/js/jquery-3.3.1.min.js' %}"></script>
-
-<!-- Tooltips -->
-
-<script type="text/javascript" src="{% static 'category_base/js/popper.min.js' %}"></script>
-
+<!-- JQuery -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<!-- Bootstrap tooltips -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
 <!-- Bootstrap core JavaScript -->
-
-<script type="text/javascript" src="{% static 'category_base/js/bootstrap.min.js' %}"></script>
-
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.2.1/js/bootstrap.min.js"></script>
 <!-- MDB core JavaScript -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.7.3/js/mdb.min.js"></script>
 
-<script type="text/javascript" src="{% static 'category_base/js/mdb.min.js' %}"></script>
-<script>
-    // SideNav Initialization
-    $(".button-collapse").sideNav();
+<!--<script>-->
+    <!--// SideNav Initialization-->
+    <!--$(".button-collapse").sideNav();-->
 
-    new WOW().init();
+    <!--new WOW().init();-->
 
-</script>
-<div class="drag-target"
-     style="left: 0px; touch-action: pan-y; user-select: none; -webkit-user-drag: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></div>
+<!--</script>-->
+
 
 <script src="{% static 'sheets/js/highcharts.js' %}"></script>
+<script src="https://code.highcharts.com/highcharts-3d.js"></script>
 
 <script src="{% static 'sheets/js/custom-chart.js' %}"></script>
 
-<script src="https://code.highcharts.com/highcharts-3d.js"></script>
 </head>
 
 <body class="fixed-sn white-skin" aria-busy="true">
@@ -266,7 +261,7 @@
 
 <!--Main layout-->
 <main>
-    {% include 'sheets/partials/_charts.html' %}
+    {% include 'sheets/partials/chart2.html' %}
 </main>
 <!--/Main layout-->
 
@@ -415,8 +410,11 @@
 </footer>
 
 <!--/.Footer-->
+<script>
+    var agri_url = "{% url 'sheets:ajax_agriculture' %}";
+</script>
 
-<script src="{% static 'sheets/js/option.js' %}"></script>
+
 <script src="{% static 'sheets/js/gva.js' %}"></script>
 <script src="{% static 'sheets/js/scrollspy/vanillajs-scrollspy.min.js' %}"></script>
 <script src="{% static 'sheets/js/scrollspy/sliding.js' %}"></script>

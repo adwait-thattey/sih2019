@@ -43,13 +43,12 @@ function buildTimeSeriesChart(htmlId, data, type) {
     var text;
     var types = [];
 
-
-    if (type === 'GVA') {
+    if (type === 'gva at basic prices') {
         twoChildAttr = [data[type].current, data[type].constant];
         text = 'Current and constant GVA Values';
         types = ['current', 'constant'];
     }
-    if (type === 'NVA') {
+    if (type === 'nva at basic prices') {
         twoChildAttr = [data[type].current, data[type].constant];
         text = 'Current and constant NVA Values';
         types = ['current', 'constant'];
@@ -73,7 +72,7 @@ function buildTimeSeriesChart(htmlId, data, type) {
 
         yAxis: {
             title: {
-                text: 'Current And Constant Values'
+                text: 'Values for ' + type
             }
         },
         legend: {
@@ -181,10 +180,10 @@ function buildLineChart(htmlId) {
 
     var twoChildAttr = [];
 
-    if (type === 'GVA') {
+    if (type === 'gva at basic prices') {
         twoChildAttr = [data[type].current, data[type].constant];
     }
-    if (type === 'NVA') {
+    if (type === 'nva at basic prices') {
         twoChildAttr = [data[type].current, data[type].constant];
     }
     if (type === 'indices') {
@@ -252,11 +251,12 @@ function buildLineChart(htmlId) {
 function buildDualChart(htmlId, data, type) {
 
     var twoChildAttr = [];
-
-    if (type === 'GVA') {
+    console.log(data);
+    console.log('data');
+    if (type === 'gva at basic prices') {
         twoChildAttr = [data[type].current, data[type].constant];
     }
-    if (type === 'NVA') {
+    if (type === 'nva at basic prices') {
         twoChildAttr = [data[type].current, data[type].constant];
     }
     if (type === 'indices') {
