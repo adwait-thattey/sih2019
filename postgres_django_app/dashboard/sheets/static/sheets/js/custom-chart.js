@@ -142,6 +142,18 @@ function buildPieChart(htmlId, JSONdata, type) {
         var text = 'Distribution of Constant GVA value for 2015'
     }
 
+     if (type === 'consumption') {
+        var data = [];
+        for (var i = 0; i <= 11; i++) {
+            var object = {
+                name: JSONdata[i].name,
+                y: JSONdata[i].values['household individual consumption expenditure'][4]
+            };
+            data.push(object);
+        }
+        var text = 'Distribution of Consumption GVA value for 2015'
+    }
+
     Highcharts.chart(htmlId, {
         chart: {
             plotBackgroundColor: null,

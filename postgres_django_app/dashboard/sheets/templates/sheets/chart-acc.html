@@ -1,0 +1,96 @@
+{% load static %}
+
+{% block styles %}
+<link rel="stylesheet" href="{% static 'sheets/css/chart.css' %}">
+{% endblock %}
+
+<section class="container">
+
+    <section class="charts gva-charts page" id="gva">
+
+        <div class="chart-heading">
+            <h2 style="display:block;color: black;font-weight: 600;" class="agg-name-value">{{ acc_name|upper }} {{ agg_name|upper }}</h2>
+            <div class="underline">&nbsp;</div>
+        </div>
+
+        <div class="btn-group">
+
+            <!--Dropdown primary-->
+            <div class="dropdown">
+
+                <!--Trigger-->
+                <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false">Select Sectors
+                </button>
+
+                <div class="dropdown-menu">
+                    <!--<a class="dropdown-item" href="#">Action</a>-->
+                    <!--<a class="dropdown-item" href="#">Another action</a>-->
+                    <!--<a class="dropdown-item" href="#">Something else here</a>-->
+                    <!--<div class="dropdown-divider"></div>-->
+                    <!--<a class="dropdown-item" href="#">Separated link</a>-->
+                </div>
+
+                <!--Menu-->
+                <!---->
+            </div>
+            <!--/Dropdown primary-->
+        </div>
+
+        <div class="card">
+
+
+            <!--<div class="container">-->
+                <!--<div class="row stats">-->
+                    <!--<div class="col-md-3 stat-chip">-->
+                        <!--<div class="stat-value">-->
+                            <!--<h2>180</h2>-->
+                            <!--<p>Max GVA Value</p>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                    <!--<div class="col-md-3 stat-chip">-->
+                        <!--<div class="stat-value">-->
+                            <!--<h2>55%</h2>-->
+                            <!--<p>% Increase in last year</p>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                    <!--<div class="col-md-3 stat-chip">-->
+                        <!--<div class="stat-value">-->
+                            <!--<h2>55%</h2>-->
+                            <!--<p>% Increase in last year</p>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
+
+
+
+            <div class="row chart-all">
+                <div class="col-md-6" id="chart-acc-container-timeSeries"></div>
+                <div class="col-md-6" id="chart-acc-container-pie1"></div>
+            </div>
+
+        <!--<div class="card">-->
+            <!--<div class="row chart-all">-->
+                <!--<div class="col-md-6" id="gva-container-timeSeries2"></div>-->
+                <!--<div class="col-md-6" id="gva-container-db2"></div>-->
+            <!--</div>-->
+        <!--</div>-->
+
+            <div class="row chart-all">
+                <div class="col-md-4" id="chart-acc-container-pie2"></div>
+                <div class="col-md-8" id="chart-acc-container-db1"></div>
+            </div>
+
+        </div>
+    </section>
+
+
+</section>
+
+
+{% block scripts %}
+
+
+
+{% endblock %}

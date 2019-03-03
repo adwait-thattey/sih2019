@@ -294,12 +294,12 @@
      style="left: 0px; touch-action: pan-y; user-select: none; -webkit-user-drag: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></div>
 
 <script>
-    var agg_name = "{{ acc_name }}";
-    var gdpUrl = "{% url 'sheets:get_gdp' %}";
+    var acc_name =  "{{ acc_name }}";
+    var consumption_url   = "{% url 'sheets:get_consumption_share' %}";
 </script>
 
 <script src="{% static 'sheets/js/custom-chart.js' %}"></script>
-<script src="{% static 'sheets/js/aggregate.js' %}"></script>
+<script src="{% static 'sheets/js/account.js' %}"></script>
 
 
 <script src="{% static 'sheets/js/scrollspy/vanillajs-scrollspy.min.js' %}"></script>

@@ -14,5 +14,7 @@ urlpatterns = [
     path('activity/<slug:acc_name>/' , views.acc_name, name='acc_name'),
     path('aggregate/<slug:agg_name>/<slug:activity_name>/', views.agg_name_deep, name='agg_name_deep'),
     path('get_gdp/', views.get_gdp, name="get_gdp"),
-    path('get_gva_shares/', views.get_gva_shares, name="get_gva_shares")
+    path('get_gva_shares/', views.get_gva_shares, name="get_gva_shares"),
+    path('consumption_share/', views.consumption_share, name="consumption_share"),
+    path('get_consumption_share', views.get_consumption_share, name="get_consumption_share"),
 ]

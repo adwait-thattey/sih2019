@@ -237,6 +237,8 @@ def get_gva_shares_with_feat_id(request, feat_id):
     print(feature_dict)
     return JsonResponse(feature_dict, safe=False)
 
+def consumption_share(request):
+    return render(request, 'sheets/account.html', {'acc_name':'consumption'})
 
 def get_consumption_share(request):
     en = models.EntityName.objects.filter(name="consumption")
