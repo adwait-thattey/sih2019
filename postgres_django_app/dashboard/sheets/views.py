@@ -59,3 +59,8 @@ def get_feature_search_list(request):
 
     return JsonResponse(obj, safe=False)
 
+import random
+def file_reupload_ajax(request):
+    response_lists = ["uploading", "wait for few seconds", "thanks while we parse the file"]
+    response_text = random.choice(response_lists)
+    return JsonResponse(response_text, safe=False)

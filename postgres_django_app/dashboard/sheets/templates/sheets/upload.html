@@ -173,6 +173,32 @@
         {% endfor %}
         </tbody>
     </table>
+
+
+    <script>
+      function responseFunction() {
+          $.ajax({
+              type: 'GET',
+              //    async: false,
+              url: "http://127.0.0.1:8000/sheets/upload-response",
+              data: {
+                  // hardcoded
+                  //sheet: 22,
+                  //language: 'english',
+                  // csrfmiddlewaretoken: csrfToken
+              },
+              dataType: 'json',
+              success: function (data) {
+                  JSONdata = data;
+                  console.log(JSONdata)
+
+
+              }
+
+          });
+      }
+ setInterval(responseFunction,1000);
+    </script>
 </main>
 <!--/Main layout-->
 
