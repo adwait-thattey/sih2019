@@ -8,7 +8,7 @@ class Type:
     def set_language_name(self, language, name):
         if name in ['nan', '-']:
             name = 'none'
-        self.names[language.lower()] = name
+        self.names[language.lower()] = name.lower()
 
     def __repr__(self):
         if "english" in self.names:
