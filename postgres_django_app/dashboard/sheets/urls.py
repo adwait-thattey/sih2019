@@ -4,6 +4,7 @@ from . import views
 app_name = "sheets"
 
 urlpatterns = [
+    path('aggregate/gva/agriculture', views.agricultureOnly, name="agricultureOnly"),
     path('feature_values', views.get_feature, name="feature_values"),
     path('feature_name_tree', views.get_feature_name_tree, name="feature_name_tree"),
     path('feature_search_list', views.get_feature_search_list, name="feature_search_list"),
@@ -17,4 +18,6 @@ urlpatterns = [
     path('get_gva_shares/', views.get_gva_shares, name="get_gva_shares"),
     path('consumption_share/', views.consumption_share, name="consumption_share"),
     path('get_consumption_share/', views.get_consumption_share, name="get_consumption_share"),
+
+
 ]

@@ -2,6 +2,13 @@
 
 {% block styles %}
 <link rel="stylesheet" href="{% static 'sheets/css/chart.css' %}">
+
+<style>
+    .chart-all {
+        color: black;
+    }
+</style>
+
 {% endblock %}
 
 <section class="container">
@@ -24,11 +31,15 @@
                 </button>
 
                 <div class="dropdown-menu">
-                    <!--<a class="dropdown-item" href="#">Action</a>-->
-                    <!--<a class="dropdown-item" href="#">Another action</a>-->
-                    <!--<a class="dropdown-item" href="#">Something else here</a>-->
-                    <!--<div class="dropdown-divider"></div>-->
-                    <!--<a class="dropdown-item" href="#">Separated link</a>-->
+                    <a class="dropdown-item" href="{% url 'sheets:agricultureOnly' %}">Agriculture</a>
+                    <a class="dropdown-item" href="#">Mining</a>
+                    <a class="dropdown-item" href="#">Construction</a>
+                    <a class="dropdown-item" href="#">Manufacturing</a>
+                    <a class="dropdown-item" href="#">Gas, Electricity</a>
+                    <a class="dropdown-item" href="#">Real Estate</a>
+                    <a class="dropdown-item" href="#">Trade and Hotels</a>
+                    <a class="dropdown-item" href="#">Transport and Storage</a>
+                    <a class="dropdown-item" href="#">Financial Service</a>
                 </div>
 
                 <!--Menu-->
@@ -36,6 +47,32 @@
             </div>
             <!--/Dropdown primary-->
         </div>
+
+
+        <div class="btn-group" style="margin-left: 100px">
+
+            <!--Dropdown primary-->
+            <div class="dropdown">
+
+                <!--Trigger-->
+                <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false">Select Year
+                </button>
+
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="#">2011-12</a>
+                    <a class="dropdown-item" href="#">2012-13</a>
+                    <a class="dropdown-item" href="#">2013-14</a>
+                    <a class="dropdown-item" href="#">2014-15</a>
+                    <a class="dropdown-item" href="#">2015-16</a>
+                </div>
+
+                <!--Menu-->
+                <!---->
+            </div>
+            <!--/Dropdown primary-->
+        </div>
+
 
         <div class="card">
 
@@ -65,10 +102,33 @@
 
 
 
-            <div class="row chart-all">
-                <div class="col-md-6" id="chart-agg-container-timeSeries"></div>
-                <div class="col-md-6" id="chart-agg-container-pie1"></div>
-            </div>
+            <!--<div class="row chart-all">-->
+                <!--<div class="col-md-6" id="containerone"></div>-->
+            <!--</div>-->
+
+            <!--<div>-->
+                <!--<div class="col-md-6" id="containertwo"></div>-->
+                <!--<div class="col-md-6">-->
+                    <!--<table>-->
+                        <!--<tr>-->
+                            <!--<th>Serial</th>-->
+                            <!--<th>Data</th>-->
+                        <!--</tr>-->
+                        <!--<tr>-->
+                            <!--<td>1</td>-->
+                            <!--<td>48486</td>-->
+                        <!--</tr>-->
+                        <!--<tr>-->
+                            <!--<td>2</td>-->
+                            <!--<td>49486</td>-->
+                        <!--</tr>-->
+                        <!--<tr>-->
+                            <!--<td>3</td>-->
+                            <!--<td>50486</td>-->
+                        <!--</tr>-->
+                    <!--</table>-->
+                <!--</div>-->
+            <!--</div>-->
 
         <!--<div class="card">-->
             <!--<div class="row chart-all">-->
@@ -78,9 +138,132 @@
         <!--</div>-->
 
             <div class="row chart-all">
-                <div class="col-md-4" id="chart-agg-container-pie2"></div>
-                <div class="col-md-8" id="chart-agg-container-db1"></div>
+                <div class="col-md-6" id="containertwo"></div>
+                <div class="col-md-6" id="containerone"></div>
+                <!--<div class="col-md-8" id="chart-agg-container-db1"></div>-->
             </div>
+
+
+            <div class="row chart-all">
+                <div class="col-md-6" id="containerfive"></div>
+            </div>
+
+
+            <div class="row chart-all">
+                <table class="table">
+                    <thead class="black white-text">
+                        <tr>
+                          <th scope="col">Economic Aggregate By Current Price</th>
+                          <th scope="col">2011-12</th>
+                          <th scope="col">2012-13</th>
+                          <th scope="col">2013-14</th>
+                          <th scope="col">2014-15</th>
+                          <th scope="col">2015-16</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <th scope="col">Agriculture</th>
+                          <th scope="col">1501947</th>
+                          <th scope="col">1675107</th>
+                          <th scope="col">1926372</th>
+                          <th scope="col">2093612</th>
+                          <th scope="col">2225368</th>
+                        </tr>
+                        <tr>
+                          <th scope="col">Mining & Quarrying</th>
+                          <th scope="col">261035</th>
+                          <th scope="col">285842</th>
+                          <th scope="col">295794</th>
+                          <th scope="col">308476</th>
+                          <th scope="col">301230</th>
+                        </tr>
+                        <tr>
+                          <th scope="col">Manufacturing</th>
+                          <th scope="col">1409986</th>
+                          <th scope="col">1572837</th>
+                          <th scope="col">1713452</th>
+                          <th scope="col">1878369</th>
+                          <th scope="col">2116119</th>
+                        </tr>
+                        <tr>
+                          <th scope="col">Electricity, Gas & Water Supply</th>
+                          <th scope="col">186668</th>
+                          <th scope="col">215350</th>
+                          <th scope="col">260155</th>
+                          <th scope="col">282258</th>
+                          <th scope="col">336978</th>
+                        </tr>
+                        <tr>
+                          <th scope="col">Construction</th>
+                          <th scope="col">777335</th>
+                          <th scope="col">849365</th>
+                          <th scope="col">921470</th>
+                          <th scope="col">979086</th>
+                          <th scope="col">992298</th>
+                        </tr>
+                        <tr>
+                          <th scope="col">Trade, Repair, Hotels & restaurent</th>
+                          <th scope="col">100.05</th>
+                          <th scope="col">107.44</th>
+                          <th scope="col">114.59</th>
+                          <th scope="col">116.10</th>
+                          <th scope="col">113.63</th>
+                        </tr>
+                        <tr>
+                          <th scope="col">Transport, storage, communication</th>
+                          <th scope="col">883582</th>
+                          <th scope="col">1054533</th>
+                          <th scope="col">1184560</th>
+                          <th scope="col">1320833</th>
+                          <th scope="col">1431016</th>
+                        </tr>
+                        <tr>
+                          <th scope="col">Financial Services</th>
+                          <th scope="col">883582</th>
+                          <th scope="col">1054533</th>
+                          <th scope="col">1184560</th>
+                          <th scope="col">1320833</th>
+                          <th scope="col">1431016</th>
+                        </tr>
+                        <tr>
+                          <th scope="col">Real estate, Dwelling & Professional services</th>
+                          <th scope="col">529534</th>
+                          <th scope="col">609453</th>
+                          <th scope="col">689906</th>
+                          <th scope="col">786763</th>
+                          <th scope="col">872233</th>
+                        </tr>
+                        <tr>
+                          <th scope="col">Public Administration and defence</th>
+                          <th scope="col">491155</th>
+                          <th scope="col">546231</th>
+                          <th scope="col">601912</th>
+                          <th scope="col">676818</th>
+                          <th scope="col">731640</th>
+                        </tr>
+                        <tr>
+                          <th scope="col">Other Services</th>
+                          <th scope="col">534827</th>
+                          <th scope="col">617343</th>
+                          <th scope="col">700023</th>
+                          <th scope="col">814718</th>
+                          <th scope="col">928480</th>
+                        </tr>
+                        <tr style="background: #000;color: #fff">
+                          <th scope="col">Total GVA (In Crores)</th>
+                          <th scope="col">8106946</th>
+                          <th scope="col">9202692</th>
+                          <th scope="col">10363153</th>
+                          <th scope="col">12566646</th>
+                          <th scope="col">13841591</th>
+                        </tr>
+                      </tbody>
+                </table>
+            </div>
+
+
+
 
         </div>
     </section>
@@ -90,7 +273,165 @@
 
 
 {% block scripts %}
+<script src="/https://code.highcharts.com/highcharts-3d.js"></script>
+
+<script>
+Highcharts.chart('containerone', {
+    chart: {
+        type: 'column'
+    },
+    title: {
+        text: 'GVA values for Year 2015-16'
+    },
+    subtitle: {
+        text: 'Source: mospi.gov.in'
+    },
+    xAxis: {
+        categories: [
+            'agriculture,forestry & fishing',
+            'mining & quarrying',
+            'manufacturing',
+            'electricity,gas,water supply & other utility services',
+            'construction',
+            'trade,repair, hotels & restaurants',
+            'transport,storage,communication & services related to broadcasting',
+            'financial services',
+            'real estate, ownership of dwelling & professional services',
+            'public administration and defence',
+            'other services',
+        ],
+        crosshair: true
+    },
+    yAxis: {
+        min: 0,
+        title: {
+            text: 'GVA UNIT'
+        }
+    },
+    tooltip: {
+        headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+        pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+            '<td style="padding:0"><b>{point.y:.1f}</b></td></tr>',
+        footerFormat: '</table>',
+        shared: true,
+        useHTML: true
+    },
+    plotOptions: {
+        column: {
+            pointPadding: 0.2,
+            borderWidth: 0
+        }
+    },
+    series: [{
+        name: 'GVA For 2015-16',
+        data: [134.5, 91.2, 110.3, 143.3, 114.4, 113.6, 118.33, 107.2, 117.5, 129.5, 130.3]
+
+    }]
+});
 
 
+Highcharts.chart('containertwo', {
+    chart: {
+        plotBackgroundColor: null,
+        plotBorderWidth: null,
+        plotShadow: false,
+        type: 'pie'
+    },
+    title: {
+        text: 'Distribution Of GVA in various economic activities'
+    },
+    tooltip: {
+        pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+    },
+    plotOptions: {
+        pie: {
+            allowPointSelect: true,
+            cursor: 'pointer',
+            dataLabels: {
+                enabled: false
+            },
+            showInLegend: true
+        }
+    },
+    series: [{
+        name: 'Brands',
+        colorByPoint: true,
+        data: [{
+            name: 'Agriculture',
+            y: 134.5,
+            sliced: true,
+            selected: true
+        }, {
+            name: 'Mining',
+            y: 91.2
+        }, {
+            name: 'Manufacturing',
+            y: 110.3
+        }, {
+            name: 'Electricity, Gas, Water Supply',
+            y: 143.3
+        }, {
+            name: 'Construction',
+            y: 114.4
+        }, {
+            name: 'Trade,Repair, hotels & restaurants',
+            y: 113.6
+        }, {
+            name: 'Transport, Storage,communication & services related to broadcasting',
+            y: 118.3
+        }, {
+            name: 'Financial Service',
+            y: 107.2
+        }, {
+            name: 'Real Estate, Ownership of dwelling & Professional Services',
+            y: 117.5
+        }, {
+            name: 'public administration and defence',
+            y: 129.5
+        }, {
+            name: 'Other Services',
+            y: 130.3
+        }]
+    }]
+});
+
+
+
+Highcharts.chart('containerfive', {
+    chart: {
+        type: 'line'
+    },
+    title: {
+        text: 'GVA Prices Year 2011-12 to 2015-16'
+    },
+    subtitle: {
+        text: 'Source: mospi.gov.in'
+    },
+    xAxis: {
+        categories: ['2011-12', '2012-13', '2013-14', '2014-15', '2015-16']
+    },
+    yAxis: {
+        title: {
+            text: 'GVA Price (In Crores)'
+        }
+    },
+    plotOptions: {
+        line: {
+            dataLabels: {
+                enabled: true
+            },
+            enableMouseTracking: false
+        }
+    },
+    series: [{
+        name: 'Current Price',
+        data: [8106946, 9202692, 10363153, 11504279, 12566646]
+    }, {
+        name: 'Constant Price',
+        data: [8106946, 8546275, 9063649, 9712133, 10503348]
+    }]
+});
+
+</script>
 
 {% endblock %}

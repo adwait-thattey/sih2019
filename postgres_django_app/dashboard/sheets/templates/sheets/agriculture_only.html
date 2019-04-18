@@ -1,0 +1,625 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>home</title>
+     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <!-- Material Design Bootstrap -->
+    <link href="css/mdb.min.css" rel="stylesheet">
+    <link href="css/gradient.css" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'sheets/css/chart.css' %}">
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Required meta tags always come first -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>BookCafe</title>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <link rel="stylesheet" href="{% static 'category_base/css/font-awesome.css' %}">
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="{% static 'category_base/css/bootstrap.min.css' %}">
+    <!-- Material Design Bootstrap -->
+
+    <link rel="stylesheet" href="{% static 'category_base/css/mdb.min.css' %}">
+    <link rel="stylesheet" href="{% static 'category_base/css/gradient.css' %}">
+
+    <style>
+        .main {
+            padding-left: 15rem;
+            padding-top: 5.5rem;
+        }
+        /* Chart.js */
+        @-webkit-keyframes chartjs-render-animation {
+            from {
+                opacity: 0.99
+            }
+            to {
+                opacity: 1
+            }
+        }
+        @keyframes chartjs-render-animation {
+            from {
+                opacity: 0.99
+            }
+            to {
+                opacity: 1
+            }
+        }
+        .chartjs-render-monitor {
+            -webkit-animation: chartjs-render-animation 0.001s;
+            animation: chartjs-render-animation 0.001s;
+        }
+        .icon-bar {
+            position: fixed;
+            top: 50%;
+            right: 0%;
+            -webkit-transform: translateY(-50%);
+            -ms-transform: translateY(-50%);
+            transform: translateY(-50%);
+        }
+        /* Style the icon bar links */
+        .icon-bar a {
+            display: block;
+            text-align: center;
+            padding: 16px;
+            transition: all 0.3s ease;
+            color: white;
+            font-size: 20px;
+        }
+        /* Style the social media icons with color, if you want */
+        .icon-bar a:hover {
+            background-color: #000;
+        }
+        .facebook {
+            background: #3B5998;
+            color: white;
+        }
+        .twitter {
+            background: #55ACEE;
+            color: white;
+        }
+        .google {
+            background: #dd4b39;
+            color: white;
+        }
+        .linkedin {
+            background: #007bb5;
+            color: white;
+        }
+        .youtube {
+            background: #bb0000;
+            color: white;
+        }
+        .eco-aggre {
+            margin-left: 8% !important;
+        }
+        #slide-out {
+            background: white;
+        }
+
+        .chart-all {
+            color: black;
+            margin-left: 6px;
+        }
+    </style>
+
+
+    <!-- SCRIPTS -->
+    <!-- JQuery -->
+
+    <script type="text/javascript" src="{% static 'category_base/js/jquery-3.3.1.min.js' %}"></script>
+
+    <!-- Tooltips -->
+
+    <script type="text/javascript" src="{% static 'category_base/js/popper.min.js' %}"></script>
+
+    <!-- Bootstrap core JavaScript -->
+
+    <script type="text/javascript" src="{% static 'category_base/js/bootstrap.min.js' %}"></script>
+
+    <!-- MDB core JavaScript -->
+
+    <script type="text/javascript" src="{% static 'category_base/js/mdb.min.js' %}"></script>
+
+    <script src="{% static 'sheets/js/highcharts.js' %}"></script>
+    <script src="https://code.highcharts.com/highcharts-3d.js"></script>
+
+    <script src="{% static 'sheets/js/option.js' %}"></script>
+</head>
+
+<body class="fixed-sn white-skin" aria-busy="true">
+
+<!--Double navigation-->
+{% include 'sheets/partials/_header.html' %}
+<!--/.Double navigation-->
+
+
+
+<!--Main layout-->
+<main>
+    <section class="container">
+
+    <section class="charts gva-charts page" id="gva">
+
+        <div class="chart-heading">
+            <h2 style="display:block;color: black;font-weight: 600;" class="agg-name-value">{{ agg_name|upper }}</h2>
+            <div class="underline">&nbsp;</div>
+        </div>
+
+        <div class="btn-group">
+
+            <!--Dropdown primary-->
+            <div class="dropdown">
+
+                <!--Trigger-->
+                <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false">Crops
+                </button>
+
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="">Crops</a>
+                    <a class="dropdown-item" href="">Livestock</a>
+                    <a class="dropdown-item" href="#">Forestry and Logging</a>
+                    <a class="dropdown-item" href="#">Fishing And Aquaculture</a>
+                </div>
+
+                <!--Menu-->
+                <!---->
+            </div>
+            <!--/Dropdown primary-->
+        </div>
+
+
+        <div class="btn-group" style="margin-left: 100px">
+
+            <!--Dropdown primary-->
+            <div class="dropdown">
+
+                <!--Trigger-->
+                <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false">Year
+                </button>
+
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="#">2011-12</a>
+                    <a class="dropdown-item" href="#">2012-13</a>
+                    <a class="dropdown-item" href="#">2013-14</a>
+                    <a class="dropdown-item" href="#">2014-15</a>
+                    <a class="dropdown-item" href="#">2015-16</a>
+                </div>
+
+                <!--Menu-->
+                <!---->
+            </div>
+            <!--/Dropdown primary-->
+        </div>
+
+        <div class="card">
+
+
+            <!--<div class="container">-->
+                <!--<div class="row stats">-->
+                    <!--<div class="col-md-3 stat-chip">-->
+                        <!--<div class="stat-value">-->
+                            <!--<h2>180</h2>-->
+                            <!--<p>Max GVA Value</p>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                    <!--<div class="col-md-3 stat-chip">-->
+                        <!--<div class="stat-value">-->
+                            <!--<h2>55%</h2>-->
+                            <!--<p>% Increase in last year</p>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                    <!--<div class="col-md-3 stat-chip">-->
+                        <!--<div class="stat-value">-->
+                            <!--<h2>55%</h2>-->
+                            <!--<p>% Increase in last year</p>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
+
+
+
+            <!--<div class="row chart-all">-->
+                <!--<div class="col-md-6" id="containerone"></div>-->
+            <!--</div>-->
+
+            <!--<div>-->
+                <!--<div class="col-md-6" id="containertwo"></div>-->
+                <!--<div class="col-md-6">-->
+                    <!--<table>-->
+                        <!--<tr>-->
+                            <!--<th>Serial</th>-->
+                            <!--<th>Data</th>-->
+                        <!--</tr>-->
+                        <!--<tr>-->
+                            <!--<td>1</td>-->
+                            <!--<td>48486</td>-->
+                        <!--</tr>-->
+                        <!--<tr>-->
+                            <!--<td>2</td>-->
+                            <!--<td>49486</td>-->
+                        <!--</tr>-->
+                        <!--<tr>-->
+                            <!--<td>3</td>-->
+                            <!--<td>50486</td>-->
+                        <!--</tr>-->
+                    <!--</table>-->
+                <!--</div>-->
+            <!--</div>-->
+
+        <!--<div class="card">-->
+            <!--<div class="row chart-all">-->
+                <!--<div class="col-md-6" id="gva-container-timeSeries2"></div>-->
+                <!--<div class="col-md-6" id="gva-container-db2"></div>-->
+            <!--</div>-->
+        <!--</div>-->
+
+            <div class="row chart-all ">
+                <div class="col-md-6" id="containerthree"></div>
+                <div class="col-md-6" id="containerfour"></div>
+                <!--<div class="col-md-8" id="chart-agg-container-db1"></div>-->
+            </div>
+
+            <div class="row chart-all container">
+                <table class="table">
+                    <thead class="black white-text">
+                        <tr>
+                          <th scope="col">Agriculture Aggregate at Current Price</th>
+                          <th scope="col">2011-12</th>
+                          <th scope="col">2012-13</th>
+                          <th scope="col">2013-14</th>
+                          <th scope="col">2014-15</th>
+                          <th scope="col">2015-16</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <th scope="col">Crops</th>
+                          <th scope="col">982151</th>
+                          <th scope="col">1088814</th>
+                          <th scope="col">1248776</th>
+                          <th scope="col">1292874</th>
+                          <th scope="col">1327997</th>
+                        </tr>
+                        <tr>
+                          <th scope="col">Livestock</th>
+                          <th scope="col">327334</th>
+                          <th scope="col">368823</th>
+                          <th scope="col">422733</th>
+                          <th scope="col">510411</th>
+                          <th scope="col">584070</th>
+                        </tr>
+                        <tr>
+                          <th scope="col">Forestry and Logging</th>
+                          <th scope="col">124436</th>
+                          <th scope="col">137558</th>
+                          <th scope="col">156674</th>
+                          <th scope="col">173760</th>
+                          <th scope="col">182247</th>
+                        </tr>
+                        <tr>
+                          <th scope="col">Fishing and Aquaculture</th>
+                          <th scope="col">68027</th>
+                          <th scope="col">79911</th>
+                          <th scope="col">98190</th>
+                          <th scope="col">116567</th>
+                          <th scope="col">131053</th>
+                        </tr>
+                      </tbody>
+                </table>
+
+                <table class="table" style="margin-top: 50px">
+                    <thead class="black white-text">
+                        <tr>
+                          <th scope="col">Agriculture Aggregate at Constant Price</th>
+                          <th scope="col">2011-12</th>
+                          <th scope="col">2012-13</th>
+                          <th scope="col">2013-14</th>
+                          <th scope="col">2014-15</th>
+                          <th scope="col">2015-16</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <th scope="col">Crops</th>
+                          <th scope="col">982151</th>
+                          <th scope="col">983809</th>
+                          <th scope="col">1037060</th>
+                          <th scope="col">998425</th>
+                          <th scope="col">966345</th>
+                        </tr>
+                        <tr>
+                          <th scope="col">Livestock</th>
+                          <th scope="col">327334</th>
+                          <th scope="col">344375</th>
+                          <th scope="col">363558</th>
+                          <th scope="col">390449</th>
+                          <th scope="col">421369</th>
+                        </tr>
+                        <tr>
+                          <th scope="col">Forestry and Logging</th>
+                          <th scope="col">124436</th>
+                          <th scope="col">124743</th>
+                          <th scope="col">132093</th>
+                          <th scope="col">134609</th>
+                          <th scope="col">137022</th>
+                        </tr>
+                        <tr>
+                          <th scope="col">Fishing and Aquaculture</th>
+                          <th scope="col">68027</th>
+                          <th scope="col">71362</th>
+                          <th scope="col">76487</th>
+                          <th scope="col">82232</th>
+                          <th scope="col">90480</th>
+                        </tr>
+                      </tbody>
+                </table>
+            </div>
+
+            <!--<div class="row chart-all">-->
+                <!--<div class="col-md-6" id="graph-container-db1"></div>-->
+            <!--</div>-->
+
+
+        </div>
+    </section>
+
+
+</section>
+</main>
+<!--/Main layout-->
+
+<!--Footer-->
+<footer class="page-footer font-small blue-grey lighten-5">
+
+    <div style="background-color: #0b2a41">
+        <div class="container">
+
+            <!-- Grid row-->
+            <div class="row py-4 d-flex align-items-center">
+
+                <!-- Grid column -->
+                <div class="col-md-6 col-lg-5 text-center text-md-left mb-4 mb-md-0">
+                    <h6 class="mb-0">Get connected with us on social networks!</h6>
+                </div>
+                <!-- Grid column -->
+
+                <!-- Grid column -->
+                <div class="col-md-6 col-lg-7 text-center text-md-right">
+
+                    <!-- Facebook -->
+                    <a class="fb-ic">
+                        <i class="fa fa-facebook white-text mr-4"> </i>
+                    </a>
+                    <!-- Twitter -->
+                    <a class="tw-ic">
+                        <i class="fa fa-twitter white-text mr-4"> </i>
+                    </a>
+                    <!-- Google +-->
+                    <a class="gplus-ic">
+                        <i class="fa fa-google-plus white-text mr-4"> </i>
+                    </a>
+                    <!--Linkedin -->
+                    <a class="li-ic">
+                        <i class="fa fa-linkedin white-text mr-4"> </i>
+                    </a>
+                    <!--Instagram-->
+                    <a class="ins-ic">
+                        <i class="fa fa-instagram white-text"> </i>
+                    </a>
+
+                </div>
+                <!-- Grid column -->
+
+            </div>
+            <!-- Grid row-->
+
+        </div>
+    </div>
+
+    <!-- Footer Links -->
+    <div class="container text-center text-md-left mt-5">
+
+        <!-- Grid row -->
+        <div class="row mt-3 dark-grey-text">
+
+            <!-- Grid column -->
+            <div class="col-md-3 col-lg-4 col-xl-3 mb-4">
+
+                <!-- Content -->
+                <h6 class="text-uppercase font-weight-bold">Dashboard</h6>
+                <hr class="teal accent-3 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
+                <p>A dashboard where an user can view the data for different ministries as well as for macro aggregates and graphs will be plotted for each and every entity</p>
+
+            </div>
+            <!-- Grid column -->
+
+            <!-- Grid column -->
+            <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
+
+                <!-- Links -->
+                <h6 class="text-uppercase font-weight-bold">Features</h6>
+                <hr class="teal accent-3 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
+                <p>
+                    <a class="dark-grey-text" href="#!">Home</a>
+                </p>
+
+                <p>
+                    <a class="dark-grey-text" href="#!">Feedback</a>
+                </p>
+
+            </div>
+            <!-- Grid column -->
+
+            <!-- Grid column -->
+            <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
+
+                <!-- Links -->
+                <h6 class="text-uppercase font-weight-bold">Useful links</h6>
+                <hr class="teal accent-3 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
+
+                <p>
+                    <a class="dark-grey-text" href="#!">Help</a>
+                </p>
+
+            </div>
+            <!-- Grid column -->
+
+            <!-- Grid column -->
+            <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+
+                <!-- Links -->
+                <h6 class="text-uppercase font-weight-bold">Contact</h6>
+                <hr class="teal accent-3 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
+                <p>
+                    <i class="fa fa-home mr-3"></i> Ministry of Statistics and Programme Implementation</p>
+                <p>
+                    <i class="fa fa-envelope mr-3"></i> mospi.gov.in</p>
+                <p>
+                    <i class="fa fa-phone mr-3"></i> + 91-11-23363045</p>
+                <p>
+                    <i class="fa fa-print mr-3"></i> + 91-11-26171146</p>
+
+            </div>
+            <!-- Grid column -->
+
+        </div>
+        <!-- Grid row -->
+
+    </div>
+    <!-- Footer Links -->
+
+    <!-- Copyright -->
+    <div class="footer-copyright text-center text-black-50 py-3">© 2018 Copyright:
+        <a class="dark-grey-text" href="https://mdbootstrap.com/education/bootstrap/"> mospi.gov.in</a>
+    </div>
+    <!-- Copyright -->
+
+</footer>
+<!--/.Footer-->
+
+
+<script>
+    // SideNav Initialization
+    $(".button-collapse").sideNav();
+
+    new WOW().init();
+
+</script>
+<div class="drag-target"
+     style="left: 0px; touch-action: pan-y; user-select: none; -webkit-user-drag: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></div>
+
+<script>
+    var agg_name = "{{ agg_name }}";
+    var gdpUrl = "{% url 'sheets:get_gdp' %}";
+    var gvaUrl = "{% url 'sheets:get_gva_shares' %}"
+</script>
+
+<script src="{% static 'sheets/js/custom-chart.js' %}"></script>
+<script src="{% static 'sheets/js/aggregate.js' %}"></script>
+
+
+<script src="{% static 'sheets/js/scrollspy/vanillajs-scrollspy.min.js' %}"></script>
+<script src="{% static 'sheets/js/scrollspy/sliding.js' %}"></script>
+
+
+<script>
+
+    Highcharts.chart('containerthree', {
+    chart: {
+        plotBackgroundColor: null,
+        plotBorderWidth: null,
+        plotShadow: false,
+        type: 'pie'
+    },
+    title: {
+        text: 'Share of Agriculture Activities for year 2015-16'
+    },
+    tooltip: {
+        pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+    },
+    plotOptions: {
+        pie: {
+            allowPointSelect: true,
+            cursor: 'pointer',
+            dataLabels: {
+                enabled: true,
+                format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+                style: {
+                    color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+                }
+            }
+        }
+    },
+    series: [{
+        name: 'Brands',
+        colorByPoint: true,
+        data: [{
+            name: 'Crops',
+            y: 966345,
+            sliced: true,
+            selected: true
+        }, {
+            name: 'Livestock',
+            y: 421369
+        }, {
+            name: 'Forestry and logging',
+            y: 137022
+        }, {
+            name: 'Fishing and aquaculture',
+            y: 90480
+        }]
+    }]
+});
+
+
+    Highcharts.chart('containerfour', {
+    chart: {
+        type: 'line'
+    },
+    title: {
+        text: 'GVA Values for Crops'
+    },
+    subtitle: {
+        text: 'Source: mospi.gov.in'
+    },
+    xAxis: {
+        categories: ['2011-12', '2012-13', '2013-14', '2014-15', '2015-16']
+    },
+    yAxis: {
+        title: {
+            text: 'GVA'
+        }
+    },
+    plotOptions: {
+        line: {
+            dataLabels: {
+                enabled: true
+            },
+            enableMouseTracking: false
+        }
+    },
+    series: [{
+        name: 'Current Price',
+        data: [982151, 1088814, 1248776, 1292874, 1327997]
+    }, {
+        name: 'Constant Price',
+        data: [982151, 983809, 1037060, 998425, 966345]
+    }]
+});
+</script>
+
+
+</body>
+
+</html>

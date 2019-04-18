@@ -262,3 +262,8 @@ def get_consumption_share(request):
 
     print(feature_dict)
     return JsonResponse(feature_dict, safe=False)
+
+
+
+def agricultureOnly(request):
+    return render(request, 'sheets/agriculture_only.html')

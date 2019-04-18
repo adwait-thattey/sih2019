@@ -66,11 +66,14 @@ function buildTimeSeriesChart(htmlId, JSONdata, type) {
         types = ['current', 'constant'];
     }
     if (type === 'indices') {
-        twoChildAttr = [data[type].price, data[type].quantum];
+        twoChildAttr = [JSONdata[type].price, JSONdata[type].quantum];
         text = 'Price and Quantum indices Values';
         types = ['price', 'quantum'];
     }
+    if (type === 'cfc') {
+        twoChildAttr = [JSONdata[type].price, JSONdata[type].quantum];
 
+    }
 
     Highcharts.chart(htmlId, {
 
@@ -95,9 +98,6 @@ function buildTimeSeriesChart(htmlId, JSONdata, type) {
 
         plotOptions: {
             series: {
-                label: {
-                    connectorAllowed: false
-                },
                 pointStart: JSONdata.start_year
             }
         },
